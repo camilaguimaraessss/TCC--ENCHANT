@@ -1,0 +1,566 @@
+@import url("https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
+:root{
+    --corfundo: #F5F5F5;
+    --corfundo-footer: #fcf2e8;
+    --corbotao1: #e2ccae;
+    --corbotao2: #caae8d;
+    --cortitulo: #4E3629;
+    --cortexto: #535151;
+    --corlink: #EC9E07;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lexend Deca", sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--corfundo);
+    align-content: space-between;
+}
+/*
+------------------------ Header Area ------------------------
+*/
+.navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    gap: 0.5rem;
+    margin-left: 20px;
+}
+.img {
+    margin-top: -0.6rem;
+    margin-left: 1rem;
+} 
+#doeagora {
+    background-color: var(--corbotao1);
+    border-color: var(--corbotao1);
+    color: var(--cortitulo);
+    font-weight: 700;
+    font-size: 16px;
+    width: 10rem;
+    margin-right: 2rem;
+}
+#doeagora:hover {
+    background-color: var(--corbotao2);
+    border:1px solid var(--corbotao2);
+}
+/*
+------------------------ Main Area ------------------------
+*/
+main{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 2rem 0rem 7rem 0rem;
+    gap: 2rem;
+}
+main h2{
+    font-family: "Passion One";
+    color: var(--cortitulo);
+    text-align: center;
+}
+.pagamento-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.3rem;
+}
+.asd{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+#comprar{
+    background-color: var(--corbotao1);
+    border: 1px solid var(--corbotao1);
+    color: var(--cortitulo);
+    font-weight: 700;
+    font-size: 16px;
+    width: 16rem;
+    height: 3rem;
+    border-radius: 10px;
+}
+#comprar:hover{
+    background-color: var(--corbotao2);
+    border:1px solid var(--corbotao2);
+}
+.detalhes-container{
+    display: flex;
+    width: 50rem;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 2rem 2rem 3rem 2rem;
+    gap: 1.5rem;
+}
+.detalhes-container .titulo{
+    border-bottom: 1px solid #B7B6B6;
+    padding-bottom: 1rem;
+}
+.informações{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: space-around;
+}
+.detalhe-column{
+    font-size: 16px;
+}
+.detalhe-column #nomeong, #emailong, #telong{
+    color: #B7B6B6;
+}
+
+.pedido{
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--corfundo-footer);
+    border-radius: 20px;
+    padding: 2rem;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+.pedido .titulo{
+    border-bottom: 1px solid #B7B6B6;
+    padding-bottom: 1rem;
+}
+.valor{
+    display: flex;
+    justify-content: space-between;
+}
+.botaocomprar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.escolher-pagamento{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#numerocartao, #numerocartaodebito, #nometitular{
+    width: 100%;
+    height: auto;
+    border: 1px solid #B7B6B6;
+    padding: 10px 15px 10px 15px;
+    border-radius: 50px;
+}
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#numerocartao:focus, #numerocartaodebito:focus, #nometitular{
+    outline: none;
+}
+#cvv, #cvvdebito{
+    width: 340px;
+    height: auto;
+    border: 1px solid #B7B6B6;
+    padding: 10px 15px 10px 15px;
+    border-radius: 50px;
+}
+#cvv:focus, #cvvdebito:focus{
+    outline: none;
+}
+#mes, #mesdebito{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 170px;
+    height: auto;
+    border: 1px solid #B7B6B6;
+    padding: 10px 15px 10px 15px;
+    border-radius: 50px 0px 0px 50px;
+    color: #757575;
+}
+#ano, #anodebito{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 170px;
+    height: auto;
+    border: 1px solid #B7B6B6;
+    padding: 10px 15px 10px 15px;
+    border-radius: 0px 50px 50px 0px;
+    color: #757575;
+}
+#mes:focus, 
+#ano:focus,
+#anodebito:focus,
+#mesdebito:focus{
+    box-shadow: none;
+    outline: none;
+}
+#mes option:not(:first-child){
+    color: black;
+}
+#ano option:not(:first-child){
+    color: black;
+}
+#mesdebito option:not(:first-child){
+    color: black;
+}
+#anodebito option:not(:first-child){
+    color: black;
+}
+
+.form-pagamento{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.informaçoes-pagamento{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#cvvlabel, #datalabel, #numerocartaolabel, #nomecompletolabel, #cpflabel, #cvvdebitolabel, #nometitularlabel{
+    line-height: 45px;
+    margin-left: 15px;
+}
+#nomecompleto{
+    width: 100%;
+    height: auto;
+    border: 1px solid #B7B6B6;
+    padding: 10px 15px 10px 15px;
+    border-radius: 50px;
+}
+#nomecompleto:focus{
+    outline: none;
+}
+#cpf{
+    width: 100%;
+    height: auto;
+    border: 1px solid #B7B6B6;
+    padding: 10px 15px 10px 15px;
+    border-radius: 50px;
+}
+#cpf:focus{
+    outline: none;
+}
+/*
+------------------------ Footer Area ------------------------
+*/
+.footer-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--corfundo-footer);
+    gap: 40px;
+    padding: 20px 50px;
+}
+.footer-left{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    height: 100%;
+    gap: 10px;
+}
+#footer-logo{
+    width: 200px;
+    height: auto;
+}
+.footer-left p{
+    font-size: 10px;
+    color: var(--cortexto);
+}
+.footer-right{
+    display: flex;
+    height: 100%;
+}
+.footer-column {
+    flex: 2;
+    min-width: 200px;
+    text-align: center;
+}
+.footer-right h3{
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--cortexto);
+}
+.footer-right a{
+    color: var(--corlink);
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+}
+
+/*
+------------------------ RESPONSIVIDADE ------------------------
+*/
+
+/* Tablets grandes e telas médias */
+@media (max-width: 1200px) {
+    .detalhes-container {
+        width: 45rem;
+    }
+    
+    .pedido {
+        width: 28rem;
+    }
+    
+    .pagamento-container {
+        gap: 1.5rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .pagamento-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 2rem;
+    }
+    
+    .detalhes-container {
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .pedido {
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .informações {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: left;
+    }
+    
+    .detalhe-column {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+    }
+    
+    .detalhe-column:last-child {
+        border-bottom: none;
+    }
+    
+    .navbar-nav {
+        margin-left: 10px;
+    }
+    
+    #doeagora {
+        margin-right: 1rem;
+        width: 8rem;
+    }
+}
+
+/* Tablets pequenos */
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem 0rem 4rem 0rem;
+    }
+    
+    .detalhes-container {
+        padding: 1.5rem;
+    }
+    
+    .pedido {
+        padding: 1.5rem;
+    }
+    
+    .informaçoes-pagamento {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    #cvv, #cvvdebito {
+        width: 100%;
+    }
+    
+    .escolher-pagamento {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .footer-container {
+        padding: 20px 30px;
+        gap: 30px;
+    }
+    
+    .footer-right {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .footer-column {
+        text-align: left;
+        min-width: auto;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 576px) {
+    .img {
+        margin-left: 0.5rem;
+    }
+    
+    .navbar-nav {
+        margin-left: 5px;
+        font-size: 12px;
+    }
+    
+    #doeagora {
+        width: 7rem;
+        font-size: 14px;
+        margin-right: 0.5rem;
+    }
+    
+    main {
+        padding: 1rem 0rem 3rem 0rem;
+        gap: 1.5rem;
+    }
+    
+    main h2 {
+        font-size: 1.8rem;
+        padding: 0 1rem;
+    }
+    
+    .pagamento-container {
+        padding: 0 1rem;
+    }
+    
+    .detalhes-container {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .pedido {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    #comprar {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .escolher-pagamento {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .footer-container {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+    
+    .footer-left {
+        max-width: 100%;
+    }
+    
+    #footer-logo {
+        width: 150px;
+    }
+    
+    .footer-left p {
+        font-size: 9px;
+    }
+    
+    .footer-right h3 {
+        font-size: 12px;
+    }
+    
+    .footer-right a {
+        font-size: 11px;
+    }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 480px) {
+    .detalhes-container {
+        padding: 0.8rem;
+    }
+    
+    .pedido {
+        padding: 0.8rem;
+    }
+    
+    .detalhe-column {
+        font-size: 14px;
+        flex-direction: column;
+        text-align: left;
+        gap: 0.2rem;
+    }
+    
+    .detalhe-column p:first-child {
+        font-weight: 600;
+    }
+    
+    .form-pagamento {
+        gap: 15px;
+    }
+    
+    #numerocartao, #numerocartaodebito, #nometitular, #nomecompleto, #cpf {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    #cvv, #cvvdebito {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .valor {
+        font-size: 14px;
+    }
+}
+
+/* Smartphones muito pequenos */
+@media (max-width: 360px) {
+    main h2 {
+        font-size: 1.5rem;
+    }
+    
+    .detalhes-container {
+        padding: 0.6rem;
+    }
+    
+    .pedido {
+        padding: 0.6rem;
+    }
+    
+    .footer-container {
+        padding: 10px 15px;
+    }
+    
+    #footer-logo {
+        width: 120px;
+    }
+    
+    .footer-left p {
+        font-size: 8px;
+    }
+    
+    .footer-right h3 {
+        font-size: 11px;
+    }
+    
+    .footer-right a {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Doador Organização não governamental - Enchant</title>
+    <link rel="stylesheet" href="../CSS/cadastroong.css">
+    <link rel="stylesheet" href="../../COMPRADOR/CSS/headersemtransparente.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
+</head>
+
+<body>
+
+    
+
+    <div class="container">
+        <h1 class="titulo">Cadastro Do Doador - ONG</h1>
+
+        <div class="passos-container">
+            <div class="passo ativo" id="passo-1">1° passo</div>
+            <div class="passo" id="passo-2">2° passo</div>
+        </div>
+
+        <div class="formulario">
+            <div class="primeiro">
+                <p class="aviso">Recomendamos atenção total ao preencher os dados nos campos solicitados. É fundamental
+                    que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.</p>
+                <form action="javascript:void(0);">
+                    <div class="campo">
+                        <label for="nome-ong">Nome da organização não governamental (ONG): <span
+                                class="obrigatorio">*</span></label>
+                        <input type="text" id="nome-ong" name="nome-ong" placeholder="ex: Nome da ONG" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail: <span class="obrigatorio">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="ex: nomeong@gmail.com" required>
+                    </div>
+
+                    <div class="senha-container">
+                        <div class="campo senha-grupo">
+                            <label for="senha">Senha: <span class="obrigatorio">*</span></label>
+                            <input type="password" id="senha" name="senha" placeholder="ex: xxxxxxxx" required>
+                        </div>
+
+                        <div class="campo senha-grupo">
+                            <label for="confirma-senha">Confirme a senha: <span class="obrigatorio">*</span></label>
+                            <input type="password" id="confirma-senha" name="confirma-senha" placeholder="ex: xxxxxxxx"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="requisitos-senha">
+                        <p class="sub-sub-titulo">Sua senha deve conter:</p>
+                        <p id="req-digitos"><span class="obrigatorio">*</span> Mínimo 8 dígitos</p>
+                        <p id="req-numeros"><span class="obrigatorio">*</span> Pelo menos 2 números</p>
+                        <p id="req-especial"><span class="obrigatorio">*</span> Pelo menos 1 caracter especial</p>
+                        <p id="req-maiuscula"><span class="obrigatorio">*</span> Pelo menos 1 letra MAIÚSCULA</p>
+                    </div>
+
+                    <div class="botoes">
+                        <button id="bottao" type="button">Continuar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="segundo" style="display: none;">
+                <form action="javascript:void(0);">
+                    <div class="container-flex">
+                        <div class="final-container-1">
+                            <div class="campo final-grupo">
+                                <label for="cnpj">Cadastro Nacional da Pessoa Jurídica (CNPJ) <span
+                                        class="obrigatorio">*</span></label>
+                                <input type="text" id="cnpj" name="cnpj" placeholder="ex: 00.000.000/0001-00" required>
+                            </div>
+
+                            <div class="campo">
+                                <label>Quantos meses de criação possui a ONG?</label>
+                                <input type="number" id="meses" placeholder="ex: 12">
+                            </div>
+
+                            <div class="escolha">
+                                <p>A ONG possui alguma certificação ou premiação?</p>
+                                <div class="container-escolha">
+                                    <input type="checkbox" class="caixinha-escolha" id="elemento-escolha-1">
+                                    <label for="elemento-escolha-1" id="sim">Sim</label>
+                                    <input type="checkbox" class="caixinha-escolha" id="elemento-escolha-2">
+                                    <label for="elemento-escolha-2">Não</label>
+                                </div>
+                            </div>
+                            <div class="politica-container">
+                                <input type="checkbox" class="caixinha-escolha" id="termos" name="termos" required>
+                                <label for="termos">Li e aceito os termos de uso e a <a href="#"
+                                        id="politica-link"><span id="politica">política de
+                                            privacidade.</span></a></label>
+                            </div>
+                        </div>
+
+                        <div class="final-container-2">
+                            <div class="campo final-grupo">
+                                <label for="telefone">Telefone:<span class="obrigatorio">*</span></label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="ex: (71) 99999-9999"
+                                    required>
+                            </div>
+                            <p class="texto-certificado">Insira uma foto do prêmio ou certificado:</p>
+                            <div class="upload-container" id="upload-id">
+                                <input type="file" id="upload" name="upload" accept=".jpg, .jpeg, .png">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="botoes-2">
+                        <div class="voltar">
+                            <button id="botao1" type="button">Voltar</button>
+                        </div>
+
+                        <div class="prosseguir">
+                            <button id="botao2" type="button">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="https://i.postimg.cc/g0RvMKxc/2475bcce-285c-4b1b-b92b-8e3b0680fef1.png" alt="Logo Enchant"
+                    class="footer-logo" title="Logo-Enchant" />
+                <p>
+                    De forma alguma o ENCHANT foi criado com o intuito de desviar
+                    os termos relacionados à política de privacidade do
+                    cadastrante. O site está disponível para toda e qualquer ajuda
+                    em relação aos contatos. O site que aqui explica não aceita
+                    qualquer violência verbal, sendo contra toda e qualquer
+                    atividade agressiva.
+                </p>
+                <p>© 2025 ENCHANT Brasil</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h3>MAIS INFORMAÇÕES</h3>
+                    <a href="#">Conheça mais sobre o site</a>
+                </div>
+                <div class="footer-column">
+                    <h3>PROTEÇÃO DE DADOS</h3>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <div class="footer-column">
+                    <h3>ACOMPANHE NOSSAS REDES</h3>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="erroSenhaModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button id="botao-validar" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Entendi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="../JS/cadastroong.js"></script>
+</body>
+
+</html>

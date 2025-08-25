@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Doador - Pessoa</title>
+  <link rel="stylesheet" href="../CSS/cadastrodoadorpessoa.css">
+  <link rel="stylesheet" href="../../COMPRADOR/CSS/headersemtransparente.css">
+  <script src="../JS/cadastrodoadorpessoa.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="shortcut icon" href="" type="image/x-icon">
+  <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1 class="titulo">Cadastro Do Doador - Pessoa</h1>
+
+    <div class="passos-container">
+      <div class="passo ativo">1° passo</div>
+      <a>
+        <div class="passo">2° passo</div>
+      </a>
+    </div>
+
+    <div class="formulario">
+
+      <p class="aviso">Recomendamos atenção total ao preencher os dados nos campos solicitados, sendo estes sem pontos
+        ou traços. É fundamental que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.</p>
+
+      <div class="parte1">
+
+        <form action="verificar-js">
+
+          <div class="campo">
+            <label for="nome-ong">Nome do doador: <span class="obrigatorio">*</span></label>
+            <input type="text" id="nome-ong" name="nome-ong" placeholder="ex: Nome do doador" required>
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail: <span class="obrigatorio">*</span></label>
+            <input type="email" id="email" name="email" placeholder="ex: nome@gmail.com" required>
+          </div>
+
+          <div class="senha-container">
+            <div class="campo senha-grupo">
+              <label for="senha">Senha: <span class="obrigatorio">*</span></label>
+              <input type="password" id="senha" name="senha" placeholder="ex: xxxxxxxx" required>
+              <span class="mostrar-senha"></span>
+            </div>
+
+            <div class="campo senha-grupo">
+              <label for="confirma-senha">Confirme a senha: <span class="obrigatorio">*</span></label>
+              <input type="password" id="confirma-senha" name="confirma-senha" placeholder="ex: xxxxxxxx" required>
+              <span class="mostrar-senha"></span>
+            </div>
+          </div>
+
+          <div class="requisitos-senha">
+            <p class="sub-sub-titulo">Sua senha deve conter:</p>
+            <p class="requisitos-secundarios">Mínimo 8 dígitos</p>
+            <p class="requisitos-secundarios">Pelo menos 2 números</p>
+            <p class="requisitos-secundarios">Pelo menos 1 caracter especial</p>
+            <p class="requisitos-secundarios">Pelo menos 1 letra MAIÚSCULA</p>
+          </div>
+
+          <div class="botoes">
+            <button id="bootao">Continuar</button>
+          </div>
+      </div>
+
+      </form>
+
+
+      <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body" id="erroSenhaModalBody">
+              <!-- Mensagem de erro será inserida aqui -->
+            </div>
+            <div class="modal-footer">
+              <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="parte2">
+        <form action="verificar-js">
+
+          <div class="lado-container">
+
+            <div class="campo">
+              <label for="CPF">Cadastro de Pessoa Física (CPF):<span class="obrigatorio">*</span></label>
+              <input type="text" id="cpf" name="cpf" placeholder="ex: xxx.xxx.xxx-xx" required>
+            </div>
+
+            <div class="campo">
+              <label for="RG">Registro Geral (RG):<span class="obrigatorio">*</span></label>
+              <input type="text" id="rg" name="rg" placeholder="ex: xx.xxx.xxx-x" required>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="senha">Telefone:<span class="obrigatorio">*</span></label>
+            <input type="tel" id="telefone" name="telefone" placeholder="ex: (xx)xxxx-xxxx" required>
+          </div>
+
+
+          <div class="politica-container">
+            <input type="checkbox" id="termos" name="termos" required>
+            <label for="termos">Li e aceito os termos de uso e a <a href="privacidade1.html" id="botoes-link"><span
+                  id="politica">política de privacidade.</span></a></label>
+          </div>
+
+
+          <div class="botoes-2">
+
+            <div class="bottao-voltar">
+              <button id="botao1">Voltar</button>
+            </div>
+            <div class="bottao-confirmar">
+              <button id="bootao2" type="button">Confirmar</button>
+            </div>
+          </div>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+  </div>
+
+
+  <footer>
+    <div class="footer-container">
+      <!-- Logo e descrição -->
+      <div class="footer-left">
+        <button class="upload-btn" id="imgfooter">
+          <label for="imgUpload"><i class="bi bi-plus" id="btnn2"></i></label>
+          <input type="file" id="imgUpload" accept="image/*" />
+        </button>
+
+
+        <p>
+          De forma alguma o site foi criado com o intuito de desviar os termos
+          relacionados à política de privacidade do cadastrante. O site está
+          disponível para toda e qualquer ajuda em relação aos contatos. O
+          site que aqui explica não aceita qualquer violência verbal, sendo
+          contra toda e qualquer atividade agressiva.
+        </p>
+        <p>© 2025 ENCHANT Brasil</p>
+      </div>
+
+
+      <!-- Links de navegação -->
+      <div class="footer-right">
+        <div class="footer-column">
+          <h3>MAIS INFORMAÇÕES</h3>
+          <a href="saibamais1.html" title="Conheça mais sobre o ENCHANT - clique">Conheça mais sobre o site</a>
+        </div>
+        <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
+          <h3>PROTEÇÃO DE DADOS</h3>
+          <a href="politica1.html">Política de privacidade</a>
+        </div>
+        <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
+          <h3>ACOMPANHE NOSSAS REDES</h3>
+
+
+          <button id="botao">Instagram</button>
+          <button id="facebook">Facebook</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

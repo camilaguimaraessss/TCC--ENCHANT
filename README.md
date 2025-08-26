@@ -47,7 +47,7 @@ Facilitar a coordenação de esforços humanitários, otimizar a distribuição 
 ![GitHub contributors](https://img.shields.io/github/contributors/SUA-EQUIPE/enchant)
 
 ### 👨‍💻 Atividade de Desenvolvimento
-![Commit Activity](https://github.com/SUA-EQUIPE/enchant/graphs/commit-activity)
+![Commit Activity](https://github.com/TCC-ENCHANT/enchant/graphs/commit-activity)
 
 ### 📈 Contribuições da Equipe
 ![Contributors](https://github.com/SUA-EQUIPE/enchant/graphs/contributors)
@@ -95,15 +95,6 @@ npm run dev
 yarn dev
 ```
 
-## 🧪 Testes
-
-Para executar os testes:
-
-```bash
-npm test
-# ou
-yarn test
-```
 ## 🤝 Como Contribuir
 
 1. Fork o projeto
@@ -118,10 +109,6 @@ yarn test
 - **Manuella Souza** -[@Manuella2504](https://github.com/Manuella2504)
 - **Marcelle Abreu** - [@salada096](https://github.com/salada096)
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 📞 Contato
 
 **Projeto Enchant**
@@ -129,10 +116,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 - LinkedIn: 
 
 ---
-
-### 💡 Sobre o TCC
-
-Este projeto foi desenvolvido como Trabalho de Conclusão de Curso em [Nome do Curso] pela [Nome da Instituição], sob orientação do Prof. [Nome do Orientador].
 
 **Período**: 3º ano 
 **Instituição**: SESI/SENAU

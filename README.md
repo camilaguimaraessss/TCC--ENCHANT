@@ -46,15 +46,6 @@ Facilitar a coordenação de esforços humanitários, otimizar a distribuição 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SUA-EQUIPE/enchant)
 ![GitHub contributors](https://img.shields.io/github/contributors/SUA-EQUIPE/enchant)
 
-### 👨‍💻 Atividade de Desenvolvimento
-![Commit Activity](https://github.com/TCC-ENCHANT/enchant/graphs/commit-activity)
-
-### 📈 Contribuições da Equipe
-![Contributors](https://github.com/SUA-EQUIPE/enchant/graphs/contributors)
-
-### 🗂️ Linguagens do Projeto
-![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SUA-EQUIPE&repo=enchant&layout=compact&theme=dark)
-
 ## 🚀 Como Executar o Projeto
 
 ### Pré-requisitos

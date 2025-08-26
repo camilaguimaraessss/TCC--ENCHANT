@@ -15,10 +15,6 @@
 
 ## 🎯 Sobre o Projeto
 
-<div align="center">
-<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/d48893bd-0757-481c-8d7e-ba3e163feae7" width="500px">
-</div>
-
 O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que transforma a gestão de ONGs durante emergências climáticas. Nossa missão é salvar vidas através da tecnologia!
 
 <div align="center">
@@ -75,10 +71,6 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 </table>
 
 ## 🛠️ Stack Tecnológica
-
-<div align="center">
-<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/7d484dc9-68a9-4ee6-a767-aea59035c12d" width="400">
-</div>
 
 <div align="center">
 

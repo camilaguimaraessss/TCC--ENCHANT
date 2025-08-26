@@ -103,9 +103,3 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 </tr>
 </table>
 </div>
-
-## 🚀 Como Rodar o Projeto
-
-<div align="center">
-<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/3fb2cdf6-8920-462e-87a4-95f376a5b071" width="300">
-</div>

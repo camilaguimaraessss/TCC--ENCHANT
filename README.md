@@ -23,53 +23,6 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 
 </div>
 
-## ✨ Funcionalidades Incríveis
-
-<div align="center">
-<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/29fd6286-4e7b-4d33-987a-9aa6fad21f2c" width="300">
-</div>
-
-<table>
-<tr>
-<td width="50%">
-
-### 🏢 Gestão de Organizações
-- Dashboard intuitivo
-- Cadastro inteligente de ONGs
-- Sistema de parceiras
-
-### 👥 Voluntários 2.0
-- Matching automático
-- Sistema de comunicação
-- Gamificação
-
-### 📦 Smart Resources
-- IA para distribuição
-- Rastreamento em tempo real
-- Previsão de demanda
-
-</td>
-<td width="50%">
-
-### 📍 Mapa Inteligente
-- Visualização 3D
-- Alertas geográficos
-- Rotas otimizadas
-
-### 📊 Analytics Avançado
-- Machine Learning
-- Relatórios automáticos
-- Insights preditivos
-
-### 🚨 Sistema de Alertas
-- Notificações push
-- Integração meteorológica
-- Escalabilidade automática
-
-</td>
-</tr>
-</table>
-
 ## 🛠️ Stack Tecnológica
 
 <div align="center">

@@ -45,9 +45,6 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 
 ## 📊 Estatísticas do Repositório
 
-<div align="center">
-<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/f4acb628-b69b-4be7-aa09-4bde3bc7e5c2" width="400">
-
 ![GitHub last commit](https://img.shields.io/github/last-commit/camilaguimaraessss/enchant?style=for-the-badge&color=blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/camilaguimaraessss/enchant?style=for-the-badge&color=brightgreen)
 ![GitHub contributors](https://img.shields.io/github/contributors/camilaguimaraessss/enchant?style=for-the-badge&color=orange)

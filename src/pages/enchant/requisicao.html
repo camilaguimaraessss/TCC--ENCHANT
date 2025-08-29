@@ -1,84 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Requisição e Gratuidade</title>
-    <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/requisicao.css">
-    <link rel="stylesheet" href="../../COMPRADOR/CSS/headersemtransparente.css">
+
+
+  <link rel="stylesheet" href="../../styles/pages/enchant/requisicao.css">
+  <script src="../../scripts/pages/enchant/requisicao.js"></script>
+
+
+  <link rel="stylesheet" href="../../styles/global.css">
+
 </head>
+
 <body>
 
-     <div id="header-container"></div>
-      
-            <section class="segunda-parte-cadastro d-none">
-                <div class="formulario" id="etapa2">
-                    <form id="formEtapa2">
-                        <div class="campo">
-                            <p class="aviso">Segunda etapa: Informações complementares e documentação necessária para análise da solicitação de gratuidade.</p>
-                        </div>
-                        <div class="campo">
-                            <label for="email-responsavel">E-mail do responsável legal:<span class="obrigatorio">*</span></label>
-                            <input type="email" id="email-responsavel" name="email-responsavel" placeholder="Digite o e-mail do responsável" >
-                        </div>
-                        <div class="campo">
-                            <label for="telefone-responsavel">Telefone do responsável legal:<span class="obrigatorio">*</span></label>
-                            <input type="text" id="telefone-responsavel" name="telefone-responsavel" placeholder="(XX)XXXXX-XXXX" required>
-                        </div>
-                        <div class="campo">
-                            <label for="cpf-responsavel">CPF do responsável legal:<span class="obrigatorio">*</span></label>
-                            <input type="text" id="cpf-responsavel" name="cpf-responsavel" placeholder="000.000.000-00" required>
-                        </div> 
-                        <div class="campo">
-                            <label for="tipo-instituicao">Tipo de instituição:<span class="obrigatorio">*</span></label>
-                            <select id="tipo-instituicao" name="tipo-instituicao" required>
-                                <option value="">Escolha uma opção...</option>
-                                <option value="assistencia-social">Assistência Social</option>
-                                <option value="educacao">Educação</option>
-                                <option value="saude">Saúde</option>
-                                <option value="meio-ambiente">Meio Ambiente</option>
-                                <option value="cultura">Cultura</option>
-                                <option value="esporte">Esporte</option>
-                                <option value="direitos-humanos">Direitos Humanos</option>
-                                <option value="outros">Outros</option>
-                            </select>
-                        </div> 
-                        <div class="campo">
-                            <label for="documentos">Documentos obrigatórios para a solicitação de gratuidade:</label>
-                            <input type="file" id="documentos" name="documentos" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
-                            <p>Importante: não é necessário enviar todos os documentos listados, mas o envio de pelo menos 3 é obrigatório. Entre eles, a autodeclaração de baixa renda é indispensável para que possamos analisar a solicitação de gratuidade. Certifique-se de que os arquivos estejam legíveis e completos.</p>
-                            <div class="documentos-lista">
-                                <p><span>*</span>Estatuto Social registrado (foto de todas as páginas)</p>
-                                <p><span>*</span>Certidão de CNPJ atualizada (pode ser PDF gerado da Receita Federal)</p>
-                                <p><span>*</span>Documento assinado pelo responsável legal da ONG</p>
-                                <p><span>*</span>Balanço financeiro ou declaração de isenção de IRPJ</p>
-                                <p><span>*</span>Projetos aprovados ou executados com orçamento reduzido</p>
-                                <p><span>*</span>Ata de eleição da diretoria atual</p>
-                                <p><span>*</span>Comprovante de endereço em nome da ONG</p>
-                                <p><span>*</span>Relatório de atividades</p>
-                                <p><span>*</span>Declaração de que não possui receita própria suficiente</p>
-                            </div>
-                        </div>
-                        <section>
-                            <div class="botoes">
-                                <button id="btn-voltar" type="button">Voltar</button>
-                                <button id="btn-enviar" type="submit">Enviar</button>
-                            </div>
-                        </section>
-                    </form>
+    <div id="header-container"></div>
+
+    <section class="segunda-parte-cadastro d-none">
+        <div class="formulario" id="etapa2">
+            <form id="formEtapa2">
+                <div class="campo">
+                    <p class="aviso">Segunda etapa: Informações complementares e documentação necessária para análise da
+                        solicitação de gratuidade.</p>
                 </div>
-            </section>
+                <div class="campo">
+                    <label for="email-responsavel">E-mail do responsável legal:<span
+                            class="obrigatorio">*</span></label>
+                    <input type="email" id="email-responsavel" name="email-responsavel"
+                        placeholder="Digite o e-mail do responsável">
+                </div>
+                <div class="campo">
+                    <label for="telefone-responsavel">Telefone do responsável legal:<span
+                            class="obrigatorio">*</span></label>
+                    <input type="text" id="telefone-responsavel" name="telefone-responsavel"
+                        placeholder="(XX)XXXXX-XXXX" required>
+                </div>
+                <div class="campo">
+                    <label for="cpf-responsavel">CPF do responsável legal:<span class="obrigatorio">*</span></label>
+                    <input type="text" id="cpf-responsavel" name="cpf-responsavel" placeholder="000.000.000-00"
+                        required>
+                </div>
+                <div class="campo">
+                    <label for="tipo-instituicao">Tipo de instituição:<span class="obrigatorio">*</span></label>
+                    <select id="tipo-instituicao" name="tipo-instituicao" required>
+                        <option value="">Escolha uma opção...</option>
+                        <option value="assistencia-social">Assistência Social</option>
+                        <option value="educacao">Educação</option>
+                        <option value="saude">Saúde</option>
+                        <option value="meio-ambiente">Meio Ambiente</option>
+                        <option value="cultura">Cultura</option>
+                        <option value="esporte">Esporte</option>
+                        <option value="direitos-humanos">Direitos Humanos</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="documentos">Documentos obrigatórios para a solicitação de gratuidade:</label>
+                    <input type="file" id="documentos" name="documentos" multiple
+                        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                    <p>Importante: não é necessário enviar todos os documentos listados, mas o envio de pelo menos 3 é
+                        obrigatório. Entre eles, a autodeclaração de baixa renda é indispensável para que possamos
+                        analisar a solicitação de gratuidade. Certifique-se de que os arquivos estejam legíveis e
+                        completos.</p>
+                    <div class="documentos-lista">
+                        <p><span>*</span>Estatuto Social registrado (foto de todas as páginas)</p>
+                        <p><span>*</span>Certidão de CNPJ atualizada (pode ser PDF gerado da Receita Federal)</p>
+                        <p><span>*</span>Documento assinado pelo responsável legal da ONG</p>
+                        <p><span>*</span>Balanço financeiro ou declaração de isenção de IRPJ</p>
+                        <p><span>*</span>Projetos aprovados ou executados com orçamento reduzido</p>
+                        <p><span>*</span>Ata de eleição da diretoria atual</p>
+                        <p><span>*</span>Comprovante de endereço em nome da ONG</p>
+                        <p><span>*</span>Relatório de atividades</p>
+                        <p><span>*</span>Declaração de que não possui receita própria suficiente</p>
+                    </div>
+                </div>
+                <section>
+                    <div class="botoes">
+                        <button id="btn-voltar" type="button">Voltar</button>
+                        <button id="btn-enviar" type="submit">Enviar</button>
+                    </div>
+                </section>
+            </form>
         </div>
+    </section>
+    </div>
     </main>
-    
+
     <div class="modal fade" id="erroModal" tabindex="-1" aria-labelledby="erroModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -87,9 +106,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" id="erroModalBody">
-                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+                    <button id="botao-validar" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Entendi</button>
                 </div>
             </div>
         </div>
@@ -103,7 +123,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" id="sucessoModalBody">
-                    </div>
+                </div>
                 <div class="modal-footer">
                     <button id="botao-sucesso" type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
                 </div>
@@ -112,9 +132,10 @@
     </div>
 
     <footer>
-        <div class="footer-container"> 
+        <div class="footer-container">
             <div class="footer-left">
-                <img src="https://i.postimg.cc/g0RvMKxc/2475bcce-285c-4b1b-b92b-8e3b0680fef1.png" alt="Enchant" title="Enchant" id="footer-logo">
+                <img src="https://i.postimg.cc/g0RvMKxc/2475bcce-285c-4b1b-b92b-8e3b0680fef1.png" alt="Enchant"
+                    title="Enchant" id="footer-logo">
                 <p>
                     De forma alguma o ENCHANT foi criado com o intuito de desviar
                     os termos relacionados à política de privacidade do
@@ -136,22 +157,33 @@
                 </div>
                 <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
                     <h3>ACOMPANHE NOSSAS REDES</h3>
-                    <a href="https://www.instagram.com/enchant_pa?igsh=MXE5MTZqendmdDJheQ%3D%3D&utm_source=qr" target="_blank">Instagram - enchant_pa</a>
-                    <a href="https://www.linkedin.com/in/enchant-pa-4a5079358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">Linkedn - enchant_pa</a>
+                    <a href="https://www.instagram.com/enchant_pa?igsh=MXE5MTZqendmdDJheQ%3D%3D&utm_source=qr"
+                        target="_blank">Instagram - enchant_pa</a>
+                    <a href="https://www.linkedin.com/in/enchant-pa-4a5079358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank">Linkedn - enchant_pa</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-  <SCRIPT SRC="../JS/headerenchant.js"></SCRIPT>
-  <script>
-      const header = new HeaderComponent();
-      header.render("header-container");
-      </script>
-    <script src="../JS/requisicao.js"></script>
+
+    <script src="../../scripts/layouts/enchant/headerenchant.js"></script>
+
+    <script>
+        const header = new HeaderComponent();
+        header.render("header-container");
+    </script>
+
 </body>
+
 </html>

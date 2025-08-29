@@ -1,415 +1,351 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doações</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
-    <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
-    <link rel="stylesheet" href="../CSS/doacao.css" />
-    <link rel="stylesheet" href="../CSS/barraheadercomprador.css">
-    <script src="../JS/barraheadercomprador.js"></script>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <button
-            id="icone2"
-            class="navbar-toggler"
-            type="button"
-            onclick="toggleSidebar()"
-          >
-            <i style="font-size: 12px" class="navbar-toggler-icon"></i>
-          </button>
-          
-          <button class="upload-btn" id="imgheader">
-            <label for="imageUpload"
-              ><i class="bi bi-plus" id="btnn"></i
-            ></label>
-            <input
-              type="file"
-              id="imageUpload"
-              accept="image/*"
-              placeholder="Insira sua logo"
-            />
-          </button>
 
-          <button
-            id="icone"
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span style="font-size: 20px" class="bi bi-three-dots"></span>
-          </button>
-        
-          <div class="collapse navbar-collapse item" id="navbarNav">
-            <ul id="abcd" class="navbar-nav mx-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="quemsomos2.html">Quem somos?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="saibamais2.html">Saiba mais</a>
-              </li>
-              <li class="nav-item profile-dropdown">
-                <button
-                  class="btn btn-link"
-                  id="usuario"
-                  style="font-size: 14px; text-decoration: none"
-                >
-                  <img
-                    id="userPhoto"
-                    src=""
-                    alt="Foto do Usuário"
-                    style="
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doações</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
+
+  <link rel="stylesheet" href="../../styles/pages/comprador/doacao.css">
+
+  <link rel="stylesheet" href="../../styles/global.css">
+  <script src="../../scripts/layouts/comprador/headercomprador.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button id="icone2" class="navbar-toggler" type="button" onclick="toggleSidebar()">
+          <i style="font-size: 12px" class="navbar-toggler-icon"></i>
+        </button>
+
+        <button class="upload-btn" id="imgheader">
+          <label for="imageUpload"><i class="bi bi-plus" id="btnn"></i></label>
+          <input type="file" id="imageUpload" accept="image/*" placeholder="Insira sua logo" />
+        </button>
+
+        <button id="icone" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span style="font-size: 20px" class="bi bi-three-dots"></span>
+        </button>
+
+        <div class="collapse navbar-collapse item" id="navbarNav">
+          <ul id="abcd" class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="quemsomos2.html">Quem somos?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="saibamais2.html">Saiba mais</a>
+            </li>
+            <li class="nav-item profile-dropdown">
+              <button class="btn btn-link" id="usuario" style="font-size: 14px; text-decoration: none">
+                <img id="userPhoto" src="" alt="Foto do Usuário" style="
                       width: 40px;
                       height: 40px;
                       border-radius: 50%;
                       object-fit: cover;
-                      display: none;"/>
-                  <i
-                    id="userIcon"
-                    class="bi bi-person-circle"
-                    style="font-size: 35px; color: #ccc"
-                  ></i>
-                  <span>Nome do Usuário</span>
-                </button>
-                <div id="dropzinho" class="dropdown-menu">
-                  <a class="dropdown-item" href="#"
-                    ><i class="bi bi-person"></i> Perfil</a
-                  >
-                  <a class="dropdown-item" href="compradorantes.html"
-                    ><i class="bi bi-box-arrow-right"></i> Sair</a
-                  >
-                </div>
-              </li>
-            </ul>
-          </div>
+                      display: none;" />
+                <i id="userIcon" class="bi bi-person-circle" style="font-size: 35px; color: #ccc"></i>
+                <span>Nome do Usuário</span>
+              </button>
+              <div id="dropzinho" class="dropdown-menu">
+                <a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a>
+                <a class="dropdown-item" href="compradorantes.html"><i class="bi bi-box-arrow-right"></i> Sair</a>
+              </div>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </header>
-    
-      <aside class="sidebar" id="sidebar">
+      </div>
+    </nav>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
     <nav>
       <a href="#"><i class="bi bi-list"></i><span></span></a>
 
-      <a href="compradordepois.html"
-        ><i class="bi bi-house"></i
-        ><span style="font-size: 14px">Início</span></a
-      >
-      <a href="mapa.html"
-        ><i class="bi bi-map"></i
-        ><span style="font-size: 14px">Mapa</span></a
-      >
-      <a href="pontosdeabrigo.html"
-        ><i class="bi bi-geo"></i
-        ><span style="font-size: 14px">Pontos de abrigo</span></a
-      >
-      <a href="ajudamedica.html"
-        ><i class="bi bi-truck"></i
-        ><span style="font-size: 14px">Ajuda médica</span></a
-      >
-      <a href="doacao.html"
-        ><i class="bi bi-box"></i
-        ><span style="font-size: 14px">Doação</span></a
-      >
-      <a href="pontosdecoleta.html"
-        ><i class="bi bi-geo-alt-fill"></i
-        ><span style="font-size: 14px">Pontos de coleta</span></a
-      >
-      <a href="historicodoacoes.html"
-        ><i class="bi bi-journal"></i
-        ><span style="font-size: 14px">Histórico de doação</span></a
-      >
-      <a href="politica2.html"
-        ><i class="bi bi-file-earmark"></i
-        ><span style="font-size: 14px">Política de privacidade</span></a
-      >
-      <a href="ajuda.html"
-        ><i class="bi bi-info-circle"></i
-        ><span style="font-size: 14px">Ajuda</span></a
-      >
+      <a href="compradordepois.html"><i class="bi bi-house"></i><span style="font-size: 14px">Início</span></a>
+      <a href="mapa.html"><i class="bi bi-map"></i><span style="font-size: 14px">Mapa</span></a>
+      <a href="pontosdeabrigo.html"><i class="bi bi-geo"></i><span style="font-size: 14px">Pontos de abrigo</span></a>
+      <a href="ajudamedica.html"><i class="bi bi-truck"></i><span style="font-size: 14px">Ajuda médica</span></a>
+      <a href="doacao.html"><i class="bi bi-box"></i><span style="font-size: 14px">Doação</span></a>
+      <a href="pontosdecoleta.html"><i class="bi bi-geo-alt-fill"></i><span style="font-size: 14px">Pontos de
+          coleta</span></a>
+      <a href="historicodoacoes.html"><i class="bi bi-journal"></i><span style="font-size: 14px">Histórico de
+          doação</span></a>
+      <a href="politica2.html"><i class="bi bi-file-earmark"></i><span style="font-size: 14px">Política de
+          privacidade</span></a>
+      <a href="ajuda.html"><i class="bi bi-info-circle"></i><span style="font-size: 14px">Ajuda</span></a>
     </nav>
   </aside>
 
-      <div id="caixa-principal">
-        <div id="coisas-caixa">
-          <div
-            style="
+  <div id="caixa-principal">
+    <div id="coisas-caixa">
+      <div style="
               display: flex;
               justify-content: flex-start;
               padding: 1.5rem;
               height: 80px;
-            "
-          >
-            <button class="botao-sair" id="botao-sair">
-              <i class="bi bi-x-circle"></i>
-            </button>
-          </div>
-          <div id="instagramgeral">
-            <h2 id="texto-caixa">Insira aqui o Instagram da sua empresa</h2>
-            <h2 id="texto-caixa3">
-              Aqui você pode inserir o Instagram da sua empresa!
-            </h2>
-            <hr style="margin-top: 1px" />
-            <input
-              type="text"
-              id="instagram"
-              placeholder="Digite seu @ ou nome de usuário"
-            />
-
-            <div id="confirmar">
-              <button id="botaocaixa" onclick="gerarLinkInstagram()">
-                Confirmar
-              </button>
-            </div>
-            <div id="linkContainer"></div>
-            <button id="editarLink" style="display: none">Editar</button>
-          </div>
-        </div>
+            ">
+        <button class="botao-sair" id="botao-sair">
+          <i class="bi bi-x-circle"></i>
+        </button>
       </div>
+      <div id="instagramgeral">
+        <h2 id="texto-caixa">Insira aqui o Instagram da sua empresa</h2>
+        <h2 id="texto-caixa3">
+          Aqui você pode inserir o Instagram da sua empresa!
+        </h2>
+        <hr style="margin-top: 1px" />
+        <input type="text" id="instagram" placeholder="Digite seu @ ou nome de usuário" />
 
-      <div id="caixa-principal2">
-        <div id="coisas-caixa2">
-          <div
-            style="
-              display: flex;
-              justify-content: flex-start;
-              padding: 1.5rem;
-              height: 80px;
-            "
-          >
-            <button class="botao-sair" id="botao-sair2">
-              <i class="bi bi-x-circle"></i>
-            </button>
-          </div>
-          <div id="facebookgeral">
-            <h2 id="texto-caixa2">Insira aqui o Facebook da sua empresa</h2>
-            <h2 id="texto-caixa4">
-              Aqui você pode inserir o Facebook da sua empresa!
-            </h2>
-            <hr style="margin-top: 1px" />
-            <input
-              type="text"
-              id="facebook2"
-              placeholder="Digite seu @ ou nome de usuário"
-            />
-            <div id="confirmar2">
-              <button id="botaocaixa2" onclick="gerarLinkFacebook()">
-                Confirmar
-              </button>
-            </div>
-            <div id="linkContainer2"></div>
-            <button id="editarLink2" style="display: none">Editar</button>
-          </div>
-        </div>
-      </div>
-
-      <main id="main">
-        <div class="background-icons">
-          <div class="bg-icon"></div>
-          <div class="bg-icon"></div>
-          <div class="bg-icon"></div>
-          <div class="bg-icon"></div>
-          <div class="bg-icon"></div>
-          <div class="bg-icon"></div>
-        </div>
-
-        <div id="container">
-          <div id="titulo">
-            <h2 id="titulo-inicial">Selecione a sua doação</h2>
-          </div>
-          
-          <div class="container-marrom">
-            <!-- Primeiro quadrado -->
-            <div id="roupas-calcados" class="todas-imagens">
-              <div class="imagem">
-                <img class="img1" src="https://i.ibb.co/ccCH84G0/imagem.jpg" alt="Imagem para roupas">
-              </div>
-              <div class="text-content">
-                <p class="texto-doacao">
-                  Doar roupas ajuda quem precisa e promove solidariedade. Confira o necessário:
-                  <br><br>
-                  <hr style="border: 1px solid #794d2446 ; width: 80%;">   
-                  <ul class="texto-doacao2">
-                    <li>Gênero: Masculino, feminino ou unissex.</li>
-                    <li>Qualidade: Boas condições.</li>
-                    <li>Quantidade: Variável.</li>
-                    <li>Tamanho: Diversos.</li>
-                    <li>Tipo: casacos, calças, etc.</li>
-                  </ul>
-                </p>
-                <a href="doacoesroupas.html"><button class="design-botao">Fazer a doação</button></a>
-              </div>
-            </div>
-
-            <!-- Segundo quadrado -->
-            <div id="alimentos-ração" class="todas-imagens">
-              <div class="imagem">
-                <img class="img2" src="https://i.ibb.co/x88FrQmK/imagem2.jpg" alt="Imagem para comida de animais">
-              </div>
-              <div class="text-content">
-                <p class="texto-doacao">
-                  Para doação de alimentos para animais, considere os seguintes critérios:
-                  <br><br>
-                  <hr style="border: 1px solid #794d2446 ; width: 80%;">
-                  <ul class="texto-doacao2">
-                    <li>Porte do Animal: Pequeno, médio ou grande.</li>
-                    <li>Tipo de Alimento: Ração seca, úmida ou especial.</li>
-                    <li>Quantidade (kg): Conforme possível doar.</li>
-                    <li>Especificações: Alimentação específica (filhotes, adultos, idosos ou raças).</li>
-                  </ul>
-                </p>
-                <a href="doacoesalimentos.html"><button class="design-botao">Fazer a doação</button></a>
-              </div>
-            </div>
-
-            <!-- Terceiro quadrado -->
-            <div id="produtos-limpeza" class="todas-imagens">
-              <div class="imagem">
-                <img class="img3" src="https://i.ibb.co/VYVg2Y6S/0987654.jpg" alt="Imagem para produtos de limpeza">
-              </div>
-              <div class="text-content">
-                <p class="texto-doacao">
-                  Doar produtos de limpeza garante higiene e bem-estar. No cadastro de doação, será solicitado:
-                  <br><br>
-                  <hr style="border: 1px solid #794d2446 ; width: 80%;">
-                  <ul class="texto-doacao2">
-                    <li>Quantidade – Número de unidades.</li>
-                    <li>Recomendações – Indicação de uso.</li>
-                    <li>Qualidade – Lacrados e dentro da validade.</li>
-                    <li>Especificações – Tipo e tamanho dos produtos.</li>
-                  </ul>
-                </p>
-                <a href="doacoeshigiene.html"><button class="design-botao">Fazer a doação</button></a>
-              </div>
-            </div>
-
-            <!-- Quarto quadrado -->
-            <div id="moveis-eletrodomésticos" class="todas-imagens">
-              <div class="imagem">
-                <img class="img4" src="https://i.ibb.co/rRNrg3RZ/34567.jpg" alt="Imagem para eletrodomésticos">
-              </div>
-              <div class="text-content">
-                <p class="texto-doacao">
-                  Para doação de móveis e eletrodomésticos, siga as diretrizes abaixo:
-                  <br><br>
-                  <hr style="border: 1px solid #794d2446 ; width: 80%;">
-                  <ul class="texto-doacao2">
-                    <li>O que será pedido na doação – Móveis e eletrodomésticos reutilizáveis.</li>
-                    <li>Qualidade – Em bom estado e funcionando.</li>
-                    <li>Melhorias antes da doação – Apenas limpeza ou pequenos reparos.</li>
-                    <li>Quantidade – Conforme disponibilidade.</li>
-                  </ul>
-                </p>
-                <a href="doacoesmoveis.html"><button class="design-botao">Fazer a doação</button></a>
-              </div>
-            </div>
-
-            <!-- Quinto quadrado -->
-            <div id="livros-brinquedos" class="todas-imagens">
-              <div class="imagem">
-                <img class="img5" src="https://i.ibb.co/nshX6X74/o0iuycds.jpg" alt="Imagem para livros e brinquedos">
-              </div>
-              <div class="text-content">
-                <p class="texto-doacao">
-                  Doar livros e brinquedos incentiva aprendizado, criatividade e solidariedade. Considere os seguintes parametros:
-                  <br><br>
-                  <hr style="border: 1px solid #794d2446 ; width: 80%;">
-                  <ul class="texto-doacao2">
-                    <li>Livros – Gênero: Infantil, juvenil e adulto; Qualidade: Bom estado; Quantidade: Conforme disponibilidade.</li>
-                    <li>Brinquedos – Gênero: Educativos, recreativos e de pelúcia; Qualidade: Inteiros e seguros; Quantidade: Conforme disponibilidade.</li>
-                  </ul>
-                </p>
-                <a href="doacoeslivros.html"><button class="design-botao">Fazer a doação</button></a>
-              </div>
-            </div>
-
-            <!-- Sexto quadrado -->
-            <div id="cobertores-mais" class="todas-imagens">
-              <div class="imagem">
-                <img class="img6" src="https://i.ibb.co/WvgHntJN/lokjhbgv.webp" alt="Imagem para cobertores e variedades">
-              </div>
-              <div class="text-content">
-                <p class="texto-doacao">
-                  Doar cobertores e outros itens essenciais ajuda a proteger pessoas do frio e melhora sua qualidade de vida.
-                  <br><br>
-                  <hr style="border: 1px solid #794d2446 ; width: 80%;">
-                  <ul class="texto-doacao2">
-                    <li>Qualidade – Limpos, sem rasgos, em boas condições.</li>
-                    <li>Quantidade – Conforme disponibilidade.</li>
-                  </ul>
-                </p>
-                <a href="doacoescobertores.html"><button class="design-botao">Fazer a doação</button></a>
-              </div>
-            </div>
-          </div>
-        </div>      
-      </main>
-    </div>
-
-    <footer>
-      <div class="footer-container">
-        <!-- Logo e descrição -->
-        <div class="footer-left">
-          <button class="upload-btn" id="imgfooter">
-            <label for="imgUpload"><i class="bi bi-plus" id="btnn2"></i></label>
-            <input type="file" id="imgUpload" accept="image/*" />
+        <div id="confirmar">
+          <button id="botaocaixa" onclick="gerarLinkInstagram()">
+            Confirmar
           </button>
-
-          <p>
-            De forma alguma o site foi criado com o intuito de desviar os termos
-            relacionados à política de privacidade do cadastrante. O site está
-            disponível para toda e qualquer ajuda em relação aos contatos. O
-            site que aqui explica não aceita qualquer violência verbal, sendo
-            contra toda e qualquer atividade agressiva.
-          </p>
-          <p>© 2025 ENCHANT Brasil</p>
         </div>
-
-        <!-- Links de navegação -->
-        <div class="footer-right">
-          <div class="footer-column">
-            <h3>MAIS INFORMAÇÕES</h3>
-            <a
-              href="saibamais1.html"
-              title="Conheça mais sobre o ENCHANT - clique"
-              >Conheça mais sobre o site</a
-            >
-          </div>
-          <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
-            <h3>PROTEÇÃO DE DADOS</h3>
-            <a href="politica1.html">Política de privacidade</a>
-          </div>
-          <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
-            <h3>ACOMPANHE NOSSAS REDES</h3>
-            <button id="botao">Instagram</button>
-            <button id="facebook">Facebook</button>
-          </div>
-        </div>
+        <div id="linkContainer"></div>
+        <button id="editarLink" style="display: none">Editar</button>
       </div>
-    </footer>
+    </div>
+  </div>
 
-    <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+  <div id="caixa-principal2">
+    <div id="coisas-caixa2">
+      <div style="
+              display: flex;
+              justify-content: flex-start;
+              padding: 1.5rem;
+              height: 80px;
+            ">
+        <button class="botao-sair" id="botao-sair2">
+          <i class="bi bi-x-circle"></i>
+        </button>
+      </div>
+      <div id="facebookgeral">
+        <h2 id="texto-caixa2">Insira aqui o Facebook da sua empresa</h2>
+        <h2 id="texto-caixa4">
+          Aqui você pode inserir o Facebook da sua empresa!
+        </h2>
+        <hr style="margin-top: 1px" />
+        <input type="text" id="facebook2" placeholder="Digite seu @ ou nome de usuário" />
+        <div id="confirmar2">
+          <button id="botaocaixa2" onclick="gerarLinkFacebook()">
+            Confirmar
+          </button>
+        </div>
+        <div id="linkContainer2"></div>
+        <button id="editarLink2" style="display: none">Editar</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="background-icons">
+      <div class="bg-icon"></div>
+      <div class="bg-icon"></div>
+      <div class="bg-icon"></div>
+      <div class="bg-icon"></div>
+      <div class="bg-icon"></div>
+      <div class="bg-icon"></div>
+    </div>
+
+    <div id="container">
+      <div id="titulo">
+        <h2 id="titulo-inicial">Selecione a sua doação</h2>
+      </div>
+
+      <div class="container-marrom">
+        <!-- Primeiro quadrado -->
+        <div id="roupas-calcados" class="todas-imagens">
+          <div class="imagem">
+            <img class="img1" src="https://i.ibb.co/ccCH84G0/imagem.jpg" alt="Imagem para roupas">
           </div>
-          <div class="modal-body" id="erroSenhaModalBody">
-            <!-- Mensagem de erro será inserida aqui -->
+          <div class="text-content">
+            <p class="texto-doacao">
+              Doar roupas ajuda quem precisa e promove solidariedade. Confira o necessário:
+              <br><br>
+              <hr style="border: 1px solid #794d2446 ; width: 80%;">
+            <ul class="texto-doacao2">
+              <li>Gênero: Masculino, feminino ou unissex.</li>
+              <li>Qualidade: Boas condições.</li>
+              <li>Quantidade: Variável.</li>
+              <li>Tamanho: Diversos.</li>
+              <li>Tipo: casacos, calças, etc.</li>
+            </ul>
+            </p>
+            <a href="doacoesroupas.html"><button class="design-botao">Fazer a doação</button></a>
           </div>
-          <div class="modal-footer">
-            <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+        </div>
+
+        <!-- Segundo quadrado -->
+        <div id="alimentos-ração" class="todas-imagens">
+          <div class="imagem">
+            <img class="img2" src="https://i.ibb.co/x88FrQmK/imagem2.jpg" alt="Imagem para comida de animais">
+          </div>
+          <div class="text-content">
+            <p class="texto-doacao">
+              Para doação de alimentos para animais, considere os seguintes critérios:
+              <br><br>
+              <hr style="border: 1px solid #794d2446 ; width: 80%;">
+            <ul class="texto-doacao2">
+              <li>Porte do Animal: Pequeno, médio ou grande.</li>
+              <li>Tipo de Alimento: Ração seca, úmida ou especial.</li>
+              <li>Quantidade (kg): Conforme possível doar.</li>
+              <li>Especificações: Alimentação específica (filhotes, adultos, idosos ou raças).</li>
+            </ul>
+            </p>
+            <a href="doacoesalimentos.html"><button class="design-botao">Fazer a doação</button></a>
+          </div>
+        </div>
+
+        <!-- Terceiro quadrado -->
+        <div id="produtos-limpeza" class="todas-imagens">
+          <div class="imagem">
+            <img class="img3" src="https://i.ibb.co/VYVg2Y6S/0987654.jpg" alt="Imagem para produtos de limpeza">
+          </div>
+          <div class="text-content">
+            <p class="texto-doacao">
+              Doar produtos de limpeza garante higiene e bem-estar. No cadastro de doação, será solicitado:
+              <br><br>
+              <hr style="border: 1px solid #794d2446 ; width: 80%;">
+            <ul class="texto-doacao2">
+              <li>Quantidade – Número de unidades.</li>
+              <li>Recomendações – Indicação de uso.</li>
+              <li>Qualidade – Lacrados e dentro da validade.</li>
+              <li>Especificações – Tipo e tamanho dos produtos.</li>
+            </ul>
+            </p>
+            <a href="doacoeshigiene.html"><button class="design-botao">Fazer a doação</button></a>
+          </div>
+        </div>
+
+        <!-- Quarto quadrado -->
+        <div id="moveis-eletrodomésticos" class="todas-imagens">
+          <div class="imagem">
+            <img class="img4" src="https://i.ibb.co/rRNrg3RZ/34567.jpg" alt="Imagem para eletrodomésticos">
+          </div>
+          <div class="text-content">
+            <p class="texto-doacao">
+              Para doação de móveis e eletrodomésticos, siga as diretrizes abaixo:
+              <br><br>
+              <hr style="border: 1px solid #794d2446 ; width: 80%;">
+            <ul class="texto-doacao2">
+              <li>O que será pedido na doação – Móveis e eletrodomésticos reutilizáveis.</li>
+              <li>Qualidade – Em bom estado e funcionando.</li>
+              <li>Melhorias antes da doação – Apenas limpeza ou pequenos reparos.</li>
+              <li>Quantidade – Conforme disponibilidade.</li>
+            </ul>
+            </p>
+            <a href="doacoesmoveis.html"><button class="design-botao">Fazer a doação</button></a>
+          </div>
+        </div>
+
+        <!-- Quinto quadrado -->
+        <div id="livros-brinquedos" class="todas-imagens">
+          <div class="imagem">
+            <img class="img5" src="https://i.ibb.co/nshX6X74/o0iuycds.jpg" alt="Imagem para livros e brinquedos">
+          </div>
+          <div class="text-content">
+            <p class="texto-doacao">
+              Doar livros e brinquedos incentiva aprendizado, criatividade e solidariedade. Considere os seguintes
+              parametros:
+              <br><br>
+              <hr style="border: 1px solid #794d2446 ; width: 80%;">
+            <ul class="texto-doacao2">
+              <li>Livros – Gênero: Infantil, juvenil e adulto; Qualidade: Bom estado; Quantidade: Conforme
+                disponibilidade.</li>
+              <li>Brinquedos – Gênero: Educativos, recreativos e de pelúcia; Qualidade: Inteiros e seguros; Quantidade:
+                Conforme disponibilidade.</li>
+            </ul>
+            </p>
+            <a href="doacoeslivros.html"><button class="design-botao">Fazer a doação</button></a>
+          </div>
+        </div>
+
+        <!-- Sexto quadrado -->
+        <div id="cobertores-mais" class="todas-imagens">
+          <div class="imagem">
+            <img class="img6" src="https://i.ibb.co/WvgHntJN/lokjhbgv.webp" alt="Imagem para cobertores e variedades">
+          </div>
+          <div class="text-content">
+            <p class="texto-doacao">
+              Doar cobertores e outros itens essenciais ajuda a proteger pessoas do frio e melhora sua qualidade de
+              vida.
+              <br><br>
+              <hr style="border: 1px solid #794d2446 ; width: 80%;">
+            <ul class="texto-doacao2">
+              <li>Qualidade – Limpos, sem rasgos, em boas condições.</li>
+              <li>Quantidade – Conforme disponibilidade.</li>
+            </ul>
+            </p>
+            <a href="doacoescobertores.html"><button class="design-botao">Fazer a doação</button></a>
           </div>
         </div>
       </div>
     </div>
+  </main>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <footer>
+    <div class="footer-container">
+      <!-- Logo e descrição -->
+      <div class="footer-left">
+        <button class="upload-btn" id="imgfooter">
+          <label for="imgUpload"><i class="bi bi-plus" id="btnn2"></i></label>
+          <input type="file" id="imgUpload" accept="image/*" />
+        </button>
+
+        <p>
+          De forma alguma o site foi criado com o intuito de desviar os termos
+          relacionados à política de privacidade do cadastrante. O site está
+          disponível para toda e qualquer ajuda em relação aos contatos. O
+          site que aqui explica não aceita qualquer violência verbal, sendo
+          contra toda e qualquer atividade agressiva.
+        </p>
+        <p>© 2025 ENCHANT Brasil</p>
+      </div>
+
+      <!-- Links de navegação -->
+      <div class="footer-right">
+        <div class="footer-column">
+          <h3>MAIS INFORMAÇÕES</h3>
+          <a href="saibamais1.html" title="Conheça mais sobre o ENCHANT - clique">Conheça mais sobre o site</a>
+        </div>
+        <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
+          <h3>PROTEÇÃO DE DADOS</h3>
+          <a href="politica1.html">Política de privacidade</a>
+        </div>
+        <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
+          <h3>ACOMPANHE NOSSAS REDES</h3>
+          <button id="botao">Instagram</button>
+          <button id="facebook">Facebook</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body" id="erroSenhaModalBody">
+          <!-- Mensagem de erro será inserida aqui -->
+        </div>
+        <div class="modal-footer">
+          <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

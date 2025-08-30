@@ -15,162 +15,6 @@
     <script src="../../scripts/layouts/comprador/headercomprador.js"></script>
 </head>
 <body>
-
-   <section>
-    <header>
-      <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Adicionando a imagem à esquerda da navbar -->
-      <a class="navbar-brand" id="logocomprador" style="background-color: #d3d3d3; width: 150px; height: 40px;" href="compradorantes.html">
-        </a>
-        <button
-          id="icone"
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#conteudoNavbarSuportado"
-          aria-controls="conteudoNavbarSuportado"
-          aria-expanded="false"
-          aria-label="Alterna navegação"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-          <ul class="navbar-nav menu-lateral">
-            <li class="nav-item">
-              <a id="quem" class="nav-link" href="quemsomos2antes.html" title="Quem somos"
-                >Quem somos?</a
-              >
-            </li>
-            <li class="nav-item">
-              <a id="saiba" class="nav-link" href="saibamais2antes.html" title="Saiba mais"
-                >Saiba mais
-              </a>
-            </li>
-            <li class="nav-item">
-              <a id="entrar" class="nav-link" href="entrarcomprador.html" title="Entrar">Entrar</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                title="Cadastre-se"
-              >
-                Cadastre-se
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a
-                  id="dona1"
-                  class="dropdown-item" title="Cadastro do donatário"
-                  href="../../ENCHANT/HTML/cadastrodonatario1.html"
-                  >Cadastro Donatário
-                </a>
-                <a
-                  id="doap"
-                  class="dropdown-item" title="Cadastro do doador-pessoa"
-                  href="../../ENCHANT/HTML/cadastrodoadorpessoa1.html"
-                  >Cadastro Doador-Pessoa
-                </a>
-                <a
-                  id="doain"
-                  class="dropdown-item" title="Cadastro do doador-instituição"
-                  href="../../ENCHANT/HTML/cadastrodoadorinstituição1.html"
-                  >Cadastro Doador Instituição</a
-                >
-              </div>
-            </li>
-          </ul>
-          <!-- O botão permanece inalterado -->
-          <a href="entrarcomprador.html"><button class="btn btn-brown" type="button" id="doeagora">
-            Doe agora
-          </button></a>
-        </div>
-      </nav>
-    </header>
-  </section>
-
-
-
-      <div id="caixa-principal">
-        <div id="coisas-caixa">
-          <div
-            style="
-              display: flex;
-              justify-content: flex-start;
-              padding: 1.5rem;
-              height: 80px;
-            "
-          >
-            <button class="botao-sair" id="botao-sair">
-              <i class="bi bi-x-circle"></i>
-            </button>
-          </div>
-          <div id="instagramgeral">
-            <h2 id="texto-caixa">Insira aqui o Instagram da sua empresa</h2>
-            <h2 id="texto-caixa3">
-              Aqui você pode inserir o Instagram da sua empresa!
-            </h2>
-            <hr style="margin-top: 1px" />
-            <input
-              type="text"
-              id="instagram"
-              placeholder="Digite seu @ ou nome de usuário"
-            />
-
-
-            <div id="confirmar">
-              <button id="botaocaixa" onclick="gerarLinkInstagram()">
-                Confirmar
-              </button>
-            </div>
-            <div id="linkContainer"></div>
-            <button id="editarLink" style="display: none">Editar</button>
-          </div>
-        </div>
-      </div>
-
-
-      <div id="caixa-principal2">
-        <div id="coisas-caixa2">
-          <div
-            style="
-              display: flex;
-              justify-content: flex-start;
-              padding: 1.5rem;
-              height: 80px;
-            "
-          >
-            <button class="botao-sair" id="botao-sair2">
-              <i class="bi bi-x-circle"></i>
-            </button>
-          </div>
-          <div id="facebookgeral">
-            <h2 id="texto-caixa2">Insira aqui o Facebook da sua empresa</h2>
-            <h2 id="texto-caixa4">
-              Aqui você pode inserir o Facebook da sua empresa!
-            </h2>
-            <hr style="margin-top: 1px" />
-            <input
-              type="text"
-              id="facebook2"
-              placeholder="Digite seu @ ou nome de usuário"
-            />
-            <div id="confirmar2">
-              <button id="botaocaixa2" onclick="gerarLinkFacebook()">
-                Confirmar
-              </button>
-            </div>
-            <div id="linkContainer2"></div>
-            <button id="editarLink2" style="display: none">Editar</button>
-          </div>
-        </div>
-      </div>
-
 <div class="main-content">
     <div class="container" id="container">
         <div class="content">
@@ -197,53 +41,6 @@
     <button class="botao-salvar" id="btnSalvar" onclick="salvar()">Salvar</button>
     <button class="botao-salvar" id="btnEditar" style="display: none;" onclick="editar()">Editar</button>
 
-     <footer>
-      <div class="footer-container">
-        <!-- Logo e descrição -->
-        <div class="footer-left">
-          <button class="upload-btn" id="imgfooter">
-            <label for="imgUpload"><i class="bi bi-plus" id="btnn2"></i></label>
-            <input type="file" id="imgUpload" accept="image/*" />
-          </button>
-
-
-          <p>
-            De forma alguma o site foi criado com o intuito de desviar os termos
-            relacionados à política de privacidade do cadastrante. O site está
-            disponível para toda e qualquer ajuda em relação aos contatos. O
-            site que aqui explica não aceita qualquer violência verbal, sendo
-            contra toda e qualquer atividade agressiva.
-          </p>
-          <p>© 2025 ENCHANT Brasil</p>
-        </div>
-
-
-        <!-- Links de navegação -->
-        <div class="footer-right">
-          <div class="footer-column">
-            <h3>MAIS INFORMAÇÕES</h3>
-            <a
-              href="saibamais1.html"
-              title="Conheça mais sobre o ENCHANT - clique"
-              >Conheça mais sobre o site</a
-            >
-          </div>
-          <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
-            <h3>PROTEÇÃO DE DADOS</h3>
-            <a href="politica1.html">Política de privacidade</a>
-          </div>
-          <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
-            <h3>ACOMPANHE NOSSAS REDES</h3>
-
-
-            <button id="botao">Instagram</button>
-            <button id="facebook">Facebook</button>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-
     <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -261,24 +58,10 @@
       </div>
   </div>
 
-  <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script rc="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../JS/saibamaiscomprador.js"></script>
-    <script src="../JS/barraheadercomprador.js"></script>
 </body>
 </html>

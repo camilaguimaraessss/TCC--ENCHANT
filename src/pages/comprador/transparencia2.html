@@ -38,7 +38,7 @@
         </button>
       </a>
       <a class="aaa" href="../../pages/comprador/transparencia2.html">
-        <button class="nav-tab" data-page="page2">
+        <button class="nav-tab active" data-page="page2">
           <svg class="icon" viewBox="0 0 24 24">
             <path
               d="M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M19,21H8V7H19V21Z" />
@@ -74,7 +74,7 @@
         </button>
       </a>
       <a class="aaa" href="../../pages/comprador/transparenciaparcerias.html">
-        <button class="nav-tab  active" data-page="page1">
+        <button class="nav-tab  " data-page="page1">
           <svg class="icon" viewBox="0 0 24 24">
             <path
               d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7V11.59L15.71,14.3L14.29,15.71L11,12.41V7H13Z" />
@@ -82,6 +82,69 @@
           Parcerias
         </button>
       </a>
+    </div>
+
+     <div class="upload-section">
+            <div class="validation-info">
+                <h4>Requisitos para contratos:</h4>
+                <ul>
+                    <li>Nome do contrato deve ser específico (mínimo 10 caracteres)</li>
+                    <li>Descrição deve incluir informações relevantes (mínimo 20 caracteres)</li>
+                    <li>Ano deve corresponder ao período de vigência</li>
+                    <li>Arquivo em formato PDF ou DOC (máximo 15MB)</li>
+                </ul>
+            </div>
+            
+            <div class="success-message" id="success-contracts">Contrato adicionado com sucesso!</div>
+            <div class="alert-message" id="alert-contracts"></div>
+            
+            <h2>Adicionar contratos</h2>
+            <form id="contracts-form">
+                <div class="form-group required">
+                    <label for="contract-title">Nome do contrato</label>
+                    <input type="text" id="contract-title" placeholder="Ex: Prestação de Serviços Educacionais - Empresa ABC">
+                    <div class="error-message" id="contract-title-error"></div>
+                </div>
+                <div class="form-group required">
+                    <label for="contract-description">Descrição</label>
+                    <textarea id="contract-description" placeholder="Descreva o contrato brevemente"></textarea>
+                    <div class="error-message" id="contract-description-error"></div>
+                </div>
+                <div class="form-group required">
+                    <label for="contract-year">Ano de vigência</label>
+                    <select id="contract-year">
+                        <option value="">Selecione o ano</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                    <div class="error-message" id="contract-year-error"></div>
+                </div>
+                <div class="form-group required">
+                    <label>Arquivo do contrato</label>
+                    <div class="file-upload" onclick="document.getElementById('contract-file').click()">
+                        <svg class="icon" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 10px;">
+                            <path d="M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M19,21H8V7H19V21Z"/>
+                        </svg>
+                        <p>Clique para selecionar o arquivo ou arraste aqui</p>
+                        <small>PDF, DOC aceitos (máximo 15MB)</small>
+                        <input type="file" id="contract-file" accept=".pdf,.doc,.docx">
+                    </div>
+                    <div class="error-message" id="contract-file-error"></div>
+                </div>
+                <button type="submit" class="upload-btn">
+                    <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                        <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"/>
+                    </svg>
+                    Adicionar contrato
+                </button>
+            </form>
+            
+            <div class="uploaded-items" id="contracts-list">
+                <h3>Contratos publicados</h3>
+            </div>
+        </div>
     </div>
 
     <!-- Modal para visualizar descrição -->

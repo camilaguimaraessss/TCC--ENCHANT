@@ -6,7 +6,7 @@ class HeaderComponent {
         <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
           <!-- Adicionando a imagem à esquerda da navbar -->
           <a class="navbar-brand" href="../index.html">
-            <img src="../IMAGENS/imagemprincipal.png" width="120" height="auto" alt="Logo" class="img" />
+            <img src="../../assets/imgs/imagemprincipal.png" width="120" height="auto" alt="Logo" class="img" />
           </a>
           <button id="icone" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"

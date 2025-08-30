@@ -12,39 +12,15 @@
     <link rel="stylesheet" href="../CSS/paginapagamentoinicial.css">
     <link rel="stylesheet" href="../CSS/paginapagamento.css">
 
+
   <link rel="stylesheet" href="../../styles/global.css">
   <script src="../../scripts/layouts/enchant/headerenchant.js"></script>
-
 
 
 </head>
 <body>
     <section>
-        <header>
-            <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../index.html">
-                    <img src="../IMAGENS/imagemprincipal.png" width="120" height="auto" alt="Logo" class="img" />
-                </a>
-                <button id="icone" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <ul class="navbar-nav menu-lateral">
-                        <li class="nav-item">
-                            <a id="quem" class="nav-link" href="quemsomos1.html" title="Quem somos">Quem somos?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="saiba" class="nav-link" href="saibamais1.html" title="Saiba mais">Saiba mais</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="entrar" class="nav-link" href="entrar1.html" title="Entrar">Entrar</a>
-                        </li>
-                    </ul>
-                    <a href="../index.html"><button class="btn btn-brown" type="button" id="doeagora">Junte-se a nós</button></a>
-                </div>
-            </nav>
-        </header>
+       <div id="header-container"></div>
     </section>
 
     <main>
@@ -344,6 +320,18 @@
             </div>
         </div>
     </footer>
+
+         <script>
+    
+      document.addEventListener('DOMContentLoaded', function() {
+        // Carregar Bootstrap e FontAwesome automaticamente
+        HeaderComponent.loadDependencies();
+        
+        // Renderizar o header no container
+        initializeHeader('header-container');
+        
+          });
+              </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

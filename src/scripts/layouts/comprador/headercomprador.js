@@ -1,1012 +1,1082 @@
-// ==========================================
-// SCRIPT COMPLETO - HEADER, SIDEBAR E FUNCIONALIDADES
-// ==========================================
-
-class HeaderSidebarManager {
-  constructor() {
-    this.init();
-  }
-
-  // ==========================================
-  // INICIALIZAÇÃO
-  // ==========================================
-  init() {
-    this.injectStyles();
-    this.injectHTML();
-    this.setupEventListeners();
-    this.setupImageHandling();
-    this.loadSavedData();
-  }
-
-  // ==========================================
-  // INJEÇÃO DE ESTILOS CSS
-  // ==========================================
-  injectStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-      @import url("https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
-
-      body {
-        display: flex;
-        flex-direction: column;
-        font-family: "Lexend Deca", sans-serif;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* Sidebar Expanded Classes */
-      .sidebar-expanded .container-fluid {
-        padding-left: 180px;
-      }
-
-      .sidebar-expanded .navbar-nav {
-        margin-left: 170px;
-      }
-
-      #imgheader {
-        transition: margin-left 0.3s ease;
-      }
-
-      .sidebar-expanded #imgheader {
-        margin-left: 20px;
-      }
-
-      .header.animated {
-        animation: slideIn 0.5s ease-in-out;
-      }
-
-      .container-fluid {
-        position: relative;
-        transition: padding-left 0.3s ease;
-      }
-
-      .page-content {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        padding-top: 65px;
-        margin-left: 60px;
-        position: relative;
-      }
-
-      /* NAVBAR STYLES */
-      .navbar {
-        background-color: #ffffff;
-        padding-left: 3rem;
-        padding-right: 3rem;
-        height: 56px;
-        box-shadow: #b4b4b4 1px 0 3px 0px;
-      }
-
-      .navbar-nav {
-        display: flex;
-        justify-content: start;
-        padding-left: 3rem;
-        align-items: center;
-        flex-grow: 1;
-        list-style: none;
-        margin-right: 3rem;
-        gap: 3rem;
-        font-size: 14px;
-      }
-
-      .container-fluid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      /* PROFILE DROPDOWN */
-      .profile-dropdown {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .profile-dropdown button {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border: none;
-        background: none;
-        font-size: 16px;
-        color: black;
-      }
-
-      .dropdown-item {
-        display: flex;
-        align-items: center;
-        padding: 8px 15px;
-        text-decoration: none;
-        color: #333;
-        transition: background-color 0.2s;
-      }
-
-      .dropdown-item:hover {
-        background-color: #e0e0e0;
-        border-radius: 6px;
-      }
-
-      .dropdown-item i {
-        margin-right: 10px;
-        font-size: 16px;
-      }
-
-      .profile-dropdown img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #CCC;
-      }
-
-      .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        display: none;
-        background: #ECECEC;
-        border: none;
-        padding: 10px;
-      }
-
-      .profile-dropdown:hover .dropdown-menu {
-        display: block;
-      }
-
-      /* UPLOAD BUTTON */
-      #imgheader {
-        background-color: #D3D3D3;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 220px;
-        z-index: 800;
-        height: 38px;
-        position: relative;
-      }
-
-      .upload-btn input {
-        display: none;
-      }
-
-      .upload-btn {
-        position: relative;
-      }
-
-      .image-preview {
-        border-radius: 5px;
-      }
-
-      /* USER PHOTO */
-      .profile-dropdown img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #CCC;
-        display: none;
-      }
-
-      #userIcon {
-        font-size: 40px;
-        color: #CCC;
-        display: inline;
-        cursor: pointer;
-      }
-
-      /* SIDEBAR STYLES */
-      .sidebar {
-        position: fixed;
-        left: 0;
-        height: 100vh;
-        width: 60px;
-        background-color: #ECECEC;
-        transition: width 0.3s ease;
-        overflow: hidden;
-        z-index: 700;
-        margin-top: 0;
-        top: 0px;
-        border-radius: 6px;
-      }
-
-      .sidebar-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 650;
-      }
-
-      .sidebar:hover {
-        width: 230px;
-      }
-
-      .sidebar nav a {
-        display: flex;
-        align-items: center;
-        color: rgb(0, 0, 0);
-        padding: 15px;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-
-      .sidebar nav a i {
-        font-size: 1.2rem;
-        margin-right: 20px;
-      }
-
-      .sidebar nav a span {
-        display: none;
-      }
-
-      .sidebar:hover nav a span {
-        display: inline;
-      }
-
-      /* HEADER */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 200;
-      }
-
-      main {
-        flex: 1;
-        min-height: 200px;
-        padding: 20px;
-        transition: margin-left 0.3s ease;
-      }
-
-      #btnn {
-        width: 7.5rem;
-        display: inline-block;
-      }
-
-      #btnn2 {
-        width: 180px;
-        padding: 10px;
-        display: inline-block;
-        align-items: center;
-      }
-
-      i {
-        font-size: 23px;
-      }
-
-      #dropzinho {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        display: none;
-        background: #ECECEC;
-        border: none;
-        border-radius: 8px;
-        padding: 10px;
-        min-width: 150px;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      }
-
-      .bi-person {
-        font-size: 1.1rem;
-      }
-
-      .bi-box-arrow-right {
-        font-size: 1.1rem;
-      }
-
-      /* RESPONSIVE - TABLETS */
-      @media (max-width: 1023px) {
-        .sidebar-expanded #imgheader {
-          margin-left: 0 !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-          z-index: 800;
-          position: relative;
-        }
-
-        #imgheader {
-          transition: all 0.3s ease;
-          z-index: 800;
-          position: relative;
-        }
-
-        .sidebar-expanded .container-fluid {
-          padding-left: 0 !important;
-        }
-
-        #navbarNav {
-          background-color: #ffffff;
-          box-shadow: #b4b4b4 1px 0 3px 0px;
-          border-radius: 15px;
-          margin-top: 0.4rem;
-          padding: 15px;
-          width: 100%;
-        }
-
-        #abcd {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          padding-left: 10px;
-          margin-top: 10px;
-          width: 100%;
-          gap: 5px;
-        }
-
-        .nav-item {
-          width: 100%;
-        }
-
-        .nav-link {
-          padding: 8px 0;
-          display: block;
-        }
-
-        .profile-dropdown {
-          position: relative;
-          width: 100%;
-          right: auto;
-          top: auto;
-          transform: none;
-          margin-top: 5px;
-          display: flex;
-          justify-content: flex-start;
-        }
-
-        .profile-dropdown button {
-          width: 100%;
-          text-align: left;
-          padding: 8px 0;
-        }
-
-        #dropzinho {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          display: none;
-          background: #ECECEC;
-          border: none;
-          border-radius: 8px;
-          padding: 10px;
-          width: 150px;
-          z-index: 1000;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-          margin-top: 60px;
-        }
-
-        .profile-dropdown:hover #dropzinho,
-        .profile-dropdown:focus-within #dropzinho {
-          display: block;
-        }
-
-        .dropdown-item {
-          padding: 8px 10px;
-        }
-
-        .perfill {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .header {
-          animation: none;
-        }
-
-        .navbar-collapse {
-          transition: 0;
-        }
-
-        .sidebar-expanded .container-fluid,
-        .sidebar-expanded .navbar-nav,
-        .sidebar-expanded #imgheader {
-          margin-left: 0;
-          padding-left: 0;
-        }
-
-        .bi-list {
-          display: none;
-        }
-
-        .sidebar nav a span {
-          display: inline;
-        }
-
-        .navbar-nav {
-          gap: 0;
-        }
-
-        .page-content {
-          margin-left: 0;
-        }
-
-        #usuario {
-          font-size: 14px;
-          text-decoration: none;
-        }
-
-        #usuario:hover {
-          color: black;
-        }
-
-        #icone {
-          border: none;
-        }
-
-        #icone2 {
-          border: none;
-          outline: none !important;
-        }
-
-        #icone:focus,
-        #icone2:focus {
-          outline: none;
-          box-shadow: none;
-        }
-
-        #imgheader {
-          display: block;
-          margin: 0 auto;
-          width: 130px;
-        }
-
-        .sidebar {
-          top: 0;
-          left: -230px;
-          transition: left 0.3s ease;
-          width: 230px;
-          height: 100vh;
-        }
-
-        .sidebar.open {
-          left: 0;
-          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-          height: 100vh;
-        }
-
-        .navbar {
-          background-color: #ffffff;
-          box-shadow: #b4b4b4 1px 0 3px 0px;
-          padding-left: 0.00001rem;
-          padding-right: 0.00001rem;
-          height: 50px;
-        }
-
-        span {
-          font-size: 14px;
-        }
-
-        .dropdown-menu {
-          position: absolute;
-          top: 50%;
-          right: 100%;
-          transform: translateY(-50%);
-          display: none;
-          background: #ECECEC;
-          border: none;
-          border-radius: 8px;
-          padding: 10px;
-          min-width: 150px;
-          z-index: 1000;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-      }
-
-      /* RESPONSIVE - MOBILE */
-      @media (max-width: 768px) {
-        .sidebar {
-          height: 100% !important;
-          position: fixed;
-          top: 0;
-          left: -230px;
-          transition: left 0.3s ease;
-          width: 230px;
-          z-index: 700;
-        }
-
-        #btnn2 {
-          width: 190px;
-          padding: 10px;
-          display: inline-block;
-          align-items: center;
-        }
-      }
-
-      /* RESPONSIVE - DESKTOP SMALL */
-      @media (min-width:1024px) and (max-width:1400px) {
-        .navbar {
-          height: 42px;
-        }
-
-        .sidebar {
-          width: 48px;
-        }
-
-        #bb {
-          font-size: 16px;
-        }
-
-        .footer-left {
-          margin-left: 30px;
-        }
-
-        .bi-person-circle {
-          font-size: 15px;
-          color: #ccc;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // ==========================================
-  // INJEÇÃO DE HTML
-  // ==========================================
-  injectHTML() {
-    const headerHTML = `
-      <!-- Header com Navbar -->
-      <header>
-        <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
-            <!-- Botão esquerdo para controlar a sidebar -->
-            <button id="icone2" class="navbar-toggler" type="button">
-              <i style="font-size: 12px" class="navbar-toggler-icon"></i>
-            </button>
-
-            <!-- Input File -->
-            <button class="upload-btn" id="imgheader">
-              <label for="imageUpload"><i class="bi bi-plus" id="btnn"></i></label>
-              <input type="file" id="imageUpload" accept="image/*" placeholder="Insira sua logo" />
-            </button>
-
-            <!-- Botão direito para outras funcionalidades -->
-            <button id="icone" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-              <span style="font-size: 20px" class="bi bi-three-dots"></span>
-            </button>
-
-            <!-- Navbar collapse - modificado para mobile -->
-            <div class="collapse navbar-collapse item" id="navbarNav">
-              <ul id="abcd" class="navbar-nav mx-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="quemsomos2.html">Quem somos?</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="saibamais2.html">Saiba mais</a>
-                </li>
-                <li class="nav-item profile-dropdown">
-                  <button class="btn btn-link" id="usuario" style="font-size: 14px; text-decoration: none">
-                    <img id="userPhoto" src="" alt="Foto do Usuário" style="
-                      width: 30px;
-                      height: 30px;
-                      border-radius: 50%;
-                      object-fit: cover;
-                      display: none;
-                    " />
-                    <i id="userIcon" class="bi bi-person-circle" style="
-                    font-size: 250%;
-                    color: #ccc"></i>
-                    <span>Nome do Usuário</span>
-                  </button>
-                  <!-- Dropdown menu -->
-                  <div id="dropzinho" class="dropdown-menu">
-                    <a class="dropdown-item" href="perfildoadorppessoal.html"><i class="bi bi-person"></i> Perfil</a>
-                    <a class="dropdown-item" href="inicio1.html"><i class="bi bi-box-arrow-right"></i> Sair</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      <!-- Page Content Container -->
-      <div class="page-content">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-          <nav>
-            <a href="#"><i class="bi bi-list" id="bb"></i><span></span></a>
-            <a href="mapadopessoa.html"><i class="bi bi-map" id="bb"></i><span style="font-size: 14px">Mapa</span></a>
-            <a href="ajudamedicapessoa.html"><i class="bi bi-truck" id="bb"></i><span style="font-size: 14px">Ajuda médica</span></a>
-            <a href="doacaopessoa.html"><i class="bi bi-box" id="bb"></i><span style="font-size: 14px">Doação</span></a>
-            <a href="pontosdecoletapssoa.html"><i class="bi bi-geo-alt-fill" id="bb"></i><span style="font-size: 14px">Pontos de coleta</span></a>
-            <a href="ajudapessoa.html"><i class="bi bi-info-circle" id="bb"></i><span style="font-size: 14px">Ajuda</span></a>
-          </nav>
-        </aside>
-
-        <!-- Modal de Erro -->
-        <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-              </div>
-              <div class="modal-body" id="erroSenhaModalBody">
-                <!-- Mensagem de erro será inserida aqui -->
-              </div>
-              <div class="modal-footer">
-                <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Inserir o HTML no início do body
-    document.body.insertAdjacentHTML('afterbegin', headerHTML);
-  }
-
-  // ==========================================
-  // CONFIGURAÇÃO DE EVENT LISTENERS
-  // ==========================================
-  setupEventListeners() {
-    document.addEventListener("DOMContentLoaded", () => {
-      this.setupProfileDropdown();
-      this.setupNavbarCollapse();
-      this.setupSidebarToggle();
-      this.handleHeaderAnimation();
-      this.handleSidebarHover();
-    });
-
-    // Configurar eventos de redimensionamento
-    window.addEventListener("resize", () => {
-      this.setupProfileDropdown();
-      this.handleHeaderAnimation();
-      this.handleSidebarHover();
-      this.ensureSidebarHeight();
-    });
-  }
-
-  // ==========================================
-  // CONFIGURAÇÃO DO DROPDOWN DO PERFIL
-  // ==========================================
-  setupProfileDropdown() {
-    const usuarioBtn = document.getElementById("usuario");
-    const dropdownMenu = document.getElementById("dropzinho");
-   
-    if (!usuarioBtn || !dropdownMenu) return;
-   
-    // Remove listeners existentes
-    const oldClickListener = usuarioBtn._clickListener;
-    if (oldClickListener) {
-      usuarioBtn.removeEventListener("click", oldClickListener);
-    }
-
-    const isMobile = window.innerWidth <= 768;
-   
-    const clickListener = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (dropdownMenu.style.display === "block") {
-        dropdownMenu.style.display = "none";
-      } else {
-        dropdownMenu.style.display = "block";
-      }
-    };
-
-    usuarioBtn.addEventListener("click", clickListener);
-    usuarioBtn._clickListener = clickListener;
-
-    // Fecha ao clicar fora
-    document.addEventListener("click", (e) => {
-      if (!usuarioBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-        dropdownMenu.style.display = "none";
-      }
-    });
-
-    if (!isMobile) {
-      // Em desktop, mostra ao passar o mouse
-      usuarioBtn.addEventListener("mouseenter", () => {
-        dropdownMenu.style.display = "block";
-      });
-     
-      const profileDropdown = document.querySelector(".profile-dropdown");
-      if (profileDropdown) {
-        profileDropdown.addEventListener("mouseleave", () => {
-          dropdownMenu.style.display = "none";
-        });
-      }
-    }
-
-    // Fechar dropdown ao clicar nos itens
-    const dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
-    dropdownItems.forEach(item => {
-      item.addEventListener('click', () => {
-        dropdownMenu.style.display = "none";
-      });
-    });
-  }
-
-  // ==========================================
-  // CONFIGURAÇÃO DO NAVBAR COLLAPSE
-  // ==========================================
-  setupNavbarCollapse() {
-    const navbarCollapse = document.getElementById('navbarNav');
-    const toggleButton = document.getElementById('icone');
-   
-    if (!navbarCollapse || !toggleButton) return;
-
-    // Bootstrap 5 handling
-    if (window.bootstrap && navbarCollapse) {
-      const collapseInstance = new bootstrap.Collapse(navbarCollapse, {
-        toggle: false
-      });
-     
-      navbarCollapse.addEventListener('hidden.bs.collapse', () => {
-        toggleButton.classList.remove('collapsed');
-        toggleButton.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    // Manual toggle handler
-    toggleButton.addEventListener('click', () => {
-      if (window.bootstrap && navbarCollapse) {
-        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-        if (bsCollapse) {
-          if (navbarCollapse.classList.contains('show')) {
-            bsCollapse.hide();
-          } else {
-            bsCollapse.show();
-          }
-        } else {
-          navbarCollapse.classList.toggle('show');
-        }
-      } else {
-        // Fallback manual toggle
-        if (navbarCollapse.classList.contains('show')) {
-          navbarCollapse.classList.remove('show');
-          toggleButton.setAttribute('aria-expanded', 'false');
-        } else {
-          navbarCollapse.classList.add('show');
-          toggleButton.setAttribute('aria-expanded', 'true');
-        }
-      }
-    });
-  }
-
-  // ==========================================
-  // CONFIGURAÇÃO DO TOGGLE DA SIDEBAR
-  // ==========================================
-  setupSidebarToggle() {
-    const toggleButton = document.getElementById("icone2");
-    if (toggleButton) {
-      toggleButton.addEventListener("click", () => {
-        this.toggleSidebar();
-      });
-    }
-  }
-
-  toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    const body = document.body;
-
-    if (!sidebar) return;
-
-    sidebar.classList.toggle("open");
-    body.classList.toggle("sidebar-open");
-
-    let overlay = document.getElementById("sidebar-overlay");
-    if (!overlay) {
-      overlay = document.createElement("div");
-      overlay.id = "sidebar-overlay";
-      overlay.style.cssText = `
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 650;
-      `;
-      document.body.appendChild(overlay);
-
-      overlay.addEventListener("click", () => {
-        this.toggleSidebar();
-      });
-    }
-
-    const imgHeader = document.getElementById("imgheader");
-    
-    if (sidebar.classList.contains("open")) {
-      overlay.style.display = "block";
-      document.body.style.overflow = "hidden";
-      
-      if (imgHeader) {
-        imgHeader.style.visibility = "visible";
-        imgHeader.style.opacity = "1";
-      }
+/**
+ * Trapp Full-Stack Solutions
+ * Arquivo: layout-dinamico.js (v1.1 - Corrigido)
+ * Descrição: Componente de layout completo (Header, Sidebar, Footer, Modals)
+ * que injeta dinamicamente HTML, CSS e JavaScript em qualquer página.
+ * Instruções: Adicione <script src="layout-dinamico.js" defer></script> ao seu arquivo HTML.
+ */
+
+(function() {
+    // Garante que o script só rode após o carregamento completo do DOM.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeLayout);
     } else {
-      overlay.style.display = "none";
-      document.body.style.overflow = "auto";
+        initializeLayout();
     }
-  }
 
-  // ==========================================
-  // ANIMAÇÃO DO HEADER
-  // ==========================================
-  handleHeaderAnimation() {
-    const header = document.getElementById("header");
-    if (header) {
-      if (window.innerWidth <= 768) {
-        header.style.transition = "none";
-      } else {
-        header.style.transition = "all 0.3s ease-in-out";
-      }
-    }
-  }
-
-  // ==========================================
-  // HOVER DA SIDEBAR
-  // ==========================================
-  handleSidebarHover() {
-    const sidebar = document.getElementById("sidebar");
-    const body = document.body;
-    const imgHeader = document.getElementById("imgheader");
-
-    if (!sidebar) return;
-
-    // Remove listeners existentes
-    const oldMouseEnter = sidebar._mouseenterListener;
-    const oldMouseLeave = sidebar._mouseleaveListener;
-   
-    if (oldMouseEnter) {
-      sidebar.removeEventListener("mouseenter", oldMouseEnter);
-    }
-   
-    if (oldMouseLeave) {
-      sidebar.removeEventListener("mouseleave", oldMouseLeave);
-    }
-   
-    const isTablet = window.innerWidth > 768 && window.innerWidth <= 992;
-   
-    if (!isTablet && window.innerWidth > 768) {
-      const mouseenterListener = () => {
-        body.classList.add("sidebar-expanded");
-        if (imgHeader) {
-          imgHeader.style.visibility = "visible";
-          imgHeader.style.opacity = "1";
-        }
-      };
-     
-      const mouseleaveListener = () => {
-        body.classList.remove("sidebar-expanded");
-      };
-     
-      sidebar.addEventListener("mouseenter", mouseenterListener);
-      sidebar.addEventListener("mouseleave", mouseleaveListener);
-     
-      sidebar._mouseenterListener = mouseenterListener;
-      sidebar._mouseleaveListener = mouseleaveListener;
-    } else if (isTablet) {
-      if (imgHeader) {
-        imgHeader.style.visibility = "visible";
-        imgHeader.style.opacity = "1";
-      }
-    }
-  }
-
-  // ==========================================
-  // ALTURA DA SIDEBAR
-  // ==========================================
-  ensureSidebarHeight() {
-    const sidebar = document.getElementById("sidebar");
-    if (sidebar && window.innerWidth <= 768) {
-      const docHeight = Math.max(
-        document.body.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-        document.documentElement.offsetHeight
-      );
-
-      sidebar.style.height = Math.max(docHeight, window.innerHeight) + "px";
-    }
-  }
-
-  // ==========================================
-  // CONFIGURAÇÃO DE IMAGENS
-  // ==========================================
-  setupImageHandling() {
-    document.addEventListener("DOMContentLoaded", () => {
-      // Configurar prévia para a imagem do header
-      this.setupImagePreview("imageUpload", "imgheader", "btnn");
-      
-      // Configurar foto de perfil do usuário
-      this.setupUserPhoto();
-    });
-  }
-
-  setupImagePreview(inputId, containerId, buttonIconId) {
-    const fileInput = document.getElementById(inputId);
-    const container = document.getElementById(containerId);
-    const buttonIcon = document.getElementById(buttonIconId);
-   
-    if (fileInput && container) {
-      fileInput.addEventListener("change", () => {
-        if (fileInput.files && fileInput.files[0]) {
-          const reader = new FileReader();
-         
-          reader.onload = (e) => {
-            // Salvar no sessionStorage (não localStorage)
-            sessionStorage.setItem('headerLogo', e.target.result);
-            
-            // Remover o ícone de plus
-            if (buttonIcon) {
-              buttonIcon.style.display = "none";
+    function initializeLayout() {
+        /**
+         * Classe principal que gerencia a injeção do layout na página.
+         */
+        class DynamicLayoutManager {
+            constructor() {
+                this.injectStyles();
+                this.injectHTML();
+                this.initializeScripts();
             }
-           
-            // Verificar se já existe uma prévia e removê-la
-            const existingPreview = container.querySelector('.image-preview');
-            if (existingPreview) {
-              container.removeChild(existingPreview);
-            }
-           
-            // Criar elemento de prévia
-            this.createImagePreviewElement(container, e.target.result, buttonIcon, 'headerLogo');
-          };
-         
-          reader.readAsDataURL(fileInput.files[0]);
-        }
-      });
-    }
-  }
 
-  createImagePreviewElement(container, imageData, buttonIcon, storageKey) {
-    const previewElement = document.createElement('div');
-    previewElement.className = 'image-preview';
-    previewElement.style.cssText = `
-      width: 100%;
-      height: 100%;
-      background-image: url(${imageData});
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    `;
-    
-    container.style.position = "relative";
-    container.style.overflow = "hidden";
-    
-    // Botão de remoção
-    const removeButton = document.createElement('button');
-    removeButton.textContent = "✕";
-    removeButton.style.cssText = `
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      z-index: 2;
-      background: rgba(255, 255, 255, 0.7);
-      border: none;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      padding: 0;
-      font-size: 12px;
-    `;
-    
-    removeButton.addEventListener("click", (e) => {
-      e.stopPropagation();
-      container.removeChild(previewElement);
-      sessionStorage.removeItem(storageKey);
-      
-      if (buttonIcon) {
-        buttonIcon.style.display = "inline-block";
-      }
-    });
+            /**
+             * Injeta todo o CSS necessário dentro de uma tag <style> no <head> do documento.
+             */
+            injectStyles() {
+                const css = `
+                    /* ===== VARIÁVEIS E RESET ===== */
+                    :root {
+                        --primary-color: #693B11;
+                        --accent-color: #EC9E07;
+                        --text-color: #333;
+                        --light-bg: #ECECEC;
+                        --white: #FFFFFF;
+                        --shadow: rgba(180, 180, 180, 0.3);
+                        --sidebar-width: 230px;
+                        --sidebar-collapsed: 50px;
+                        --header-height: 56px;
+                        --transition: 0.3s ease;
+                    }
+
+                    * {
+                        box-sizing: border-box;
+                    }
+
+                    body {
+                        font-family: "Lexend Deca", sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        min-height: 100vh;
+                        background-color: var(--white);
+                    }
+
+                    /* ===== HEADER ===== */
+                    .main-header {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: var(--header-height);
+                        background-color: var(--white);
+                        box-shadow: 0 1px 3px var(--shadow);
+                        z-index: 1000;
+                        transition: var(--transition);
+                    }
+
+                    .header-content {
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        padding: 0 1rem;
+                        transition: var(--transition);
+                    }
+
+                    .sidebar-toggle {
+                        background: none;
+                        border: none;
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        padding: 0.5rem;
+                        color: var(--text-color);
+                        margin-right: 15px;
+                        display: none; /* Escondido no desktop */
+                    }
+
+                    .logo-upload {
+                        position: relative;
+                        background-color: #D3D3D3;
+                        border: none;
+                        border-radius: 5px;
+                        width: 220px;
+                        height: 38px;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: var(--transition);
+                        margin-right: auto;
+                    }
+
+                    .logo-upload input {
+                        display: none;
+                    }
+
+                    .logo-upload i {
+                        font-size: 1.5rem;
+                        color: var(--text-color);
+                    }
+
+                    .logo-preview {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        border-radius: 5px;
+                        display: none;
+                    }
+
+                    .remove-logo {
+                        position: absolute;
+                        top: 2px;
+                        right: 2px;
+                        background: rgba(255, 255, 255, 0.8);
+                        border: none;
+                        border-radius: 50%;
+                        width: 16px;
+                        height: 16px;
+                        font-size: 10px;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        line-height: 1;
+                    }
+
+                    /* ===== NAVEGAÇÃO DESKTOP ===== */
+                    .desktop-nav {
+                        display: flex;
+                        align-items: center;
+                        gap: 2rem;
+                        margin-right: 2rem;
+                    }
+
+                    .desktop-nav a {
+                        color: var(--text-color);
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 400;
+                        transition: color 0.2s;
+                    }
+
+
+                    .right-section {
+                        display: flex;
+                        align-items: center;
+                        margin-left: auto;
+                    }
+
+                    .mobile-menu-toggle {
+                        background: none;
+                        border: none;
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        padding: 0.5rem;
+                        color: var(--text-color);
+                        display: none;
+                    }
+
+                    /* ===== NAVBAR MÓVEL ===== */
+                    .mobile-navbar {
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        right: 0;
+                        background-color: var(--white);
+                        box-shadow: 0 3px 10px var(--shadow);
+                        border-radius: 15px;
+                        margin: 0.5rem 1rem;
+                        padding: 1rem;
+                        display: none;
+                        z-index: 999;
+                    }
+
+                    .mobile-navbar.show {
+                        display: block;
+                    }
+
+                    .mobile-nav-list {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                    }
+
+                    .mobile-nav-item a {
+                        color: var(--text-color);
+                        text-decoration: none;
+                        padding: 0.5rem 0;
+                        display: block;
+                        font-size: 14px;
+                    }
+
+                    .mobile-nav-item a:hover {
+                        color: var(--accent-color);
+                    }
+                    
+                    /* ===== PERFIL DROPDOWN ===== */
+                    .profile-section {
+                        position: relative;
+                    }
+
+                    .profile-button {
+                        background: none;
+                        border: none;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        color: var(--text-color);
+                        padding: 0; /* Reset padding */
+                    }
+
+                    .profile-photo {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 2px solid #CCC;
+                        display: none;
+                    }
+
+                    .profile-icon {
+                        font-size: 35px;
+                        color: #CCC;
+                    }
+
+                    .profile-dropdown {
+                        position: absolute;
+                        top: 120%; /* Posição ajustada */
+                        right: 0;
+                        background: var(--light-bg);
+                        border-radius: 8px;
+                        padding: 10px;
+                        min-width: 150px;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                        display: none;
+                        z-index: 1001;
+                    }
+                    
+                    .profile-dropdown.show {
+                        display: block;
+                    }
+
+                    .dropdown-item {
+                        display: flex;
+                        align-items: center;
+                        padding: 8px 15px;
+                        text-decoration: none;
+                        color: var(--text-color);
+                        border-radius: 6px;
+                        transition: background-color 0.2s;
+                        font-size: 14px; /* Tamanho da fonte consistente */
+                    }
+
+                    .dropdown-item:hover {
+                        background-color: #e0e0e0;
+                        color: var(--text-color);
+                    }
+
+                    .dropdown-item i {
+                        margin-right: 10px;
+                        font-size: 16px;
+                    }
+
+                    /* ===== SIDEBAR ===== */
+                    .sidebar {
+                        position: fixed;
+                        left: 0;
+                        top: 0;
+                        bottom: 0;
+                        width: var(--sidebar-collapsed);
+                        background-color: var(--light-bg);
+                        transition: var(--transition);
+                        overflow: hidden;
+                        z-index: 800;
+                        border-radius: 0 6px 6px 0;
+                    }
+                    
+                    @media (min-width: 1025px) {
+                        .sidebar {
+                            display: block;
+                            width: var(--sidebar-collapsed);
+                        }
+                        .sidebar:hover {
+                            width: var(--sidebar-width);
+                        }
+                        .sidebar:hover .sidebar-nav a span {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    .sidebar-nav {
+                        padding-top: var(--header-height);
+                    }
+
+                    .sidebar-nav a {
+                        display: flex;
+                        align-items: center;
+                        color: var(--text-color);
+                        padding: 13px;
+                        text-decoration: none;
+                        white-space: nowrap;
+                        transition: var(--transition);
+                    }
+
+                    .sidebar-nav a:hover {
+                        background-color: rgba(0, 0, 0, 0.05);
+                    }
+
+                    .sidebar-nav i {
+                        font-size: 1.2rem;
+                        margin-right: 20px;
+                        color: #4e4e4e;
+                        min-width: 20px;
+                        text-align: center;
+                    }
+
+                    .sidebar-nav span {
+                        font-size: 14px;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: opacity 0.2s, visibility 0.2s;
+                    }
+
+                    /* ===== CONTEÚDO PRINCIPAL ===== */
+                    .main-content {
+                        margin-left: var(--sidebar-collapsed);
+                        padding-top: var(--header-height);
+                        transition: var(--transition);
+                        min-height: calc(100vh - var(--header-height));
+                    }
+
+                    .content-area {
+                        padding: 20px;
+                    }
+
+                    /* ===== MODAIS SOCIAIS ===== */
+                    .modal-overlay {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: rgba(0, 0, 0, 0.7);
+                        z-index: 1100;
+                        display: none;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+
+                    .modal-overlay.show {
+                        display: block;
+                        opacity: 1;
+                    }
+
+                    .social-modal {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) scale(0.9);
+                        background-color: var(--white);
+                        width: 500px;
+                        max-width: 90vw;
+                        border-radius: 40px;
+                        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+                        padding: 30px;
+                        z-index: 1101;
+                        display: none;
+                        opacity: 0;
+                        transition: opacity 0.3s ease, transform 0.3s ease;
+                    }
+
+                    .social-modal.show {
+                        display: block;
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+
+                    .modal-header {
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-bottom: 20px;
+                    }
+
+                    .modal-close {
+                        background: none;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        color: var(--text-color);
+                    }
+
+                    .modal-title {
+                        font-size: 20px;
+                        margin-bottom: 10px;
+                        text-align: left;
+                    }
+
+                    .modal-subtitle {
+                        font-size: 14px;
+                        color: var(--text-color);
+                        margin-bottom: 20px;
+                    }
+
+                    .social-input {
+                        width: 100%;
+                        height: 45px;
+                        border-radius: 15px;
+                        border: 1.5px solid #535151;
+                        padding: 0 15px;
+                        margin-bottom: 20px;
+                        outline: none;
+                        font-size: 14px;
+                    }
+
+                    .modal-buttons {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 10px;
+                    }
+
+                    .btn-confirm, .btn-edit {
+                        background-color: rgba(226, 204, 174, 1);
+                        border: none;
+                        border-radius: 15px;
+                        padding: 10px 20px;
+                        font-size: 14px;
+                        cursor: pointer;
+                        transition: background-color 0.2s;
+                    }
+                    .btn-confirm:hover, .btn-edit:hover {
+                         background-color: #d8b894;
+                    }
+                    .btn-edit { display: none; }
+
+                    .social-link {
+                        text-align: center;
+                        margin: 20px 0;
+                    }
+
+                    .social-link a {
+                        color: var(--accent-color);
+                        font-size: 16px;
+                        word-wrap: break-word;
+                    }
+
+                    /* ===== FOOTER ===== */
+                    .main-footer {
+                        background-color: #FCF2E8;
+                        padding: 30px 50px;
+                        margin-left: var(--sidebar-collapsed);
+                        transition: var(--transition);
+                    }
+
+                    .footer-content {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 40px;
+                        flex-wrap: wrap;
+                    }
+
+                    .footer-left { max-width: 400px; }
+
+                    .footer-logo-upload {
+                        background-color: #D3D3D3;
+                        border: none;
+                        height: 60px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        width: 200px;
+                        margin-bottom: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                    }
+
+                    .footer-logo-upload input { display: none; }
+                    .footer-text {
+                        font-size: 10px;
+                        line-height: 1.5;
+                        margin-bottom: 10px;
+                    }
+
+                    .footer-right {
+                        display: flex;
+                        gap: 40px;
+                        margin-top: 20px;
+                    }
+
+                    .footer-column {
+                        display: flex;
+                        flex-direction: column;
+                        min-width: 200px;
+                        text-align: center;
+                    }
+
+                    .footer-column h3 {
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #535151;
+                        margin-bottom: 10px;
+                    }
+
+                    .footer-column a, .footer-column button {
+                        color: var(--accent-color);
+                        text-decoration: none;
+                        font-size: 12px;
+                        display: block;
+                        margin-bottom: 5px;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        padding: 0; /* Reset padding */
+                        text-align: center; /* Garantir alinhamento */
+                    }
+
+                    .footer-column a:hover, .footer-column button:hover {
+                        text-decoration: underline;
+                        color: #8B7777;
+                    }
+                    
+                    /* ===== OVERLAY PARA MOBILE ===== */
+                    .sidebar-overlay {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        z-index: 799; /* Abaixo da sidebar */
+                        display: none;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    .sidebar-overlay.show {
+                        display: block;
+                        opacity: 1;
+                    }
+
+                    /* ===== RESPONSIVIDADE ===== */
+                    @media (max-width: 1024px) {
+                        .desktop-nav, .right-section { display: none; }
+                        .mobile-menu-toggle, .sidebar-toggle { display: block; }
+                        
+                        .sidebar {
+                            left: -100%;
+                            width: var(--sidebar-width);
+                            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+                        }
+                        .sidebar.open { left: 0; }
+                        .sidebar-nav span { opacity: 1; visibility: visible; }
+                        
+                        .logo-upload { width: 180px; margin-right: 0; }
+                        .main-content, .main-footer { margin-left: 0; }
+                        
+                        .header-content {
+                            padding: 0 0.5rem;
+                            justify-content: space-between;
+                        }
+                        
+                        .main-header { height: 50px; }
+                        .main-content { padding-top: 50px; }
+                        .sidebar-nav { padding-top: 50px; }
+                        
+                        .social-modal {
+                            width: 400px;
+                            border-radius: 30px;
+                            padding: 20px;
+                        }
+                        .social-input { height: 40px; }
+                    }
+
+                    @media (max-width: 768px) {
+                        .logo-upload { width: 130px; }
+                        .social-modal { width: 320px; }
+
+                        .footer-content {
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                            gap: 20px;
+                            padding: 0 10px;
+                        }
+                        .footer-left {
+                            max-width: 100%;
+                            width: 100%;
+                        }
+                        .footer-logo-upload {
+                            width: 150px;
+                            height: 50px;
+                            margin: 0 auto 15px auto;
+                        }
+                        .footer-right {
+                            flex-direction: column;
+                            gap: 15px;
+                            width: 100%;
+                            margin-top: 0;
+                        }
+                        .footer-column { min-width: auto; width: 100%; }
+                        .footer-column h3 { font-size: 14px; margin-bottom: 8px; }
+                        .footer-column a, .footer-column button { font-size: 12px; margin-bottom: 3px; }
+                        .footer-text { font-size: 9px; margin-bottom: 8px; text-align: center; }
+                        .main-footer { padding: 15px 10px; }
+
+                        .profile-dropdown { right: -50px; margin-top: 10px; }
+                        .mobile-navbar { margin: 0.5rem; }
+                    }
+
+                    @media (min-width: 769px) and (max-width: 1024px) {
+                        .footer-content {
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            gap: 30px;
+                        }
+                        .footer-left {
+                            max-width: 100%;
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .footer-right {
+                            justify-content: center;
+                            gap: 30px;
+                            width: 100%;
+                        }
+                        .footer-column { min-width: 180px; }
+                        .footer-column h3 { font-size: 15px; }
+                        .footer-column a, .footer-column button { font-size: 11px; }
+                        .footer-text { font-size: 10px; }
+                        .main-footer { padding: 25px 20px; }
+                    }
+                `;
+                const styleElement = document.createElement('style');
+                styleElement.innerHTML = css;
+
+                const bootstrapIcons = document.createElement('link');
+                bootstrapIcons.rel = 'stylesheet';
+                bootstrapIcons.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css';
+                
+                const passionOneFont = document.createElement('link');
+                passionOneFont.rel = 'stylesheet';
+                passionOneFont.href = 'https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap';
+
+                const lexendDecaFont = document.createElement('link');
+                lexendDecaFont.rel = 'stylesheet';
+                lexendDecaFont.href = 'https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap';
+                
+                document.head.appendChild(bootstrapIcons);
+                document.head.appendChild(passionOneFont);
+                document.head.appendChild(lexendDecaFont);
+                document.head.appendChild(styleElement);
+            }
+
+            /**
+             * Injeta toda a estrutura HTML dentro de um container no <body> do documento.
+             */
+            injectHTML() {
+                const html = `
+                    <header class="main-header">
+                        <div class="header-content">
+                            <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+                            <div class="logo-upload" id="logoUpload">
+                                <label for="logoInput"><i class="bi bi-plus"></i></label>
+                                <input type="file" id="logoInput" accept="image/*">
+                                <div class="logo-preview" id="logoPreview">
+                                    <button class="remove-logo" id="removeLogo">×</button>
+                                </div>
+                            </div>
+                            <div class="right-section">
+                                <nav class="desktop-nav">
+                                    <a href="#quem-somos">Quem somos?</a>
+                                    <a href="#saiba-mais">Saiba mais</a>
+                                </nav>
+                                <div class="profile-section">
+                                    <button class="profile-button" id="profileButton">
+                                        <img id="profilePhoto" class="profile-photo" src="" alt="Foto do Usuário">
+                                        <i id="profileIcon" class="bi bi-person-circle profile-icon"></i>
+                                        <span>Nome do Usuário</span>
+                                    </button>
+                                    <div class="profile-dropdown" id="profileDropdown">
+                                        <a class="dropdown-item" href="#perfil"><i class="bi bi-person"></i> Perfil</a>
+                                        <a class="dropdown-item" href="#sair"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="bi bi-three-dots"></i></button>
+                            <nav class="mobile-navbar" id="mobileNavbar">
+                                <ul class="mobile-nav-list">
+                                    <li class="mobile-nav-item"><a href="#quem-somos">Quem somos?</a></li>
+                                    <li class="mobile-nav-item"><a href="#saiba-mais">Saiba mais</a></li>
+                                    <li class="mobile-nav-item">
+                                        <div class="profile-section">
+                                            <button class="profile-button" id="profileButtonMobile">
+                                                <img id="profilePhotoMobile" class="profile-photo" src="" alt="Foto do Usuário">
+                                                <i id="profileIconMobile" class="bi bi-person-circle profile-icon"></i>
+                                                <span>Nome do Usuário</span>
+                                            </button>
+                                            <div class="profile-dropdown" id="profileDropdownMobile">
+                                                <a class="dropdown-item" href="#perfil"><i class="bi bi-person"></i> Perfil</a>
+                                                <a class="dropdown-item" href="#sair"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+                    <aside class="sidebar" id="sidebar">
+                        <nav class="sidebar-nav">
+                            <a href="#mapa"><i class="bi bi-map"></i><span>Mapa</span></a>
+                            <a href="#abrigo"><i class="bi bi-geo"></i><span>Pontos de abrigo</span></a>
+                            <a href="#ajuda-medica"><i class="bi bi-truck"></i><span>Ajuda médica</span></a>
+                            <a href="#doacao"><i class="bi bi-box"></i><span>Doação</span></a>
+                            <a href="#coleta"><i class="bi bi-geo-alt-fill"></i><span>Pontos de coleta</span></a>
+                            <a href="#historico"><i class="bi bi-journal"></i><span>Histórico de doação</span></a>
+                            <a href="#politica"><i class="bi bi-file-earmark"></i><span>Política de privacidade</span></a>
+                            <a href="#transparencia"><i class="bi bi-search"></i><span>Transparência</span></a>
+                            <a href="#verificacao"><i class="bi bi-check-circle-fill"></i><span>Verificação de doações</span></a>
+                            <a href="#ajuda"><i class="bi bi-info-circle"></i><span>Ajuda</span></a>
+                        </nav>
+                    </aside>
+                    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+                    <main class="main-content">
+                        <div class="content-area">
+                            </div>
+                    </main>
+                    <footer class="main-footer">
+                        <div class="footer-content">
+                            <div class="footer-left">
+                                <div class="footer-logo-upload" id="footerLogoUpload">
+                                    <label for="footerLogoInput"><i class="bi bi-plus" style="font-size: 1.5rem;"></i></label>
+                                    <input type="file" id="footerLogoInput" accept="image/*">
+                                </div>
+                                <p class="footer-text">De forma alguma o site foi criado com o intuito de desviar os termos relacionados à política de privacidade do cadastrante. O site está disponível para toda e qualquer ajuda em relação aos contatos.</p>
+                                <p class="footer-text">© 2025 ENCHANT Brasil</p>
+                            </div>
+                            <div class="footer-right">
+                                <div class="footer-column"><h3>MAIS INFORMAÇÕES</h3><a href="#saiba-mais">Conheça mais sobre o site</a></div>
+                                <div class="footer-column"><h3>PROTEÇÃO DE DADOS</h3><a href="#politica">Política de privacidade</a></div>
+                                <div class="footer-column"><h3>ACOMPANHE NOSSAS REDES</h3><button id="instagramBtn">Instagram</button><button id="facebookBtn">Facebook</button></div>
+                            </div>
+                        </div>
+                    </footer>
+                    <div class="modal-overlay" id="modalOverlay"></div>
+                    <div class="social-modal" id="instagramModal">
+                        <div class="modal-header"><button class="modal-close" id="closeInstagramModal"><i class="bi bi-x-circle"></i></button></div>
+                        <h2 class="modal-title">Insira aqui o Instagram da sua empresa</h2>
+                        <p class="modal-subtitle">Aqui você pode inserir o Instagram da sua empresa!</p><hr>
+                        <input type="text" class="social-input" id="instagramInput" placeholder="Digite seu @ ou nome de usuário">
+                        <div class="social-link" id="instagramLink"></div>
+                        <div class="modal-buttons">
+                            <button class="btn-confirm" id="confirmInstagram">Confirmar</button>
+                            <button class="btn-edit" id="editInstagram">Editar</button>
+                        </div>
+                    </div>
+                    <div class="social-modal" id="facebookModal">
+                        <div class="modal-header"><button class="modal-close" id="closeFacebookModal"><i class="bi bi-x-circle"></i></button></div>
+                        <h2 class="modal-title">Insira aqui o Facebook da sua empresa</h2>
+                        <p class="modal-subtitle">Aqui você pode inserir o Facebook da sua empresa!</p><hr>
+                        <input type="text" class="social-input" id="facebookInput" placeholder="Digite seu @ ou nome de usuário">
+                        <div class="social-link" id="facebookLink"></div>
+                        <div class="modal-buttons">
+                            <button class="btn-confirm" id="confirmFacebook">Confirmar</button>
+                            <button class="btn-edit" id="editFacebook">Editar</button>
+                        </div>
+                    </div>
+                `;
+
+                // ✅ SOLUÇÃO:
+                // 1. Guarda os nós filhos do body (elementos, scripts, etc.)
+                const originalBodyNodes = [...document.body.childNodes];
+
+                // 2. Limpa o body
+                document.body.innerHTML = '';
+                
+                // 3. Cria um container para o nosso layout e injeta o HTML nele
+                const appContainer = document.createElement('div');
+                appContainer.id = 'trapp-layout-container';
+                appContainer.innerHTML = html;
+
+                // 4. Adiciona o novo container ao body
+                document.body.appendChild(appContainer);
+                
+                // 5. Encontra a área de conteúdo dentro do nosso layout
+                const contentArea = appContainer.querySelector('.content-area');
+                
+                // 6. Move os nós originais para dentro da área de conteúdo, garantindo que o script continue funcionando
+                if (contentArea) {
+                    originalBodyNodes.forEach(node => {
+                        // Evita mover o próprio script para dentro do conteúdo
+                        if (node.tagName !== 'SCRIPT' || !node.src.includes('layout-dinamico.js')) {
+                             contentArea.appendChild(node);
+                        }
+                    });
+                }
+            }
+
+            /**
+             * Inicializa todos os scripts e listeners de eventos após a injeção do HTML.
+             */
+            initializeScripts() {
+                class ResponsiveNavigation {
+                    constructor() {
+                        this.sidebar = document.getElementById('sidebar');
+                        this.sidebarToggle = document.getElementById('sidebarToggle');
+                        this.sidebarOverlay = document.getElementById('sidebarOverlay');
+                        this.mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                        this.mobileNavbar = document.getElementById('mobileNavbar');
+                        this.profileButton = document.getElementById('profileButton');
+                        this.profileDropdown = document.getElementById('profileDropdown');
+                        this.modalOverlay = document.getElementById('modalOverlay');
+                        
+                        this.init();
+                    }
+
+                    init() {
+                        this.bindEvents();
+                        this.setupImageUploads();
+                        this.setupSocialModals();
+                    }
+
+                    bindEvents() {
+                        this.sidebarToggle.addEventListener('click', () => this.toggleSidebar());
+                        this.sidebarOverlay.addEventListener('click', () => this.closeSidebar());
+                        
+                        this.mobileMenuToggle.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            this.toggleMobileMenu();
+                        });
+                        
+                        this.profileButton.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            this.toggleProfileDropdown();
+                        });
+
+                        const profileButtonMobile = document.getElementById('profileButtonMobile');
+                        const profileDropdownMobile = document.getElementById('profileDropdownMobile');
+                        
+                        if (profileButtonMobile) {
+                            profileButtonMobile.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                profileDropdownMobile.classList.toggle('show');
+                            });
+                        }
+                        
+                        document.addEventListener('click', (e) => {
+                            if (!this.profileButton.contains(e.target) && !this.profileDropdown.contains(e.target)) {
+                                this.profileDropdown.classList.remove('show');
+                            }
+                            if (profileDropdownMobile && !profileButtonMobile.contains(e.target) && !profileDropdownMobile.contains(e.target)) {
+                                profileDropdownMobile.classList.remove('show');
+                            }
+                            if (!this.mobileMenuToggle.contains(e.target) && !this.mobileNavbar.contains(e.target)) {
+                                this.mobileNavbar.classList.remove('show');
+                            }
+                        });
+
+                        window.addEventListener('resize', () => this.handleResize());
+                    }
+
+                    toggleSidebar() {
+                        if (window.innerWidth <= 1024) {
+                            this.sidebar.classList.toggle('open');
+                            this.sidebarOverlay.classList.toggle('show');
+                            document.body.style.overflow = this.sidebar.classList.contains('open') ? 'hidden' : '';
+                        }
+                    }
+
+                    closeSidebar() {
+                        this.sidebar.classList.remove('open');
+                        this.sidebarOverlay.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+
+                    toggleMobileMenu() {
+                        this.mobileNavbar.classList.toggle('show');
+                    }
+
+                    toggleProfileDropdown() {
+                        this.profileDropdown.classList.toggle('show');
+                    }
+
+                    handleResize() {
+                        if (window.innerWidth > 1024) {
+                            this.closeSidebar();
+                            this.mobileNavbar.classList.remove('show');
+                            document.getElementById('profileDropdownMobile').classList.remove('show');
+                        }
+                    }
+
+                    setupImageUploads() {
+                        const logoInput = document.getElementById('logoInput');
+                        const logoPreview = document.getElementById('logoPreview');
+                        const removeLogo = document.getElementById('removeLogo');
+                        const footerLogoInput = document.getElementById('footerLogoInput');
+
+                        logoInput.addEventListener('change', (e) => this.handleImageUpload(e.target, logoPreview));
+                        removeLogo.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            this.removeImage(logoInput, logoPreview);
+                        });
+                        footerLogoInput.addEventListener('change', (e) => this.handleFooterImageUpload(e.target));
+                    }
+
+                    handleImageUpload(input, preview) {
+                        if (input.files && input.files[0]) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                preview.style.backgroundImage = `url(${e.target.result})`;
+                                preview.style.display = 'block';
+                                preview.parentElement.querySelector('i').style.display = 'none';
+                            };
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                    
+                    handleFooterImageUpload(input) {
+                        if (input.files && input.files[0]) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                const container = input.closest('.footer-logo-upload');
+                                container.style.backgroundImage = `url(${e.target.result})`;
+                                container.querySelector('i').style.display = 'none';
+                            };
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
+                    removeImage(input, preview) {
+                        input.value = '';
+                        preview.style.display = 'none';
+                        preview.style.backgroundImage = '';
+                        preview.parentElement.querySelector('i').style.display = 'block';
+                    }
+
+                    setupSocialModals() {
+                        const socialConfigs = [
+                            { platform: 'instagram', btnId: 'instagramBtn', modalId: 'instagramModal', closeId: 'closeInstagramModal', confirmId: 'confirmInstagram', editId: 'editInstagram', inputId: 'instagramInput', linkId: 'instagramLink' },
+                            { platform: 'facebook', btnId: 'facebookBtn', modalId: 'facebookModal', closeId: 'closeFacebookModal', confirmId: 'confirmFacebook', editId: 'editFacebook', inputId: 'facebookInput', linkId: 'facebookLink' }
+                        ];
+
+                        socialConfigs.forEach(config => {
+                            const btn = document.getElementById(config.btnId);
+                            const modal = document.getElementById(config.modalId);
+                            const closeBtn = document.getElementById(config.closeId);
+                            const confirmBtn = document.getElementById(config.confirmId);
+                            const editBtn = document.getElementById(config.editId);
+                            const input = document.getElementById(config.inputId);
+                            const linkContainer = document.getElementById(config.linkId);
+
+                            btn.addEventListener('click', () => this.openModal(modal));
+                            closeBtn.addEventListener('click', () => this.closeModal(modal));
+                            confirmBtn.addEventListener('click', () => this.handleSocialConfirm(config.platform, input, linkContainer, confirmBtn, editBtn, btn));
+                            editBtn.addEventListener('click', () => this.handleSocialEdit(config.platform, input, linkContainer, confirmBtn, editBtn));
+                        });
+
+                        this.modalOverlay.addEventListener('click', () => this.closeAllModals());
+                    }
+
+                    openModal(modal) {
+                        this.modalOverlay.classList.add('show');
+                        modal.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }
+
+                    closeModal(modal) {
+                        this.modalOverlay.classList.remove('show');
+                        modal.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+
+                    closeAllModals() {
+                        document.querySelectorAll('.social-modal').forEach(m => m.classList.remove('show'));
+                        this.modalOverlay.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+
+                    handleSocialConfirm(platform, input, linkContainer, confirmBtn, editBtn, mainBtn) {
+                        const value = input.value.trim();
+                        if (value) {
+                            const username = value.replace(/^@/, '');
+                            const url = platform === 'instagram' ? `https://www.instagram.com/${username}` : `https://www.facebook.com/${username}`;
+                            
+                            linkContainer.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+                            input.style.display = 'none';
+                            confirmBtn.style.display = 'none';
+                            editBtn.style.display = 'block';
+                            
+                            const subtitle = input.closest('.social-modal').querySelector('.modal-subtitle');
+                            subtitle.textContent = `Aqui você pode editar o ${platform} da sua empresa!`;
+                        } else {
+                            alert(`Por favor, insira um nome de usuário válido.`);
+                        }
+                    }
+
+                    handleSocialEdit(platform, input, linkContainer, confirmBtn, editBtn) {
+                        input.style.display = 'block';
+                        confirmBtn.style.display = 'block';
+                        linkContainer.innerHTML = '';
+                        editBtn.style.display = 'none';
+
+                        const subtitle = input.closest('.social-modal').querySelector('.modal-subtitle');
+                        subtitle.textContent = `Aqui você pode inserir o ${platform} da sua empresa!`;
+                    }
+                }
+                new ResponsiveNavigation();
+
+                // Profile photo functionality
+                const profileIcon = document.getElementById('profileIcon');
+                const profilePhoto = document.getElementById('profilePhoto');
+                const profileIconMobile = document.getElementById('profileIconMobile');
+                const profilePhotoMobile = document.getElementById('profilePhotoMobile');
+
+                const profilePhotoInput = document.createElement('input');
+                profilePhotoInput.type = 'file';
+                profilePhotoInput.accept = 'image/*';
+                profilePhotoInput.style.display = 'none';
+                document.body.appendChild(profilePhotoInput);
+
+                const setupProfileIconClick = (icon, input) => {
+                    if(icon) icon.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        input.click();
+                    });
+                }
+                
+                setupProfileIconClick(profileIcon, profilePhotoInput);
+                setupProfileIconClick(profileIconMobile, profilePhotoInput);
+
+                profilePhotoInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const imageUrl = e.target.result;
+                            if (profilePhoto) {
+                                profilePhoto.src = imageUrl;
+                                profilePhoto.style.display = 'inline-block';
+                            }
+                            if (profilePhotoMobile) {
+                                profilePhotoMobile.src = imageUrl;
+                                profilePhotoMobile.style.display = 'inline-block';
+                            }
+                            if (profileIcon) profileIcon.style.display = 'none';
+                            if (profileIconMobile) profileIconMobile.style.display = 'none';
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            }
+        }
+        
+        // Inicia todo o processo
+        new DynamicLayoutManager();
+    }
+})();

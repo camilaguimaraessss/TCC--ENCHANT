@@ -80,21 +80,21 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 </a>
 </td>
 <td align="center" width="33%">
-<img src="https://github.com/GUIOLI08" width="150px" style="border-radius: 50%"><br>
+<img src="https://github.com/GUIOLI08.png" width="150px" style="border-radius: 50%"><br>
 <b>Camila Guimarães</b><br>
 <sub>Full Stack Developer</sub><br>
 <a href="https://github.com/GUIOLI08">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
 </td><td align="center" width="33%">
-<img src="https://github.com/Marcdotcomb1ne" width="150px" style="border-radius: 50%"><br>
+<img src="https://github.com/Marcdotcomb1ne.png" width="150px" style="border-radius: 50%"><br>
 <b>Camila Guimarães</b><br>
 <sub>Full Stack Developer</sub><br>
 <a href="https://github.com/Marcdotcomb1ne">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
 </td><td align="center" width="33%">
-<img src="https://github.com/Andressa-gith" width="150px" style="border-radius: 50%"><br>
+<img src="https://github.com/Andressa-gith.png" width="150px" style="border-radius: 50%"><br>
 <b>Camila Guimarães</b><br>
 <sub>Full Stack Developer</sub><br>
 <a href="https://github.com/Andressa-gith">

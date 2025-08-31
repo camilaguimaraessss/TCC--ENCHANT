@@ -5,8 +5,8 @@ class HeaderComponent {
       <header>
         <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
           <!-- Adicionando a imagem à esquerda da navbar -->
-          <a class="navbar-brand" href="../index.html">
-            <img src="../../assets/imgs/imagemprincipal.png" width="120" height="auto" alt="Logo" class="img" />
+          <a class="navbar-brand" href="public/src/index.html">
+            <img src="/public/src/assets/imgs/enchant/logo-enchant.png" width="120" height="auto" alt="Logo" class="img" />
           </a>
           <button id="icone" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
@@ -17,17 +17,17 @@ class HeaderComponent {
           <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav menu-lateral">
               <li class="nav-item">
-                <a id="quem" class="nav-link" href="quemsomos1.html" title="Quem somos">Quem somos?</a>
+                <a id="quem" class="nav-link" href="/public/src/pages/enchant/quemsomos1.html" title="Quem somos">Quem somos?</a>
               </li>
               <li class="nav-item">
-                <a id="saiba" class="nav-link" href="saibamais1.html" title="Saiba mais">Saiba mais</a>
+                <a id="saiba" class="nav-link" href="/public/src/pages/enchant/saibamais1.html" title="Saiba mais">Saiba mais</a>
               </li>
               <li class="nav-item">
-                <a id="entrar" class="nav-link" href="entrar1.html" title="Entrar">Entrar</a>
+                <a id="entrar" class="nav-link" href="/public/src/pages/enchant/entrar1.html" title="Entrar">Entrar</a>
               </li>
             </ul>
             <!-- O botão permanece inalterado -->
-            <a href="../index.html">
+            <a href="public/src/index.html">
               <button class="btn btn-brown" type="button" id="doeagora">
                 Junte-se a nós
               </button>
@@ -184,7 +184,9 @@ class HeaderComponent {
         text-decoration: none;
         border: 1px solid #d8b48bce;
       }
-
+      a{
+       text-decoration: none;
+       }
       #doeagora:focus {
         text-decoration: none;
       }

@@ -212,6 +212,15 @@ function validateContractsForm() {
     let isFormValid = true;
     let errors = [];
 
+    // Mapa de tradução dos campos
+    const fieldNames = {
+        title: 'Título',
+        description: 'Descrição',
+        year: 'Ano',
+        file: 'Arquivo',
+        'título duplicado': 'Título duplicado'
+    };
+
     // Validar cada campo
     inputs.forEach(input => {
         const fieldValid = input.type === 'file' ? 
@@ -221,7 +230,7 @@ function validateContractsForm() {
         if (!fieldValid) {
             isFormValid = false;
             const fieldName = input.id.replace('contract-', '');
-            errors.push(fieldName);
+            errors.push(fieldNames[fieldName] || fieldName);
         }
     });
 
@@ -236,7 +245,7 @@ function validateContractsForm() {
             isFormValid = false;
             showFieldError('contract-title', 'Já existe um contrato com este título.');
             titleField.classList.add('error');
-            errors.push('título duplicado');
+            errors.push(fieldNames['título duplicado']);
         }
     }
 

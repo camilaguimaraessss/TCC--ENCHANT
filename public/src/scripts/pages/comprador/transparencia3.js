@@ -228,6 +228,16 @@ function validateAuditsForm() {
     let isFormValid = true;
     let errors = [];
 
+    // Mapa de tradução dos campos
+    const fieldNames = {
+        title: 'Título',
+        date: 'Data',
+        type: 'Tipo',
+        status: 'Status',
+        file: 'Arquivo',
+        'título duplicado': 'Título duplicado'
+    };
+
     // Validar cada campo
     inputs.forEach(input => {
         const fieldValid = input.type === 'file' ? 
@@ -237,7 +247,7 @@ function validateAuditsForm() {
         if (!fieldValid) {
             isFormValid = false;
             const fieldName = input.id.replace('audit-', '');
-            errors.push(fieldName);
+            errors.push(fieldNames[fieldName] || fieldName);
         }
     });
 
@@ -252,7 +262,7 @@ function validateAuditsForm() {
             isFormValid = false;
             showFieldError('audit-title', 'Já existe uma auditoria com este título.');
             titleField.classList.add('error');
-            errors.push('título duplicado');
+            errors.push(fieldNames['título duplicado']);
         }
     }
 

@@ -401,11 +401,11 @@
                             <div class="footer-right">
                                 <div class="footer-column">
                                     <h3>MAIS INFORMAÇÕES</h3>
-                                    <a href="/src/pages/comprador/saibamais2.html.html">Conheça mais sobre o site</a>
+                                    <a href="/public/src/pages/comprador/saibamais2.html.html">Conheça mais sobre o site</a>
                                 </div>
                                 <div class="footer-column">
                                     <h3>PROTEÇÃO DE DADOS</h3>
-                                    <a href="/src/pages/comprador/politica2.html">Política de privacidade</a>
+                                    <a href="/public/src/pages/comprador/politica2.html">Política de privacidade</a>
                                 </div>
                                 <div class="footer-column">
                                     <h3>ACOMPANHE NOSSAS REDES</h3>

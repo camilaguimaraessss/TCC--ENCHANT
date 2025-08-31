@@ -23,8 +23,19 @@
 }
 
 
-.passo.ativo {
+.passo {
+  flex: 1;
   margin-top: 30px;
+  text-align: start;
+  padding: 15px;
+  background-color: #c5a26d49;
+  text-decoration: none;
+  align-items: start;
+  color: #000000;
+  border: none;
+}
+
+.passo.ativo {
   background-color: #FBF6F1;
   text-decoration: none;
 }
@@ -42,10 +53,35 @@
     background-color: #FFFBF8;
     color: #000000;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
   }
   
+  .passo:hover {
+    background-color: #F0E8DC;
+  }
   
-
+  .passo.ativo {
+    background-color: #F9E7D2;
+    font-weight: 500;
+  }
+  
+  .passo.disponivel {
+    background-color: #e2ccae; /* Bege mais escuro */
+    color: #000;
+    cursor: pointer;
+  }
+  
+  .passo.disponivel:hover {
+    background-color: #d1b893; /* Um tom ainda mais escuro ao passar o mouse */
+  }
+  
+  .passo.indisponivel {
+    background-color: #F5F5F5;
+    color: #999;
+    cursor: not-allowed;
+  }
 
   
   .estado-civil {
@@ -106,16 +142,7 @@
     line-height: 1.4;
     margin: 20px 0;
   }
-.passo {
-  flex: 1;
-  margin-top: 30px;
-  text-align: start;
-  padding: 15px;
-  background-color: #c5a26d49;
-  text-decoration: none;
-  align-items: start;
-  color: #000000;
-}
+
 a {
   text-decoration: none;
 }
@@ -805,22 +832,6 @@ input[type="radio"], input[type="checkbox"] {
 
 .passos-container2 {
   display: none; /* Oculta o container por padrão */
-}
-
-
-.passo {
-  flex: 1;
-  text-align: center;
-  padding: 12px;
-  background-color: #FFFBF8;
-  color: #000000;
-  border: none;
-}
-
-
-.passo.ativo {
-  background-color: #F9E7D2;
-  font-weight: 500;
 }
 
 
@@ -1578,8 +1589,3 @@ a {
       margin-right: auto;
     }
   }
-  
-  /* Ajustes para telas grandes */
-
-  
-

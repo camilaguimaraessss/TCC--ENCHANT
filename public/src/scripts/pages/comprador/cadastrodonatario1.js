@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('formEtapa3').addEventListener('submit', validarEtapa3);
     document.getElementById('formEtapa4').addEventListener('submit', validarEtapa4);
     
+    // Adicionar listeners para navegação pelos passos
+    adicionarListenersPassos();
+    
     // Botões voltar
     document.getElementById('voltar1').addEventListener('click', function() {
         mudarEtapa(1, 0);
@@ -82,6 +85,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Função para adicionar listeners de navegação pelos passos
+    function adicionarListenersPassos() {
+        passosContainers.forEach((container, etapaIndex) => {
+            if (container) {
+                const passos = container.querySelectorAll('.passo');
+                passos.forEach((passo, passoIndex) => {
+                    passo.addEventListener('click', function() {
+                        const etapaAtual = getEtapaAtual();
+                        // Só permite voltar para passos anteriores
+                        if (passoIndex < etapaAtual) {
+                            mudarEtapa(etapaAtual, passoIndex);
+                        }
+                    });
+                    // Adiciona cursor pointer para passos clicáveis
+                    passo.style.cursor = 'pointer';
+                });
+            }
+        });
+    }
+
+    // Função para descobrir qual etapa está ativa
+    function getEtapaAtual() {
+        for (let i = 0; i < etapas.length; i++) {
+            if (etapas[i] && etapas[i].style.display !== 'none') {
+                return i;
+            }
+        }
+        return 0; // Retorna primeira etapa se não encontrar nenhuma ativa
+    }
+
     // Função para alternar visibilidade da senha
     function toggleMostrarSenha(e) {
         const campoSenhaProximo = e.target.closest('.input-wrapper').querySelector('input');
@@ -130,8 +163,30 @@ document.addEventListener('DOMContentLoaded', function() {
             passos[proximaEtapa].classList.add('ativo');
         }
         
+        // Atualizar visual dos passos (para mostrar quais podem ser clicados)
+        atualizarEstadoPassos(proximaEtapa);
+        
         // Rolar para o topo
         window.scrollTo(0, 0);
+    }
+
+    // Função para atualizar o estado visual dos passos
+    function atualizarEstadoPassos(etapaAtiva) {
+        passosContainers.forEach((container, containerIndex) => {
+            if (container) {
+                const passos = container.querySelectorAll('.passo');
+                passos.forEach((passo, passoIndex) => {
+                    passo.classList.remove('ativo', 'disponivel', 'indisponivel');
+                    if (passoIndex === etapaAtiva) {
+                        passo.classList.add('ativo');
+                    } else if (passoIndex < etapaAtiva) {
+                        passo.classList.add('disponivel');
+                    } else {
+                        passo.classList.add('indisponivel');
+                    }
+                });
+            }
+        });
     }
 
     // Validação da etapa 1
@@ -668,9 +723,15 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
-    // Debug: Verificar se todos os elementos necessários existem
+    // Inicializar estado dos passos na primeira carga
+    atualizarEstadoPassos(0); // Começa no primeiro passo
+
+ // Debug: Verificar se todos os elementos necessários existem
     console.log('=== DEBUG ELEMENTOS ===');
     console.log('Etapas encontradas:', etapas.map((e, i) => e ? `etapa${i+1}: OK` : `etapa${i+1}: ERRO`));
     console.log('Passos containers encontrados:', passosContainers.map((p, i) => p ? `container${i+1}: OK` : `container${i+1}: ERRO`));
     console.log('Passos individuais encontrados:', passos.map((p, i) => p ? `passo${i+1}: OK` : `passo${i+1}: ERRO`));
 });
+
+// Inicializar estado dos passos na primeira carga
+atualizarEstadoPassos(0); // Começa no primeiro passo

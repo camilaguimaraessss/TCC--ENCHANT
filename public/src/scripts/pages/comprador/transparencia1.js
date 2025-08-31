@@ -198,6 +198,14 @@ function validateReportsForm() {
     let isFormValid = true;
     let errors = [];
 
+    // Mapa de tradução dos campos
+    const fieldNames = {
+        title: 'Título',
+        description: 'Descrição',
+        file: 'Arquivo',
+        'título duplicado': 'Título duplicado'
+    };
+
     // Validar cada campo
     inputs.forEach(input => {
         const fieldValid = input.type === 'file' ? 
@@ -207,7 +215,7 @@ function validateReportsForm() {
         if (!fieldValid) {
             isFormValid = false;
             const fieldName = input.id.replace('report-', '');
-            errors.push(fieldName);
+            errors.push(fieldNames[fieldName] || fieldName);
         }
     });
 
@@ -222,7 +230,7 @@ function validateReportsForm() {
             isFormValid = false;
             showFieldError('report-title', 'Já existe um relatório com este título.');
             titleField.classList.add('error');
-            errors.push('título duplicado');
+            errors.push(fieldNames['título duplicado']);
         }
     }
 

@@ -316,9 +316,7 @@
             height: auto;
         }
 
-        .copyright {
-            margin-top: -30px;
-        }
+
 
         .footer-logo {
             margin-bottom: 10px;
@@ -522,9 +520,7 @@
                 text-decoration: underline;
             }
 
-            .copyright {
-                margin-top: -20px;
-            }
+
         }
 
         /* Desktop grande - 1500px e acima */

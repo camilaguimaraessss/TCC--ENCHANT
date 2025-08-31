@@ -223,10 +223,7 @@
                                 <i class="bi bi-journal"></i>
                                 <span>Histórico de doação</span>
                             </a>
-                            <a href="/public/src/pages/comprador/politica2.html">
-                                <i class="bi bi-file-earmark"></i>
-                                <span>Política de privacidade</span>
-                            </a>
+                         
                             <a href="/public/src/pages/comprador/transparencia1.html">
                                 <i class="bi bi-search"></i>
                                 <span>Transparência</span>

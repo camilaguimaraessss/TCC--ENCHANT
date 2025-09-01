@@ -1,7 +1,7 @@
 /**
  * Trapp Full-Stack Solutions
  * Arquivo: footer-component.js
- * Descrição: Componente isolado do Footer com modais de redes sociais
+ * Descrição: Componente isolado do Footer com modais de redes sociais - TOTALMENTE RESPONSIVO
  * Instruções: Adicione <script src="footer-component.js" defer></script> ao seu arquivo HTML.
  */
 
@@ -40,8 +40,13 @@
                         --transition: 0.3s ease;
                     }
 
-                    * {
+                    /* Reset completo para evitar conflitos */
+                    html {
                         box-sizing: border-box;
+                    }
+
+                    *, *:before, *:after {
+                        box-sizing: inherit;
                     }
 
                     body {
@@ -49,20 +54,27 @@
                         margin: 0;
                         padding: 0;
                         background-color: var(--white);
+                        min-height: 100vh;
+                        display: flex;
+                        flex-direction: column;
                     }
 
-                    /* ===== FOOTER ===== */
+                    /* Container principal para empurrar o footer para baixo */
+                    #trapp-footer-container {
+                        margin-top: auto;
+                    }
+
+                    /* ===== FOOTER - LARGURA TOTAL DA TELA ===== */
                     .main-footer {
                         background-color: #FCF2E8;
-                        padding: 30px 50px;
-                        transition: var(--transition);
                         width: 100vw;
                         position: relative;
                         left: 50%;
                         right: 50%;
                         margin-left: -50vw;
                         margin-right: -50vw;
-                        box-sizing: border-box;
+                        padding: 30px 0;
+                        transition: var(--transition);
                     }
 
                     .footer-content {
@@ -71,10 +83,15 @@
                         align-items: flex-start;
                         gap: 40px;
                         flex-wrap: wrap;
+                        padding: 0 50px;
+                        max-width: none;
+                        width: 100%;
                     }
 
                     .footer-left { 
-                        max-width: 400px; 
+                        flex: 1;
+                        max-width: 400px;
+                        min-width: 250px;
                     }
 
                     .footer-logo-display {
@@ -103,12 +120,15 @@
                         font-size: 10px;
                         line-height: 1.5;
                         margin-bottom: 10px;
+                        word-wrap: break-word;
                     }
 
                     .footer-right {
                         display: flex;
                         gap: 40px;
                         margin-top: 20px;
+                        flex: 1;
+                        justify-content: flex-end;
                     }
 
                     .footer-column {
@@ -136,6 +156,7 @@
                         cursor: pointer;
                         padding: 0;
                         text-align: center;
+                        word-wrap: break-word;
                     }
 
                     .footer-column a:hover, .footer-column button:hover {
@@ -203,12 +224,14 @@
                         font-size: 20px;
                         margin-bottom: 10px;
                         text-align: left;
+                        word-wrap: break-word;
                     }
 
                     .modal-subtitle {
                         font-size: 14px;
                         color: var(--text-color);
                         margin-bottom: 20px;
+                        word-wrap: break-word;
                     }
 
                     .social-input {
@@ -226,6 +249,7 @@
                         display: flex;
                         justify-content: flex-end;
                         gap: 10px;
+                        flex-wrap: wrap;
                     }
 
                     .btn-confirm, .btn-edit {
@@ -249,27 +273,90 @@
                     .social-link {
                         text-align: center;
                         margin: 20px 0;
+                        word-wrap: break-word;
                     }
 
                     .social-link a {
                         color: var(--accent-color);
                         font-size: 16px;
                         word-wrap: break-word;
+                        overflow-wrap: break-word;
                     }
 
-                    /* ===== RESPONSIVIDADE ===== */
-                    @media (max-width: 768px) {
+                    /* ===== RESPONSIVIDADE COMPLETA ===== */
+
+                    /* Tablets em paisagem e desktops pequenos */
+                    @media screen and (max-width: 1200px) {
+                        .footer-content {
+                            padding: 0 30px;
+                            gap: 30px;
+                        }
+                        
+                        .footer-column {
+                            min-width: 180px;
+                        }
+                    }
+
+                    /* Tablets */
+                    @media screen and (max-width: 1024px) {
+                        .main-footer {
+                            padding: 25px 0;
+                        }
+
+                        .footer-content {
+                            padding: 0 25px;
+                            gap: 25px;
+                        }
+                        
+                        .footer-left {
+                            max-width: 350px;
+                        }
+                        
+                        .footer-right {
+                            gap: 25px;
+                        }
+                        
+                        .footer-column {
+                            min-width: 160px;
+                        }
+                        
+                        .footer-column h3 {
+                            font-size: 15px;
+                        }
+                        
+                        .footer-column a, .footer-column button {
+                            font-size: 11px;
+                        }
+
+                        .social-modal {
+                            width: 400px;
+                            border-radius: 30px;
+                            padding: 25px;
+                        }
+                    }
+
+                    /* Tablets pequenos e celulares grandes em paisagem */
+                    @media screen and (max-width: 768px) {
+                        .main-footer {
+                            padding: 20px 0;
+                        }
+
                         .footer-content {
                             flex-direction: column;
                             align-items: center;
                             text-align: center;
                             gap: 20px;
-                            padding: 0 10px;
+                            padding: 0 20px;
                         }
                         
                         .footer-left {
                             max-width: 100%;
                             width: 100%;
+                            min-width: auto;
+                        }
+
+                        .footer-logo-display {
+                            margin: 0 auto 15px auto;
                         }
                         
                         .footer-right {
@@ -277,91 +364,137 @@
                             gap: 15px;
                             width: 100%;
                             margin-top: 0;
-                        }
-                        
-                        .footer-column { 
-                            min-width: auto; 
-                            width: 100%; 
-                        }
-                        
-                        .footer-column h3 { 
-                            font-size: 14px; 
-                            margin-bottom: 8px; 
-                        }
-                        
-                        .footer-column a, .footer-column button { 
-                            font-size: 12px; 
-                            margin-bottom: 3px; 
-                        }
-                        
-                        .footer-text { 
-                            font-size: 9px; 
-                            margin-bottom: 8px; 
-                            text-align: center; 
-                        }
-                        
-                        .main-footer { 
-                            padding: 15px 10px; 
-                        }
-
-                        .social-modal {
-                            width: 320px;
-                            border-radius: 30px;
-                            padding: 20px;
-                        }
-                        
-                        .social-input { 
-                            height: 40px; 
-                        }
-                    }
-
-                    @media (min-width: 769px) and (max-width: 1024px) {
-                        .footer-content {
-                            flex-wrap: wrap;
                             justify-content: center;
-                            gap: 30px;
                         }
                         
-                        .footer-left {
-                            max-width: 100%;
-                            text-align: center;
-                            margin-bottom: 20px;
-                        }
-                        
-                        .footer-right {
-                            justify-content: center;
-                            gap: 30px;
+                        .footer-column {
+                            min-width: auto;
                             width: 100%;
                         }
                         
-                        .footer-column { 
-                            min-width: 180px; 
+                        .footer-column h3 {
+                            font-size: 14px;
+                            margin-bottom: 8px;
                         }
                         
-                        .footer-column h3 { 
-                            font-size: 15px; 
+                        .footer-column a, .footer-column button {
+                            font-size: 12px;
+                            margin-bottom: 3px;
                         }
                         
-                        .footer-column a, .footer-column button { 
-                            font-size: 11px; 
-                        }
-                        
-                        .footer-text { 
-                            font-size: 10px; 
-                        }
-                        
-                        .main-footer { 
-                            padding: 25px 20px; 
+                        .footer-text {
+                            font-size: 9px;
+                            margin-bottom: 8px;
+                            text-align: center;
                         }
 
                         .social-modal {
-                            width: 400px;
-                            border-radius: 30px;
+                            width: 350px;
+                            border-radius: 25px;
                             padding: 20px;
                         }
+
+                        .modal-title {
+                            font-size: 18px;
+                        }
+
+                        .modal-subtitle {
+                            font-size: 13px;
+                        }
                         
-                        .social-input { 
-                            height: 40px; 
+                        .social-input {
+                            height: 42px;
+                            font-size: 13px;
+                        }
+                    }
+
+                    /* Celulares */
+                    @media screen and (max-width: 480px) {
+                        .main-footer {
+                            padding: 15px 0;
+                        }
+
+                        .footer-content {
+                            padding: 0 15px;
+                            gap: 15px;
+                        }
+
+                        .footer-logo-display {
+                            width: 160px;
+                            height: 50px;
+                        }
+
+                        .footer-text {
+                            font-size: 8px;
+                        }
+
+                        .footer-column h3 {
+                            font-size: 13px;
+                        }
+
+                        .footer-column a, .footer-column button {
+                            font-size: 11px;
+                        }
+
+                        .social-modal {
+                            width: 300px;
+                            padding: 15px;
+                            border-radius: 20px;
+                        }
+
+                        .modal-title {
+                            font-size: 16px;
+                        }
+
+                        .modal-subtitle {
+                            font-size: 12px;
+                        }
+
+                        .social-input {
+                            height: 40px;
+                            font-size: 12px;
+                        }
+
+                        .btn-confirm, .btn-edit {
+                            font-size: 12px;
+                            padding: 8px 16px;
+                        }
+                    }
+
+                    /* Celulares muito pequenos */
+                    @media screen and (max-width: 360px) {
+                        .footer-content {
+                            padding: 0 10px;
+                        }
+
+                        .footer-logo-display {
+                            width: 140px;
+                            height: 45px;
+                        }
+
+                        .footer-text {
+                            font-size: 7px;
+                        }
+
+                        .footer-column h3 {
+                            font-size: 12px;
+                        }
+
+                        .footer-column a, .footer-column button {
+                            font-size: 10px;
+                        }
+
+                        .social-modal {
+                            width: 280px;
+                            padding: 12px;
+                        }
+
+                        .modal-title {
+                            font-size: 14px;
+                        }
+
+                        .modal-subtitle {
+                            font-size: 11px;
                         }
                     }
                 `;
@@ -391,9 +524,8 @@
                     <footer class="main-footer">
                         <div class="footer-content">
                             <div class="footer-left">
-                                <div class="footer-logo-upload" id="footerLogoUpload">
-                                    <label for="footerLogoInput"><i style="font-size: 1.5rem;"></i></label>
-                                    <input="file" id="footerLogoInput" accept="image/*">
+                                <div class="footer-logo-display" id="footerLogoDisplay">
+                                    <i class="bi bi-image" style="font-size: 1.5rem;"></i>
                                 </div>
                                 <p class="footer-text">De forma alguma o site foi criado com o intuito de desviar os termos relacionados à política de privacidade do cadastrante. O site está disponível para toda e qualquer ajuda em relação aos contatos.</p>
                                 <p class="footer-text">© 2025 ENCHANT Brasil</p>

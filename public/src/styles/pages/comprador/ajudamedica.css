@@ -42,7 +42,7 @@ h1 {
   font-size: 32px;
   margin-bottom: 10px;
   margin-top: 60px;
-  color: #693b11;
+  color: #693b11 !important;
 }
 
 .subtitle {

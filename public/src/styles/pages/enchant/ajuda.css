@@ -13,8 +13,8 @@ body {
   }
   
   h1 {
-    margin-top: 60px;
-    margin-bottom: 30px;
+    margin-top: 102px !important;
+    margin-bottom: 30px !important;
     font-family: 'Passion One', cursive !important;
     font-size: 2rem !important;
     text-align: center;

@@ -506,14 +506,21 @@ class HeaderComponent {
   highlightCurrentPage() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
-    
     navLinks.forEach(link => {
       const linkPath = link.getAttribute('href');
-      if (currentPath.includes(linkPath.replace('.html', '')) || 
-          (currentPath === '/' && linkPath.includes('index'))) {
+      // Ativa o link de suporte se estiver em suporte.html ou ajuda.html
+      if (linkPath && linkPath.includes('suporte.html') && (currentPath.includes('suporte.html') || currentPath.includes('ajuda.html'))) {
         link.classList.add('active');
         link.style.fontWeight = 'bold';
         link.style.color = '#4E3629';
+      } else if (linkPath && !linkPath.includes('suporte.html') && currentPath.includes(linkPath.replace('.html', ''))) {
+        link.classList.add('active');
+        link.style.fontWeight = 'bold';
+        link.style.color = '#4E3629';
+      } else {
+        link.classList.remove('active');
+        link.style.fontWeight = '';
+        link.style.color = '';
       }
     });
   }

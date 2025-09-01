@@ -525,8 +525,7 @@ textarea {
 
 #botao-pesquisa{
     background-color: #E2CCAE;
-    width: 120px;
-    height: 40px;
+   padding: 8px 15px;
     border: none;
     font-size: 14px;
     border-radius: 10px;

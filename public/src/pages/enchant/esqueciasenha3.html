@@ -17,18 +17,18 @@
     /* Estilos para os requisitos da senha */
     .password-requirements {
       margin-top: 10px;
-      font-size: 0.875rem;
+      font-size: 12px;
     }
 
     .requirement {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
-      padding: 2px 0;
+      margin-bottom: 3px;
+      padding: 1px 0;
     }
 
     .requirement.invalid {
-      color: #aaaaaa;
+      color: #707070;
     }
 
     .requirement.valid {
@@ -63,10 +63,11 @@
       <section class="containerinp">
         <input type="password" id="pass1" name="pass1" placeholder="********" required>
         <div id="passwordRequirements" class="password-requirements">
-          <div id="reqLength" class="requirement invalid">Mínimo 8 caracteres</div>
-          <div id="reqUpper" class="requirement invalid">Pelo menos 1 letra maiúscula</div>
-          <div id="reqNumbers" class="requirement invalid">Pelo menos 2 números</div>
-          <div id="reqSpecial" class="requirement invalid"> Pelo menos 1 caractere especial</div>
+          <p class="p2">A senha deve conter:</p>
+          <div id="reqLength" class="requirement invalid">*Mínimo 8 caracteres</div>
+          <div id="reqUpper" class="requirement invalid">*Pelo menos 1 letra maiúscula</div>
+          <div id="reqNumbers" class="requirement invalid">*Pelo menos 2 números</div>
+          <div id="reqSpecial" class="requirement invalid">*Pelo menos 1 caractere especial</div>
         </div>
       </section>
 

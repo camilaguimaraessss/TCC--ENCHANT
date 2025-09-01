@@ -35,6 +35,15 @@
 
  }
 
+ #fixado .navbar-nav {
+  font-size: 14px !important;
+}
+
+#fixado .nav-link {
+  font-size: 14px !important;
+}
+
+
  .lock-section {
      flex-shrink: 0;
      display: none;

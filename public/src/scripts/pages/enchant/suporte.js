@@ -47,11 +47,75 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalBody = document.getElementById('erroModalBody');
     if (modalBody) {
       modalBody.innerHTML = mensagem;
-      
-      // Inicializar e mostrar o modal do Bootstrap
-      const erroModal = new bootstrap.Modal(document.getElementById('erroModal'));
+      const erroModalEl = document.getElementById('erroModal');
+      const erroModal = new bootstrap.Modal(erroModalEl);
       erroModal.show();
+      // Corrige fechamento do modal ao clicar em qualquer botão de fechar
+      function fecharModal() {
+        erroModal.hide();
+      }
+      // Botão de rodapé
+      const botaoValidar = erroModalEl.querySelector('#botao-validar');
+      if (botaoValidar) {
+        botaoValidar.onclick = fecharModal;
+      }
+      // Botão X do header
+      const btnClose = erroModalEl.querySelector('.btn-close');
+      if (btnClose) {
+        btnClose.onclick = fecharModal;
+      }
+      // Remove event listeners ao fechar
+      erroModalEl.addEventListener('hidden.bs.modal', () => {
+        if (botaoValidar) botaoValidar.onclick = null;
+        if (btnClose) btnClose.onclick = null;
+      }, { once: true });
     }
+  }
+
+  // Função para mostrar o modal de sucesso
+  function mostrarModalSucesso(mensagem) {
+    let modal = document.getElementById('sucessoModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.className = 'modal fade';
+      modal.id = 'sucessoModal';
+      modal.tabIndex = -1;
+      modal.innerHTML = `
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sucesso</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">${mensagem}</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="botao-validar" data-bs-dismiss="modal">Entendi</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    } else {
+      modal.querySelector('.modal-body').innerHTML = mensagem;
+    }
+    const sucessoModal = new bootstrap.Modal(modal);
+    sucessoModal.show();
+    // Corrige fechamento do modal ao clicar em "Entendi" e no X
+    function fecharModalSucesso() {
+      sucessoModal.hide();
+    }
+    const botaoSucesso = modal.querySelector('#botao-validar');
+    if (botaoSucesso) {
+      botaoSucesso.onclick = fecharModalSucesso;
+    }
+    const btnClose = modal.querySelector('.btn-close');
+    if (btnClose) {
+      btnClose.onclick = fecharModalSucesso;
+    }
+    modal.addEventListener('hidden.bs.modal', () => {
+      if (botaoSucesso) botaoSucesso.onclick = null;
+      if (btnClose) btnClose.onclick = null;
+    }, { once: true });
   }
 
   // Limpa os erros
@@ -130,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Se tudo estiver ok
-    alert("Formulário enviado com sucesso!");
+    mostrarModalSucesso("Formulário enviado com sucesso!");
     form.reset();
     uploadText.textContent = "Escolha um arquivo ou arraste e solte aqui";
   });

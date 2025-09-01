@@ -6,7 +6,7 @@ class HeaderComponent {
         <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
           <!-- Adicionando a imagem à esquerda da navbar -->
           <a class="navbar-brand" href="../index.html">
-            <img src="../IMAGENS/imagemprincipal.png" width="120" height="auto" alt="Logo" class="img" />
+            <img src="../../assets/imgs/enchant/logo-enchant.png" width="120" height="auto" alt="Logo" class="img" />
           </a>
           <button id="icone" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
@@ -454,7 +454,7 @@ class HeaderComponent {
       saibamais: 'saibamais1.html',
       suporte: 'ajuda.html',
       entrar: 'entrar1.html',
-      logo: '../IMAGENS/imagemprincipal.png'
+      logo: '../../assets/imgs/enchant/logo-enchant.png'
     };
 
     const finalPaths = { ...defaultPaths, ...paths };
@@ -506,14 +506,21 @@ class HeaderComponent {
   highlightCurrentPage() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
-    
     navLinks.forEach(link => {
       const linkPath = link.getAttribute('href');
-      if (currentPath.includes(linkPath.replace('.html', '')) || 
-          (currentPath === '/' && linkPath.includes('index'))) {
+      // Ativa o link de suporte se estiver em suporte.html ou ajuda.html
+      if (linkPath && linkPath.includes('suporte.html') && (currentPath.includes('suporte.html') || currentPath.includes('ajuda.html'))) {
         link.classList.add('active');
         link.style.fontWeight = 'bold';
         link.style.color = '#4E3629';
+      } else if (linkPath && !linkPath.includes('suporte.html') && currentPath.includes(linkPath.replace('.html', ''))) {
+        link.classList.add('active');
+        link.style.fontWeight = 'bold';
+        link.style.color = '#4E3629';
+      } else {
+        link.classList.remove('active');
+        link.style.fontWeight = '';
+        link.style.color = '';
       }
     });
   }

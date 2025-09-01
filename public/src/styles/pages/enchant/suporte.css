@@ -19,7 +19,6 @@ body {
   #botao-validar:hover{
     background-color: #caae8d;
     color: #3d2106;
-    border:1px solid #d8b48bce;
   }
   
   .container {
@@ -37,7 +36,7 @@ body {
   }
 
   .titulo {
-    padding-top: 35px;
+    margin-top: 102px !important;
     font-family: 'Passion One', cursive;
     text-align: center;
     font-size: 32px; 
@@ -51,9 +50,10 @@ body {
   .obs {
     text-align: center;
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     color: #000000;
   }
+
   
   .form-container {
     background: linear-gradient(to left, #f3e4d7 0%, #ffffff 100%); /* Adicionado gradiente */

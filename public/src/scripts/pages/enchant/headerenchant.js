@@ -23,6 +23,9 @@ class HeaderComponent {
                 <a id="saiba" class="nav-link" href="saibamais1.html" title="Saiba mais">Saiba mais</a>
               </li>
               <li class="nav-item">
+                <a id="suporte" class="nav-link" href="ajuda.html" title="Suporte">Suporte</a>
+              </li>
+              <li class="nav-item">
                 <a id="entrar" class="nav-link" href="entrar1.html" title="Entrar">Entrar</a>
               </li>
             </ul>
@@ -449,6 +452,7 @@ class HeaderComponent {
       home: '../index.html',
       quemsomos: 'quemsomos1.html',
       saibamais: 'saibamais1.html',
+      suporte: 'ajuda.html',
       entrar: 'entrar1.html',
       logo: '../IMAGENS/imagemprincipal.png'
     };
@@ -474,6 +478,9 @@ class HeaderComponent {
               </li>
               <li class="nav-item">
                 <a id="saiba" class="nav-link" href="${finalPaths.saibamais}" title="Saiba mais">Saiba mais</a>
+              </li>
+              <li class="nav-item">
+                <a id="suporte" class="nav-link" href="${finalPaths.suporte}" title="Suporte">Suporte</a>
               </li>
               <li class="nav-item">
                 <a id="entrar" class="nav-link" href="${finalPaths.entrar}" title="Entrar">Entrar</a>

@@ -12,7 +12,7 @@
 
         /*Cores*/
 
-        --cor-titulo:##693b11;
+        --cor-titulo:#693b11;
         --cor-fundo:#ffffff;
         --cor-texto:#000000;
         --cor-link:#EC9E07;
@@ -56,7 +56,7 @@
     }
 
     a{
-        text-decoration:underline;
+        text-decoration:;
         color: var(--cor-link);
         font-size: var(--Tamanho-link);
     }

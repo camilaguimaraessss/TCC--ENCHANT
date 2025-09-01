@@ -10,7 +10,7 @@
 body {
     font-family: "Lexend Deca", sans-serif;
     color: #333;
-    background-color: #f8f9fa;
+    background-color: #FFF;
 }
 
 .container {
@@ -24,8 +24,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    flex-wrap: wrap; /* Permite que os itens do cabeçalho quebrem linha */
-    gap: 15px; /* Espaçamento entre os itens */
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .header-buttons {
@@ -39,23 +39,16 @@ body {
     border: none;
 }
 
-.btn-primary:hover, .btn-outline-secondary:hover { /* Alterado para btn-outline-secondary */
+.btn-primary:hover, .btn-outline:hover {
     background-color: #caae8d;
     color: #3d2106;
 }
-
-.btn-outline-secondary { /* Adicionado estilo para o botão "Relatório de doações" */
-    border: 1px solid #e2ccae;
-    color: #3d2106;
-    background-color: transparent;
-}
-
 
 .date-filters {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-wrap: wrap; /* Garante que os filtros de data se adaptem */
+    flex-wrap: wrap;
 }
 
 .custom-date-range {
@@ -68,23 +61,9 @@ body {
     border-radius: 6px;
 }
 
-.custom-date-range input[type="date"] {
-    border: none;
-    outline: none;
-    font-family: "Lexend Deca", sans-serif;
-    color: #333;
-}
-
-.btn-group .btn-date-filter {
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #dee2e6;
-}
-
-.btn-group .btn-date-filter.active {
-    background-color: #e2ccae;
-    color: #3d2106;
-    border-color: #e2ccae;
+.btn-date-filter.active {
+    background-color: #72330f;
+    color: white;
 }
 
 .summary-cards-container {
@@ -104,11 +83,6 @@ body {
     border: 1px solid #DCD0C0;
 }
 
-.summary-card-icon {
-    font-size: 30px;
-    color: #72330f;
-}
-
 .summary-card-value {
     font-size: 24px;
     font-weight: 700;
@@ -122,8 +96,9 @@ body {
 
 .main-content {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
-    margin-bottom: 30px;
 }
 
 .chart-section {
@@ -131,41 +106,31 @@ body {
     background: white;
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.chart-header {
-    margin-bottom: 20px;
+    border: 1px solid #eee;
+    margin-top: -350px;
 }
 
 .chart-title {
     font-family: "Passion One", sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    color: #492a0f;
+    color: #3d2106;
 }
 
 .chart-container {
     position: relative;
     height: 400px;
-    margin-bottom: 20px;
-    /* Remover espaçamento entre gráficos: Este era o principal causador do "buraco" */
-    /* Garante que o container do gráfico não empurre elementos adjacentes */
+
 }
 
 .chart-legend {
     display: flex;
     gap: 20px;
     justify-content: center;
-    flex-wrap: wrap; /* Ajuda na responsividade da legenda */
 }
 
 .legend-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
-    color: #555;
 }
 
 .legend-color {
@@ -180,79 +145,42 @@ body {
     flex-direction: column;
     gap: 20px;
 }
-
+#startDate, #endDate{
+    border: none;
+}
 .dash-sidebar-section {
     background: white;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    margin-top: -420px;
 }
 
 .dash-sidebar-title {
-    font-family: "Passion One", sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #492a0f;
+    font-family: 'Lexend Deca';
+    font-size: 1.1rem;
     margin-bottom: 15px;
+    color: #3d2106;
 }
 
 .collection-point {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .collection-point:last-child {
     border-bottom: none;
 }
 
-.point-icon {
-    width: 10px;
-    height: 10px;
-    background-color: #e2ccae;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.point-info {
-    flex-grow: 1;
-}
-
-.point-name {
-    font-weight: 600;
-    color: #3d2106;
-}
-
-.point-status {
-    font-size: 12px;
-    color: #777;
-}
-
-.point-arrow {
-    font-size: 18px;
-    color: #999;
-}
-
-.achievement-card {
-    background: linear-gradient(135deg, #e5c8a5, #ca844a);
-    border-radius: 12px;
-    padding: 20px;
-    color: #333;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.achievement-text {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
-}
-
 .stats-grid-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+    margin-bottom: 30px;
+    margin-top: -350px;
 }
 
 .stats-grid {
@@ -261,15 +189,14 @@ body {
     gap: 20px;
 }
 
-.stat-card { /* Classe unificada para os cards de estatísticas */
+.stat-card {
     border-radius: 12px;
     padding: 25px;
     text-align: center;
-    display: flex; /* Flexbox para controlar o espaçamento interno */
-    flex-direction: column; /* Organiza conteúdo verticalmente */
-    justify-content: center; /* Centraliza conteúdo verticalmente */
-    align-items: center; /* Centraliza conteúdo horizontalmente */
-    gap: 5px; /* Reduz o espaçamento entre os elementos internos */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
 }
 
 .stat-card-1 { background: #cfad8a; }
@@ -282,19 +209,99 @@ body {
     font-size: 36px;
     font-weight: 700;
     color: #3d2106;
-    line-height: 1.2; /* Reduz o espaçamento da linha */
 }
 
 .stat-label {
     font-size: 14px;
     color: #000000;
-    margin-bottom: 2px; /* Espaçamento menor abaixo do label */
 }
 
 .stat-change {
     font-size: 12px;
     color: #000000;
-    line-height: 1.2;
+}
+
+/* ESTILOS PARA A SEÇÃO RESTAURADA */
+.bottom-section-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.achievement-card {
+    background: linear-gradient(135deg, #e5c8a5, #ca844a);
+    border-radius: 12px;
+    padding: 20px;
+    color: #333;
+}
+
+.progress-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #000;
+}
+
+.completion-percentage .sidebar-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.completion-value {
+    text-align: center; 
+    font-size: 36px; 
+    font-weight: 700; 
+    color: #492a0f;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.progress-item:last-child {
+    margin-bottom: 0;
+}
+
+.progress-icon {
+    font-size: 1.5rem;
+    color: #492a0f;
+}
+
+.progress-info {
+    flex: 1;
+}
+
+.progress-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #9e6634;
+    border-radius: 3px;
+}
+
+.progress-percent {
+    font-size: 18px;
+    color: #000;
 }
 
 /* Modal Styles */
@@ -317,20 +324,13 @@ body {
   text-align: center;
 }
 
-/* RESPONSIVIDADE - Mantendo o layout para desktop e adaptando para móvel */
+/* RESPONSIVIDADE */
 @media (max-width: 1200px) {
     .main-content {
-        flex-direction: column; /* Coloca sidebar abaixo do gráfico em telas médias/pequenas */
-        gap: 20px; /* Reduz o espaçamento quando empilhado */
+        flex-direction: column;
     }
-    .dash-sidebar {
-        flex-direction: row; /* Sidebar items lado a lado em telas médias */
-        flex-wrap: wrap; /* Permite que os itens do sidebar quebrem linha */
-        justify-content: center;
-    }
-    .dash-sidebar-section, .achievement-card {
-        flex: 1 1 45%; /* Ocupa quase metade da largura para 2 colunas */
-        max-width: 48%; /* Garante que caibam dois em uma linha */
+    .bottom-section-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -342,82 +342,65 @@ body {
     .header {
         flex-direction: column;
         align-items: stretch;
-        gap: 10px;
     }
-    .header-buttons, .date-filters {
-        width: 100%;
-        justify-content: center; /* Centraliza os botões */
-    }
-    .btn-group {
-        flex-wrap: wrap; /* Botões de filtro quebram linha */
-    }
-    .custom-date-range {
-        width: 100%; /* Ocupa a largura total */
-        justify-content: center;
-    }
-    .summary-cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Mais compacto para móveis */
-        gap: 15px;
-    }
-    .summary-card {
-        padding: 15px;
-        flex-direction: column; /* Ícone e texto empilhados */
-        text-align: center;
-        gap: 5px;
-    }
-    .summary-card-icon {
-        font-size: 24px;
-    }
-    .summary-card-value {
-        font-size: 20px;
-    }
-    .summary-card-label {
-        font-size: 12px;
-    }
-    .chart-section {
-        padding: 15px;
-    }
-    .chart-title {
-        font-size: 22px;
-        text-align: center;
+    .summary-cards-container, .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     .chart-container {
-        height: 250px; /* Altura menor para o gráfico em telas pequenas */
+        height: 320px; /* Aumentado para não comprimir tanto */
     }
-    .chart-legend {
-        flex-direction: column; /* Legenda empilhada */
-        align-items: center;
-        gap: 10px;
+    .bottom-section-grid {
+        gap: 20px;
     }
+}
+
+/* Adicione este código ao final do seu arquivo dashoboard.css */
+
+/* Telas maiores (a partir de 992px) */
+@media (min-width: 992px) {
+    .main-content {
+        display: flex;
+        flex-direction: row; /* Garante que os itens fiquem lado a lado */
+        gap: 30px;
+    }
+
+    .chart-section {
+        flex: 3; /* Ocupa 3/4 do espaço */
+    }
+
     .dash-sidebar {
-        flex-direction: column; /* Sidebar empilhado novamente em telas muito pequenas */
+        flex: 1; /* Ocupa 1/4 do espaço */
     }
-    .dash-sidebar-section, .achievement-card {
-        flex: 1 1 100%; /* Ocupa a largura total */
-        max-width: 100%;
+
+    .stats-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+        gap: 20px; /* Espaçamento entre as colunas */
     }
-    .dash-sidebar-title {
-        font-size: 20px;
-        text-align: center;
+
+    .bottom-section-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr; /* Coluna esquerda com 300px e a direita com o resto */
+        gap: 20px;
     }
+}
+
+/* Telas muito grandes (a partir de 1200px) */
+@media (min-width: 1200px) {
     .stats-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Cards de estatísticas mais compactos */
-        gap: 10px;
+        /* Para garantir que os 3 cards de estatísticas fiquem na mesma linha */
+        grid-template-columns: repeat(3, 1fr);
     }
-    .stat-card {
-        padding: 15px;
-        gap: 3px; /* Espaçamento ainda menor */
-    }
-    .stat-number {
-        font-size: 28px;
-    }
-    .stat-label {
-        font-size: 12px;
-    }
-    .stat-change {
-        font-size: 10px;
-    }
-    .relatorio-grid {
-      grid-template-columns: 1fr; /* Relatório em coluna no modal para móveis */
-    }
+}
+
+/* Pequenos ajustes para consistência */
+.stats-grid-container {
+    margin-bottom: 20px;
+}
+
+.completion-percentage .sidebar-title {
+    font-family: 'Lexend Deca';
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #3d2106;
 }

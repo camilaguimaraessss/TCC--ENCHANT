@@ -16,8 +16,7 @@ function debounce(func, wait) {
 
 function calcularMaximoSugerido(dados) {
     const maxData = Math.max(...dados.alta, ...dados.baixa);
-    // Garante um valor mínimo para evitar erros com dados zero ou muito pequenos
-    return Math.ceil((maxData * 1.2 || 100) / 50) * 50;
+    return Math.ceil((maxData * 1.2) / 50) * 50 || 100;
 }
 
 function gerarDadosGrafico(periodo) {
@@ -50,14 +49,13 @@ function atualizarSummaryCards(scalingFactor = 30) {
 
 function atualizarEstatisticas(scalingFactor = 30) {
     const formatNumber = (num) => new Intl.NumberFormat('pt-BR').format(Math.round(num));
-    // Assegura que os valores não sejam menores que 1 para evitar "0" em locais inesperados
     const estatisticas = {
-        cadastros: Math.max(1, Math.random() * scalingFactor * 0.5),
-        doacoes: Math.max(1, Math.random() * scalingFactor * 1.5),
-        pendentes: Math.max(1, Math.random() * scalingFactor * 0.3),
-        triadas: Math.max(1, Math.random() * scalingFactor * 1),
-        finalizadas: Math.max(1, Math.random() * scalingFactor * 1.2),
-        tempo: Math.round(Math.random() * 5 + 2) // Mantém este como número de dias, sem scaling
+        cadastros: Math.max(1, Math.random() * scalingFactor),
+        doacoes: Math.max(1, Math.random() * 3 * scalingFactor),
+        pendentes: Math.max(1, Math.random() * 0.5 * scalingFactor),
+        triadas: Math.max(1, Math.random() * 2 * scalingFactor),
+        finalizadas: Math.max(1, Math.random() * 2.8 * scalingFactor),
+        tempo: Math.round(Math.random() * 5 + 2)
     };
     Object.keys(estatisticas).forEach(key => {
         const elemento = document.getElementById(`stat-${key}`);
@@ -78,12 +76,10 @@ function carregarPontosColeta() {
     if (!container) return;
     container.innerHTML = pontosColeta.map(ponto => `
         <div class="collection-point">
-            <div class="point-icon"></div>
             <div class="point-info">
                 <div class="point-name">${ponto.nome}</div>
                 <div class="point-status">${ponto.status}</div>
             </div>
-            <div class="point-arrow">›</div>
         </div>
     `).join('');
 }
@@ -91,27 +87,18 @@ function carregarPontosColeta() {
 function criarGrafico() {
     const ctx = document.getElementById('doacoesChart')?.getContext('2d');
     if (!ctx) return;
-    if (graficoAtual) {
-        graficoAtual.destroy(); // Destrói o gráfico existente para recriar
-    }
+    if (graficoAtual) graficoAtual.destroy();
 
     graficoAtual = new Chart(ctx, {
         type: 'line',
         data: { labels: [], datasets: [] },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Permite que o Chart.js gerencie a altura/largura de forma responsiva
+            maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: '#ddd' },
-                    ticks: { color: '#333' }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { color: '#333' }
-                }
+                y: { beginAtZero: true, grid: { color: '#ddd' }, ticks: { color: '#333' } },
+                x: { grid: { display: false }, ticks: { color: '#333' } }
             }
         }
     });
@@ -119,33 +106,23 @@ function criarGrafico() {
 }
 
 function atualizarGrafico(periodo) {
-    if (!graficoAtual) {
-        criarGrafico(); // Garante que o gráfico seja criado se ainda não existe
-        if (!graficoAtual) return; // Se a criação falhar, sai
-    }
-    
+    if (!graficoAtual) return;
     const dados = gerarDadosGrafico(periodo);
     graficoAtual.data.labels = dados.labels;
     graficoAtual.data.datasets = [
         {
             label: 'Variação Alta',
             data: dados.alta,
-            borderColor: '#72330f',
-            backgroundColor: '#72330f', // Para preenchimento se for o caso, embora seja linha
+            borderColor: 'rgb(224, 174, 124)', // Cor restaurada
             tension: 0.4,
             fill: false,
-            pointRadius: 3, // Tamanho dos pontos
-            pointHoverRadius: 5
         },
         {
             label: 'Variação Baixa',
             data: dados.baixa,
-            borderColor: '#492a0f',
-            backgroundColor: '#492a0f', // Para preenchimento se for o caso
+            borderColor: 'rgb(123, 71, 26)', // Cor restaurada
             tension: 0.4,
             fill: false,
-            pointRadius: 3,
-            pointHoverRadius: 5
         }
     ];
     graficoAtual.options.scales.y.suggestedMax = calcularMaximoSugerido(dados);
@@ -155,34 +132,20 @@ function atualizarGrafico(periodo) {
 function atualizarDadosGlobais(periodo) {
     globalPeriodo = periodo;
     document.querySelectorAll('.btn-date-filter').forEach(btn => btn.classList.remove('active'));
-    
     if (periodo !== 'custom') {
         const activeButton = document.querySelector(`.btn-date-filter[onclick*="'${periodo}'"]`);
         if (activeButton) activeButton.classList.add('active');
-    } else {
-        // Desativar botões de período fixo quando "custom" é selecionado
-        document.querySelectorAll('.btn-date-filter').forEach(btn => btn.classList.remove('active'));
     }
 
-    let scalingFactor = 30; // Default para 'mes'
+    let scalingFactor = 30;
     if (periodo === 'custom') {
-        const startDateEl = document.getElementById('startDate');
-        const endDateEl = document.getElementById('endDate');
-        const startDate = new Date(startDateEl.value);
-        const endDate = new Date(endDateEl.value);
-        
-        if (!isNaN(startDate) && !isNaN(endDate) && endDate >= startDate) {
+        const startDate = new Date(document.getElementById('startDate').value);
+        const endDate = new Date(document.getElementById('endDate').value);
+        if (!isNaN(startDate) && !isNaN(endDate) && endDate > startDate) {
             const diffTime = Math.abs(endDate - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 para incluir o dia final
-            scalingFactor = Math.max(1, diffDays); // Fator de escala baseado nos dias selecionados
+            scalingFactor = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
         } else {
-            // Se as datas customizadas são inválidas, resetar para 'mes' ou manter estado anterior
-            console.warn("Datas customizadas inválidas. Mantendo o período anterior ou padrão.");
-            // Opcional: Voltar para o período 'mes' ou apenas não atualizar
-            // globalPeriodo = 'mes';
-            // document.querySelector(`.btn-date-filter[onclick*="'mes'"]`).classList.add('active');
-            // scalingFactor = 30;
-            return; // Sai da função para evitar atualização com dados incorretos
+            return;
         }
     } else {
         const periodFactors = { dia: 1, semana: 7, mes: 30, ano: 365 };
@@ -227,18 +190,13 @@ function gerarPDF() {
 
 function inicializarDashboard() {
     carregarPontosColeta();
-    criarGrafico(); // Cria o gráfico inicial
-    atualizarDadosGlobais('mes'); // Carrega os dados iniciais para o mês
-    
-    // Adiciona o event listener para redimensionamento com debounce
+    criarGrafico();
+    atualizarDadosGlobais('mes');
     window.addEventListener('resize', debounce(() => {
-        // Apenas recria o gráfico se ele já existe para evitar erros
         if (graficoAtual) {
-            atualizarGrafico(globalPeriodo);
+            graficoAtual.resize();
         }
-    }, 250)); // Delay de 250ms
-
-    // Atualização de dados periódica, a cada 30 segundos, apenas se não for "custom"
+    }, 250));
     setInterval(() => {
         if (globalPeriodo !== 'custom') {
            atualizarDadosGlobais(globalPeriodo);

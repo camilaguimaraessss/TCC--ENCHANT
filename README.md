@@ -58,7 +58,7 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 <td align="center">
 <img src="https://github.com/camilaguimaraessss.png" width="150px" style="border-radius: 50%"><br>
 <b>Camila Guimarães</b><br>
-<sub>Full Stack Developer</sub><br>
+<sub>Frontend Specialist</sub><br>
 <a href="https://github.com/camilaguimaraessss">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
@@ -74,7 +74,7 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 <td align="center">
 <img src="https://github.com/salada096.png" width="150px" style="border-radius: 50%"><br>
 <b>Marcelle Abreu</b><br>
-<sub>Backend & Database</sub><br>
+<sub>Frontend Specialist</sub><br>
 <a href="https://github.com/salada096">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
@@ -82,7 +82,7 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 <td align="center">
 <img src="https://github.com/GUIOLI08.png" width="150px" style="border-radius: 50%"><br>
 <b>Guilherme Oliver</b><br>
-<sub>Full Stack Developer</sub><br>
+<sub>Backend & Databaser</sub><br>
 <a href="https://github.com/GUIOLI08">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
@@ -90,7 +90,7 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 <td align="center">
 <img src="https://github.com/Marcdotcomb1ne.png" width="150px" style="border-radius: 50%"><br>
 <b>Marcos Henry</b><br>
-<sub>Full Stack Developer</sub><br>
+<sub>Backend & Databaser</sub><br>
 <a href="https://github.com/Marcdotcomb1ne">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
@@ -98,7 +98,7 @@ O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que tr
 <td align="center">
 <img src="https://github.com/Andressa-gith.png" width="150px" style="border-radius: 50%"><br>
 <b>Andressa Cruz</b><br>
-<sub>Full Stack Developer</sub><br>
+<sub>Backend & Databaser</sub><br>
 <a href="https://github.com/Andressa-gith">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>

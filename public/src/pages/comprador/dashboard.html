@@ -6,11 +6,8 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
-    <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script type="module" src="https://unpkg.com/@phosphor-icons/webcomponents@2.1/dist/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1/src/regular/style.css" />
 
     <link rel="stylesheet" href="../../styles/pages/comprador/dashoboard.css">
     <script src="../../scripts/pages/comprador/dashboard.js"></script>
@@ -19,227 +16,129 @@
     <script src="../../scripts/layouts/comprador/headercomprador.js" defer></script>
     <script src="../../scripts/layouts/comprador/footercomprador.js" defer></script>
     <script src="../../scripts/layouts/comprador/sidebar.js" defer></script>
-
-  </head>
+</head>
 <body>
-      <main id="main">
+    <main id="main">
         <div class="container">
-          <div class="header">
-              <div class="header-buttons">
-                  <button class="btn btn-outline" onclick="gerarRelatorio()">Relatório de doações</button>
-                  <button class="btn btn-primary" onclick="gerarPDF()">Gerar PDF</button>
-              </div>
-              <div class="date-filters">
-                  <div class="btn-group" role="group">
-                      <button type="button" class="btn btn-date-filter" onclick="atualizarDadosGlobais('dia')">Dia</button>
-                      <button type="button" class="btn btn-date-filter" onclick="atualizarDadosGlobais('semana')">Semana</button>
-                      <button type="button" class="btn btn-date-filter active" onclick="atualizarDadosGlobais('mes')">Mês</button>
-                      <button type="button" class="btn btn-date-filter" onclick="atualizarDadosGlobais('ano')">Ano</button>
-                  </div>
-                  <div class="custom-date-range">
-                      <i class="bi bi-calendar3"></i>
-                      <input type="date" id="startDate" onchange="atualizarDadosGlobais('custom')">
-                      <span>até</span>
-                      <input type="date" id="endDate" onchange="atualizarDadosGlobais('custom')">
-                  </div>
-              </div>
-          </div>
+            <div class="header">
+                <div class="header-buttons">
+                    <button class="btn btn-outline-secondary" onclick="gerarRelatorio()">Relatório de doações</button>
+                    <button class="btn btn-primary" onclick="gerarPDF()">Gerar PDF</button>
+                </div>
+                <div class="date-filters">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-date-filter" onclick="atualizarDadosGlobais('dia')">Dia</button>
+                        <button type="button" class="btn btn-date-filter" onclick="atualizarDadosGlobais('semana')">Semana</button>
+                        <button type="button" class="btn btn-date-filter active" onclick="atualizarDadosGlobais('mes')">Mês</button>
+                        <button type="button" class="btn btn-date-filter" onclick="atualizarDadosGlobais('ano')">Ano</button>
+                    </div>
+                    <div class="custom-date-range">
+                        <i class="bi bi-calendar3"></i>
+                        <input type="date" id="startDate" onchange="atualizarDadosGlobais('custom')">
+                        <span>até</span>
+                        <input type="date" id="endDate" onchange="atualizarDadosGlobais('custom')">
+                    </div>
+                </div>
+            </div>
           
-          <div class="summary-cards-container">
-            <div class="summary-card">
-              <div class="summary-card-icon"><i class="bi bi-box-seam"></i></div>
-              <div class="summary-card-info">
-                <div class="summary-card-value" id="summary-total-kg">--</div>
-                <div class="summary-card-label">Total Arrecadado (Kg)</div>
-              </div>
+            <div class="summary-cards-container">
+                <div class="summary-card">
+                    <div class="summary-card-icon"><i class="bi bi-box-seam"></i></div>
+                    <div class="summary-card-info">
+                        <div class="summary-card-value" id="summary-total-kg">--</div>
+                        <div class="summary-card-label">Total Arrecadado (Kg)</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-icon"><i class="bi bi-gem"></i></div>
+                    <div class="summary-card-info">
+                        <div class="summary-card-value" id="summary-media-kg">--</div>
+                        <div class="summary-card-label">Média por Doação (Kg)</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-icon"><i class="bi bi-person-plus"></i></div>
+                    <div class="summary-card-info">
+                        <div class="summary-card-value" id="summary-novos-doadores">--</div>
+                        <div class="summary-card-label">Novos Doadores</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-icon"><i class="bi bi-check-circle"></i></div>
+                    <div class="summary-card-info">
+                        <div class="summary-card-value" id="summary-taxa-sucesso">--</div>
+                        <div class="summary-card-label">Taxa de Sucesso</div>
+                    </div>
+                </div>
             </div>
-            <div class="summary-card">
-              <div class="summary-card-icon"><i class="bi bi-gem"></i></div>
-              <div class="summary-card-info">
-                <div class="summary-card-value" id="summary-media-kg">--</div>
-                <div class="summary-card-label">Média por Doação (Kg)</div>
-              </div>
+
+            <div class="main-content">
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2 class="chart-title">Raio de Coleta (kg)</h2>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="doacoesChart"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #72330f;"></div>
+                            <span>Variação Alta</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #492a0f;"></div>
+                            <span>Variação Baixa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="dash-sidebar">
+                    <div class="dash-sidebar-section">
+                        <div class="dash-sidebar-title">Pontos mais ativos</div>
+                        <div id="pontos-coleta"></div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-text">Meta mensal de doações atingida com sucesso!</div>
+                    </div>
+                </aside>
             </div>
-            <div class="summary-card">
-              <div class="summary-card-icon"><i class="bi bi-person-plus"></i></div>
-              <div class="summary-card-info">
-                <div class="summary-card-value" id="summary-novos-doadores">--</div>
-                <div class="summary-card-label">Novos Doadores</div>
-              </div>
+
+            <div class="stats-grid-container">
+                <div class="stats-grid">
+                    <div class="stat-card stat-card-1">
+                        <div class="stat-number" id="stat-cadastros">30</div>
+                        <div class="stat-label">Doadores de Roupas</div>
+                        <div class="stat-change">Meta: 150</div>
+                    </div>
+                    <div class="stat-card stat-card-2">
+                        <div class="stat-number" id="stat-doacoes">90</div>
+                        <div class="stat-label">Doações de Alimentos</div>
+                        <div class="stat-change">Meta: 200</div>
+                    </div>
+                    <div class="stat-card stat-card-3">
+                        <div class="stat-number" id="stat-pendentes">20</div>
+                        <div class="stat-label">Produtos de Higiene</div>
+                        <div class="stat-change">Meta: 150</div>
+                    </div>
+                    <div class="stat-card stat-card-4">
+                        <div class="stat-number" id="stat-triadas">50</div>
+                        <div class="stat-label">Doações de Móveis</div>
+                        <div class="stat-change">Meta: 200</div>
+                    </div>
+                    <div class="stat-card stat-card-5">
+                        <div class="stat-number" id="stat-finalizadas">100</div>
+                        <div class="stat-label">Livros e Brinquedos</div>
+                        <div class="stat-change">Meta: 200</div>
+                    </div>
+                    <div class="stat-card stat-card-6">
+                        <div class="stat-number" id="stat-tempo">05</div>
+                        <div class="stat-label">Roupas de Cama</div>
+                        <div class="stat-change">Meta: 50</div>
+                    </div>
+                </div>
             </div>
-            <div class="summary-card">
-              <div class="summary-card-icon"><i class="bi bi-check-circle"></i></div>
-              <div class="summary-card-info">
-                <div class="summary-card-value" id="summary-taxa-sucesso">--</div>
-                <div class="summary-card-label">Taxa de Sucesso</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="main-content">
-              <div class="chart-section">
-                  <div class="chart-header">
-                      <h2 class="chart-title">Raio de Coleta kg</h2>
-                      </div>
-                  
-                  <div class="chart-container">
-                      <canvas id="doacoesChart"></canvas>
-                  </div>
-                  
-                  <div class="chart-legend">
-                      <div class="legend-item">
-                          <div class="legend-color" style="background: #72330f;"></div>
-                          <span>Ativa alta variação</span>
-                      </div>
-                      <div class="legend-item">
-                          <div class="legend-color" style="background: #492a0f;"></div>
-                          <span>Ativa baixa variação</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="dash-sidebar dashboard-sidebar">
-                  <div class="dash-sidebar-section">
-                      <div class="dash-sidebar-title">Pontos mais ativos</div>
-                      <div id="pontos-coleta">
-                          </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="stats-grid">
-              <div class="stat-card-1">
-                  <div class="stat-number" id="stat-cadastros">30</div>
-                  <div class="stat-label">Número de doadores para Roupas</div>
-                  <div class="stat-change">Meta: 150 cadastros</div>
-              </div>
-              
-              <div class="stat-card-2">
-                  <div class="stat-number" id="stat-doacoes">90</div>
-                  <div class="stat-label">Número de doações para Alimentos</div>
-                  <div class="stat-change">Meta: 200 doações</div>
-              </div>
-              
-              <div class="stat-card-3" style="border: 2px solid #693d19;">
-                  <div class="stat-number" id="stat-pendentes">20</div>
-                  <div class="stat-label">Número de doações para Produtos de Higiene</div>
-                  <div class="stat-change">Meta: 150 graduações</div>
-              </div>
-          </div>
-
-          <div class="stats-grid">
-              <div class="stat-card-4">
-                  <div class="stat-number" id="stat-triadas">50</div>
-                  <div class="stat-label">Número de doações Móveis</div>
-                  <div class="stat-change">Meta: 200 triados</div>
-              </div>
-              
-              <div class="stat-card-5">
-                  <div class="stat-number" id="stat-finalizadas">100</div>
-                  <div class="stat-label">Número de doações para Livros e brinquedos</div>
-                  <div class="stat-change">Meta: 200 finalizadas</div>
-              </div>
-              
-              <div class="stat-card-6">
-                  <div class="stat-number" id="stat-tempo">05</div>
-                  <div class="stat-label">Número de doações para Roupas de cama e Cobertores</div>
-                  <div class="stat-change">Meta: 50 utilizados</div>
-              </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 300px 1fr; gap: 20px;">
-              <div>
-                  <div class="achievement-card">
-                      <div class="achievement-icon"></div>
-                      <div class="achievement-text">Meta mensal de doações atingida com sucesso!</div>
-                  </div>
-                  
-                  <div class="progress-section">
-                      <div class="sidebar-title">Porcentual de completude</div>
-                      <div style="text-align: center; font-size: 36px; font-weight: 700; color: #492a0f;">50%</div>
-                  </div>
-              </div>
-              
-              <div class="progress-section">
-                  <div class="progress-item">
-                      <div class="progress-icon"></div>
-                      <div class="progress-info">
-                          <div class="progress-label">Entradas</div>
-                          <div class="progress-bar">
-                              <div class="progress-fill" style="width: 75%;"></div>
-                          </div>
-                      </div>
-                      <div class="progress-percent">75%</div>
-                  </div>
-                  
-                  <div class="progress-item">
-                      <div class="progress-icon"></div>
-                      <div class="progress-info">
-                          <div class="progress-label">Por outras Organizações não Governamnetais</div>
-                          <i class="ph-light ph-building-office"></i>
-                          <div class="progress-bar">
-                              <div class="progress-fill" style="width: 60%;"></div>
-                          </div>
-                      </div>
-                      <div class="progress-percent">60%</div>
-                  </div>
-                  
-                  <div class="progress-item">
-                      <div class="progress-icon"></div>
-                      <div class="progress-info">
-                          <div class="progress-label">Por Instituições públicas e privadas</div>
-                          <i class="ph-light ph-building"></i>
-                          <div class="progress-bar">
-                              <div class="progress-fill" style="width: 45%;"></div>
-                          </div>
-                      </div>
-                      <div class="progress-percent">45%</div>
-                  </div>
-                  
-                  <div class="progress-item">
-                      <div class="progress-icon"></div>
-                      <div class="progress-info">
-                          <div class="progress-label">Por Pessoas</div>
-                          <i class="ph ph-users"></i>
-                          <div class="progress-bar">
-                              <div class="progress-fill" style="width: 80%;"></div>
-                          </div>
-                      </div>
-                      <div class="progress-percent">80%</div>
-                  </div>
-                  
-                  <div class="progress-item">
-                      <div class="progress-icon"></div>
-                      <div class="progress-info">
-                          <div class="progress-label">Número de Donatários</div>
-                          <i class="ph-light ph-users-three"></i>
-                          <div class="progress-bar">
-                              <div class="progress-fill" style="width: 30%;"></div>
-                          </div>
-                      </div>
-                      <div class="progress-percent">30%</div>
-                  </div>
-              </div>
-          </div>
         </div>
-      </main>
-    </div>
-
-    <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-              </div>
-              <div class="modal-body" id="erroSenhaModalBody">
-                  </div>
-              <div class="modal-footer">
-                  <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
-              </div>
-          </div>
-      </div>
-    </div>
+    </main>
 
     <div class="modal fade" id="relatorioModal" tabindex="-1" aria-labelledby="relatorioModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">

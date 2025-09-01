@@ -206,10 +206,6 @@
                         font-size: 14px;
                     }
 
-                    .mobile-nav-item a:hover {
-                        color: var(--accent-color);
-                    }
-                    
                     /* ===== PERFIL DROPDOWN ===== */
                     .profile-section {
                         position: relative;

@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll('.code-input');
+const inputs = document.querySelectorAll('.code-input1');
 const codigoDoEmail = '789012'; // Código de exemplo
 
 // Função para distribuir múltiplos dígitos pelos inputs

@@ -22,68 +22,7 @@ body {
   padding-right: 16px;
 }
 
-.navbar-nav {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 14px;
-  gap: 0.5rem;
-  margin-left: 20px;
-}
 
-.menu-lateral {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.img {
-  margin-top: -0.6rem;
-  margin-left: 1rem;
-}
-
-#dona1,
-#doap,
-#doain {
-  font-size: 14px;
-}
-
-#conteudoNavbarSuportado {
-  text-align: left;
-}
-
-.nav-centralizada {
-  gap: 1px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.nav-item {
-  margin: 0 5px;
-}
-
-#icone {
-  border: none;
-  outline: none;
-}
-
-.btn-brown,
-#doeagora {
-  background-color: rgba(226, 204, 174, 1);
-  border-color: rgba(226, 204, 174, 1);
-  color: #4E3629;
-  font-weight: 700;
-  font-family: "Lexend Deca";
-}
-
-#doeagora {
-  font-size: 16px;
-  width: 9rem;
-  margin-right: 2rem;
-}
-
-#doeagora:hover {
-  background-color: #caae8d;
-}
 body {
   background-color: #FFFFFF;
   margin: 0;
@@ -97,6 +36,10 @@ body {
 main {
   margin-right: 150px;
   margin-left: 150px;
+}
+
+.nav-link{
+  text-decoration: none !important;
 }
 
 .sobre-missao {
@@ -130,10 +73,11 @@ p {
 h1 {
   font-family: "Passion One", sans-serif;
   font-weight: 400;
-  color: #693B11;
+  color: #693B11 !important;
   margin: 50px auto;
-  padding-top: 50px;
+  margin-bottom: 50px !important;
   font-size: 32px;
+  text-align: start !important;
 }
 
 h2 {

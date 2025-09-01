@@ -213,8 +213,9 @@
         h1 {
             font-family: 'Passion One', cursive;
             font-size: 32px;
-            color: #693B11;
+            color: #693B11 !important;
             margin-bottom: 30px;
+             text-align: start !important;
         }
 
         h2 {

@@ -333,17 +333,13 @@
                 const headerHTML = `
                     <header class="main-header">
                         <div class="header-content">
-                            <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
-                            <div class="logo-upload" id="logoUpload">
-                                <label for="logoInput"><i class="bi bi-plus"></i></label>
-                                <input type="file" id="logoInput" accept="image/*">
+                            <a href="/public/src/pages/comprador/dashboard.html"><div class="logo-upload" id="logoUpload"></a>
                                 <div class="logo-preview" id="logoPreview">
-                                    <button class="remove-logo" id="removeLogo">×</button>
                                 </div>
                             </div>
                             <div class="right-section">
                                 <nav class="desktop-nav">
-                                    <a href="/public//public/src/pages/comprador/quemsomos2.html">Quem somos?</a>
+                                    <a href="/public/src/pages/comprador/quemsomos2.html">Quem somos?</a>
                                     <a href="/public/src/pages/comprador/saibamais2.html">Saiba mais</a>
                                 </nav>
                                 <div class="profile-section">
@@ -354,7 +350,7 @@
                                     </button>
                                     <div class="profile-dropdown" id="profileDropdown">
                                         <a class="dropdown-item" href="/public/src/pages/comprador/perfilcomprador.html"><i class="bi bi-person"></i> Perfil</a>
-                                        <a class="dropdown-item" href="telainicialparaocomprador,html"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                                        <a class="dropdown-item" href="/public/src/pages/comprador/telainicialparaocomprador.html"><i class="bi bi-box-arrow-right"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>

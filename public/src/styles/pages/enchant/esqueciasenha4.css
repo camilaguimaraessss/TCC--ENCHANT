@@ -32,6 +32,15 @@
   text-align: left;
 }
 
+#fixado .navbar-nav {
+  font-size: 14px !important;
+}
+
+#fixado .nav-link {
+  font-size: 14px !important;
+}
+
+
 .img {
   margin-top: -0.6rem;
   margin-left: 1rem;

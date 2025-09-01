@@ -29,6 +29,15 @@
   margin-left: 20px;
 }
 
+#fixado .navbar-nav {
+  font-size: 14px !important;
+}
+
+#fixado .nav-link {
+  font-size: 14px !important;
+}
+
+
 .menu-lateral {
   justify-content: flex-start;
   text-align: left;

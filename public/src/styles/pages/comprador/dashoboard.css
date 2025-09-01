@@ -99,7 +99,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    margin-bottom: 30px;
 }
 
 .chart-section {
@@ -108,16 +107,18 @@ body {
     border-radius: 12px;
     padding: 25px;
     border: 1px solid #eee;
+    margin-top: -350px;
 }
 
 .chart-title {
     font-family: "Passion One", sans-serif;
+    color: #3d2106;
 }
 
 .chart-container {
     position: relative;
     height: 400px;
-    margin-bottom: 20px;
+
 }
 
 .chart-legend {
@@ -144,18 +145,22 @@ body {
     flex-direction: column;
     gap: 20px;
 }
-
+#startDate, #endDate{
+    border: none;
+}
 .dash-sidebar-section {
     background: white;
     border-radius: 12px;
     padding: 20px;
     border: 1px solid #eee;
+    margin-top: -420px;
 }
 
 .dash-sidebar-title {
     font-family: 'Lexend Deca';
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 15px;
+    color: #3d2106;
 }
 
 .collection-point {
@@ -175,6 +180,7 @@ body {
     flex-direction: column;
     gap: 20px;
     margin-bottom: 30px;
+    margin-top: -350px;
 }
 
 .stats-grid {

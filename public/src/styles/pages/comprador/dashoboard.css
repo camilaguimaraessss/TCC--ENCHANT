@@ -181,7 +181,6 @@ margin-bottom: 30px;
 .stat-card-4,
 .stat-card-5,
 .stat-card-6 {
-
 border-radius: 12px;
 padding: 25px;
 text-align: center;
@@ -212,6 +211,7 @@ border: solid 1px #030303;
 background: transparent;
 border: solid 1px #030303;
 }
+
 .stat-number {
 font-size: 36px;
 font-weight: 700;
@@ -438,7 +438,7 @@ color: #000000;
     color: #495057;
     font-family: 'Lexend Deca', sans-serif;
     font-size: 14px;
-    width: 130px; /* Largura para a data */
+    width: 130px;
 }
 
 .custom-date-range input[type="date"]::-webkit-calendar-picker-indicator {
@@ -528,742 +528,556 @@ color: #000000;
   border-bottom-right-radius: 11px;
 }
 
-/* RESPONSIVIDADE DESKTOP GRANDE */
-@media (max-width: 1700px){
-   #main{
-    display: flex;
-    margin-left: 5px;
-    margin-right: 5px;
-    }
+/* ========================================
+   RESPONSIVIDADE MELHORADA
+======================================== */
 
-    .stat-card-1,
-    .stat-card-2,
-    .stat-card-3,
-    .stat-card-4,
-    .stat-card-5,
-    .stat-card-6 {
-        width: 300px;
-        min-height: 150px;
+/* DESKTOP GRANDE (1700px+) - Mantém o design original */
+@media (min-width: 1701px) {
+    .container {
+        margin-left: 150px;
+        margin-right: 150px;
     }
+}
 
-    .stats-grid{
-        gap: 10px;
-    }
-
-    .container{
+/* DESKTOP MÉDIO (1200px - 1700px) */
+@media (max-width: 1700px) and (min-width: 1200px) {
+    .container {
         margin-left: 80px;
         margin-right: 80px;
+        max-width: 1300px;
     }
-
+    
     .chart-container {
         height: 350px;
     }
 }
 
-/* RESPONSIVIDADE DESKTOP MÉDIO */
-@media (max-width: 1400px) {
+/* LAPTOP (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
     .container {
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 40px;
+        margin-right: 40px;
         padding: 15px;
     }
     
+    /* Summary cards em 2 colunas */
     .summary-cards-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
     
+    /* Stats grid em 2 colunas */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    /* Main content com sidebar menor */
     .main-content {
+        grid-template-columns: 1fr 250px;
         gap: 20px;
     }
     
-    .dash-sidebar {
-        width: 250px;
+    .chart-container {
+        height: 320px;
     }
 }
 
-/* RESPONSIVIDADE TABLETS */
-@media (max-width: 1024px) {
+/* TABLET (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
     .container {
         margin-left: 20px;
         margin-right: 20px;
-        padding: 10px;
+        padding: 15px;
     }
-
+    
+    /* Header em coluna */
     .header {
         flex-direction: column;
-        align-items: stretch;
         gap: 15px;
+        align-items: stretch;
     }
-
+    
     .header-buttons {
         justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .summary-cards-container {
-        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
-
+    
+    /* Summary cards em 2 colunas */
+    .summary-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
     .summary-card {
         padding: 15px;
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+        gap: 12px;
     }
-
-    .summary-card-icon {
-        font-size: 24px;
-    }
-
+    
     .summary-card-value {
         font-size: 20px;
     }
-
+    
     .summary-card-label {
         font-size: 12px;
+        line-height: 1.3;
     }
-
+    
+    /* Main content em coluna única */
     .main-content {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 20px;
     }
-
-    .chart-section {
-        padding: 15px;
-    }
-
+    
     .chart-container {
-        height: 280px;
+        height: 300px;
     }
-
-    .chart-title {
-        font-size: 16px;
-    }
-
+    
+    /* Stats grid em 2 colunas */
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 15px;
     }
-
+    
     .stat-card-1,
     .stat-card-2,
     .stat-card-3,
     .stat-card-4,
     .stat-card-5,
     .stat-card-6 {
-        padding: 15px;
-        min-height: 120px;
+        padding: 20px 15px;
+        min-height: 140px;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-
+    
     .stat-number {
         font-size: 28px;
     }
-
+    
     .stat-label {
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.3;
     }
-
-    .stat-change {
-        font-size: 11px;
-    }
-
+    
+    /* Date filters responsivos */
     .date-filters {
         flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
+        gap: 12px;
     }
-
-    .date-filters .btn-group {
+    
+    .btn-group {
         width: 100%;
         display: flex;
     }
-
-    .date-filters .btn-group .btn {
-        flex-grow: 1;
-        font-size: 12px;
-        padding: 6px 12px;
+    
+    .btn-date-filter {
+        flex: 1;
+        padding: 10px 15px;
+        font-size: 13px;
     }
-
+    
     .custom-date-range {
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 5px;
-        padding: 10px;
+        padding: 10px 15px;
     }
-
+    
     .custom-date-range input[type="date"] {
-        width: 120px;
-        font-size: 12px;
+        width: 140px;
+        font-size: 13px;
     }
-
-    .progress-section {
-        padding: 15px;
-    }
-
+    
+    /* Progress section melhorada */
     .progress-item {
-        gap: 10px;
+        gap: 12px;
     }
-
+    
     .progress-icon {
         width: 35px;
         height: 35px;
         font-size: 14px;
     }
-
+    
     .progress-label {
         font-size: 13px;
-    }
-
-    .progress-percent {
-        font-size: 16px;
-    }
-
-    .achievement-card {
-        padding: 15px;
+        line-height: 1.2;
     }
 }
 
-/* RESPONSIVIDADE MOBILE */
-@media (max-width: 768px) {
+/* MOBILE GRANDE (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
     .container {
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 8px;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 12px;
     }
-
+    
+    /* Header responsivo */
     .header {
-        margin-bottom: 20px;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 25px;
     }
-
+    
     .header-buttons {
-        gap: 8px;
-    }
-
-    .btn-primary, .btn-outline {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    .summary-cards-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 10px;
     }
-
-    .summary-card {
-        padding: 12px;
-        flex-direction: row;
-        align-items: center;
-        text-align: left;
-    }
-
-    .summary-card-icon {
-        font-size: 20px;
-    }
-
-    .summary-card-value {
-        font-size: 18px;
-    }
-
-    .summary-card-label {
-        font-size: 11px;
-    }
-
-    .chart-section {
-        padding: 12px;
-    }
-
-    .chart-container {
-        height: 250px;
-    }
-
-    .chart-title {
+    
+    .btn-primary, .btn-outline {
+        width: 100%;
+        padding: 12px 15px;
         font-size: 14px;
     }
-
-    .chart-legend {
-        flex-direction: column;
-        gap: 8px;
+    
+    /* Summary cards em coluna única */
+    .summary-cards-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .summary-card {
+        padding: 15px;
+        gap: 12px;
         align-items: center;
     }
-
+    
+    .summary-card-icon {
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .summary-card-value {
+        font-size: 22px;
+    }
+    
+    .summary-card-label {
+        font-size: 12px;
+        line-height: 1.3;
+        text-align: left;
+    }
+    
+    /* Chart section */
+    .chart-section {
+        padding: 15px;
+    }
+    
+    .chart-container {
+        height: 280px;
+    }
+    
+    .chart-title {
+        font-size: 16px;
+    }
+    
+    .chart-legend {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+    }
+    
     .legend-item {
         font-size: 12px;
     }
-
+    
+    /* Stats grid em coluna única */
     .stats-grid {
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 12px;
     }
-
+    
     .stat-card-1,
     .stat-card-2,
     .stat-card-3,
     .stat-card-4,
     .stat-card-5,
     .stat-card-6 {
+        padding: 20px 15px;
+        min-height: 120px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    .stat-change {
+        font-size: 11px;
+    }
+    
+    /* Date filters mobile */
+    .date-filters {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn-group {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        gap: 0;
+    }
+    
+    .btn-date-filter {
+        padding: 12px 8px;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 0 !important;
+    }
+    
+    .btn-group .btn:first-child {
+        border-top-left-radius: 6px !important;
+        border-bottom-left-radius: 6px !important;
+    }
+    
+    .btn-group .btn:last-child {
+        border-top-right-radius: 6px !important;
+        border-bottom-right-radius: 6px !important;
+    }
+    
+    .custom-date-range {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
         padding: 12px;
+    }
+    
+    .custom-date-range input[type="date"] {
+        width: 135px;
+        font-size: 13px;
+        padding: 5px;
+    }
+    
+    /* Progress items mobile */
+    .progress-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
+    .progress-info {
+        order: 1;
+    }
+    
+    .progress-percent {
+        order: 2;
+        text-align: center;
+        font-size: 16px;
+    }
+    
+    .progress-icon {
+        order: 0;
+        align-self: center;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* MOBILE PEQUENO (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 8px;
+    }
+    
+    /* Header ultra responsivo */
+    .header {
+        margin-bottom: 20px;
+    }
+    
+    .header-buttons {
+        gap: 8px;
+    }
+    
+    .btn-primary, .btn-outline {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    /* Summary cards compactos */
+    .summary-card {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .summary-card-icon {
+        font-size: 20px;
+    }
+    
+    .summary-card-value {
+        font-size: 18px;
+    }
+    
+    .summary-card-label {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+    
+    /* Chart muito compacto */
+    .chart-section {
+        padding: 12px;
+    }
+    
+    .chart-container {
+        height: 240px;
+    }
+    
+    .chart-title {
+        font-size: 14px;
+    }
+    
+    /* Stats cards compactos */
+    .stat-card-1,
+    .stat-card-2,
+    .stat-card-3,
+    .stat-card-4,
+    .stat-card-5,
+    .stat-card-6 {
+        padding: 15px 12px;
         min-height: 100px;
     }
-
+    
     .stat-number {
         font-size: 24px;
     }
-
+    
     .stat-label {
         font-size: 11px;
         line-height: 1.2;
     }
-
+    
     .stat-change {
         font-size: 10px;
     }
-
-    .date-filters .btn-group .btn {
+    
+    /* Date filters ultra compactos */
+    .btn-date-filter {
+        padding: 10px 6px;
         font-size: 11px;
-        padding: 5px 8px;
     }
-
+    
     .custom-date-range {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .custom-date-range input[type="date"] {
+        width: 100%;
+        font-size: 12px;
         padding: 8px;
     }
-
-    .custom-date-range input[type="date"] {
-        width: 100px;
-        font-size: 11px;
-    }
-
-    .custom-date-range span {
-        font-size: 12px;
-    }
-
-    .dash-sidebar-section {
-        padding: 12px;
-    }
-
-    .dash-sidebar-title {
-        font-size: 14px;
-    }
-
-    .collection-point {
-        padding: 8px 0;
-    }
-
-    .point-name {
-        font-size: 12px;
-    }
-
-    .point-status {
-        font-size: 11px;
-    }
-
+    
+    /* Progress items ultra compactos */
     .progress-section {
         padding: 12px;
     }
-
+    
     .progress-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+        margin-bottom: 12px;
     }
-
-    .progress-info {
-        width: 100%;
-    }
-
-    .progress-label {
+    
+    .progress-icon {
+        width: 28px;
+        height: 28px;
         font-size: 12px;
-        margin-bottom: 3px;
     }
-
+    
+    .progress-label {
+        font-size: 11px;
+    }
+    
     .progress-percent {
         font-size: 14px;
-        align-self: flex-end;
     }
-
+    
+    /* Achievement card compacto */
     .achievement-card {
         padding: 12px;
     }
-
+    
     .achievement-text {
         font-size: 12px;
     }
-
+    
     /* Modal responsivo */
     .relatorio-grid {
         grid-template-columns: 1fr;
         gap: 10px;
     }
-
+    
     .relatorio-item {
         padding: 12px;
     }
-
+    
     .relatorio-value {
         font-size: 18px;
     }
-
+    
     .relatorio-label {
-        font-size: 12px;
-    }
-}
-
-/* RESPONSIVIDADE MOBILE PEQUENO */
-@media (max-width: 480px) {
-    .container {
-        margin-left: 5px;
-        margin-right: 5px;
-        padding: 5px;
-    }
-
-    .header-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn-primary, .btn-outline {
-        width: 100%;
         font-size: 11px;
-        padding: 6px 8px;
-    }
-
-    .summary-card {
-        padding: 10px;
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-    }
-
-    .chart-container {
-        height: 200px;
-    }
-
-    .stat-number {
-        font-size: 20px;
-    }
-
-    .stat-label {
-        font-size: 10px;
-    }
-
-    .stat-change {
-        font-size: 9px;
-    }
-
-    .date-filters .btn-group .btn {
-        font-size: 10px;
-        padding: 4px 6px;
-    }
-
-    .custom-date-range {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .custom-date-range input[type="date"] {
-        width: 100%;
-    }
-
-    .progress-item {
-        margin-bottom: 10px;
-    }
-
-    .progress-icon {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
     }
 }
 
-/* Melhorias de responsividade para o Dashboard */
+/* ========================================
+   MELHORIAS GERAIS DE RESPONSIVIDADE
+======================================== */
 
-/* Container do gráfico responsivo */
-.chart-container {
-    position: relative;
-    height: 400px;
-    width: 100%;
-    margin: 20px 0;
-}
-
-#doacoesChart {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-/* Correções para tablets (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    
-    /* Sidebar oculta em tablets */
-    .dash-sidebar-section {
-        transition: transform 0.3s ease;
-        position: fixed !important;
-        z-index: 1000;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    }
-    
-    /* Ajustar conteúdo principal para tablets */
-    .main-content,
-    .dashboard-content {
-        margin-left: 0 !important;
-        padding: 20px 15px !important;
-        transition: margin-left 0.3s ease;
-    }
-    
-    /* Cards com melhor espaçamento em tablets */
-    .summary-cards-container,
-    .stats-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        margin-bottom: 25px;
-    }
-    
-    .summary-card,
-    .stat-card {
-        margin-bottom: 0 !important;
-        min-height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    /* Gráfico mais compacto em tablets */
-    .chart-container {
-        height: 350px;
-        margin: 15px 0;
-    }
-    
-    /* Botão para mostrar sidebar em tablets */
-    .sidebar-toggle {
-        display: block !important;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1001;
-        background: linear-gradient(135deg, #9B59B6 0%, #C49BD1 100%);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 18px;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-        transition: all 0.3s ease;
-    }
-    
-    .sidebar-toggle:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
-    }
-}
-
-/* Mobile (até 768px) */
-@media (max-width: 768px) {
-    
-    /* Sidebar oculta em mobile */
-    .dash-sidebar-section {
-        width: 280px;
-        position: fixed !important;
-        z-index: 1000;
-        transition: transform 0.3s ease;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    }
-    
-    /* Conteúdo principal para mobile */
-    .main-content,
-    .dashboard-content {
-        margin-left: 0 !important;
-        padding: 70px 15px 20px !important;
-    }
-    
-    /* Cards em coluna única para mobile */
-    .summary-cards-container,
-    .stats-container {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-    
-    .summary-card,
-    .stat-card {
-        margin-bottom: 0 !important;
-        min-height: 100px;
-        padding: 15px;
-    }
-    
-    /* Gráfico otimizado para mobile */
-    .chart-container {
-        height: 300px;
-        margin: 15px 0;
-    }
-    
-    /* Botão sidebar para mobile */
-    .sidebar-toggle {
-        display: block !important;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1001;
-        background: linear-gradient(135deg, #9B59B6 0%, #C49BD1 100%);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-        font-size: 16px;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-        transition: all 0.3s ease;
-    }
-    
-    /* Textos menores em mobile */
-    .summary-card h3,
-    .stat-card h3 {
-        font-size: 18px;
-    }
-    
-    .summary-card .value,
-    .stat-card .value {
-        font-size: 24px;
-    }
-    
-    /* Filtros de data em mobile */
-    .date-filters {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .btn-date-filter {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-}
-
-/* Overlay para quando sidebar está aberta em mobile/tablet */
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.sidebar-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Botão sidebar oculto por padrão */
-.sidebar-toggle {
-    display: none;
-}
-
-/* Melhorias gerais para todos os dispositivos */
-.chart-responsive {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    background: white;
-    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
-    padding: 20px;
-}
-
-/* Grid responsivo para cards */
-.cards-grid {
-    display: grid;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-/* Desktop */
-@media (min-width: 1025px) {
-    .cards-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    
-    .chart-container {
-        height: 450px;
-    }
-}
-
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 767px) {
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-}
-
-@media (max-width: 768px) {
-    .form-group input,
-    .form-group select {
-        padding: 12px 15px;
-        font-size: 16px;
-    }
-    
-    .date-inputs {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .date-inputs input {
-        width: 100%;
-    }
-}
-
-.loading-chart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    color: #9B59B6;
-    font-size: 16px;
-}
-
-@media (max-width: 768px) {
-    .loading-chart {
-        height: 250px;
-        font-size: 14px;
-    }
-}
-
-/* Performance otimizations */
+/* Canvas responsivo */
 .chart-container canvas {
-    will-change: transform;
+    max-width: 100% !important;
+    height: auto !important;
 }
 
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
+/* Smooth transitions */
+* {
+    transition: all 0.2s ease;
 }
 
-/* Touch targets adequados para mobile */
+/* Touch targets adequados */
 @media (max-width: 768px) {
-    button,
-    .btn,
-    .clickable {
+    button, .btn, .clickable, input[type="date"] {
         min-height: 44px;
         min-width: 44px;
+    }
+}
+
+/* Melhor alinhamento de texto em mobile */
+@media (max-width: 768px) {
+    .summary-card-info, .progress-info {
+        text-align: left;
+    }
+    
+    .stat-card-1, .stat-card-2, .stat-card-3, 
+    .stat-card-4, .stat-card-5, .stat-card-6 {
+        text-align: center;
+    }
+}
+
+/* Overflow handling */
+.chart-section, .progress-section, .summary-card {
+    overflow-x: auto;
+}
+
+/* Grid auto-fit para ultra responsividade */
+@media (max-width: 600px) {
+    .summary-cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .stats-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
 }

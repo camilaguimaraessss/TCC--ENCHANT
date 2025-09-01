@@ -15,18 +15,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../../styles/global.css">
   <link rel="stylesheet" href="../../styles/pages/comprador/cadastrodoador.css">
+  <script src="../../scripts/pages/comprador/cadastrodoador.js" defer></script>
 
+  <link rel="stylesheet" href="../../styles/global.css">
   <script src="../../scripts/layouts/comprador/headercomprador.js" defer></script>
   <script src="../../scripts/layouts/comprador/sidebar.js" defer></script>
   <script src="../../scripts/layouts/comprador/footercomprador.js" defer></script>
-  <script src="../../scripts/pages/comprador/cadastrodoador.js" defer></script>
+ 
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="container-amplo">
     <br><br><br>
     <h1 class="titulo">Cadastro de Doador</h1>
 
@@ -51,7 +52,7 @@
             <input type="email" id="email" name="email" placeholder="ex: seunome@email.com" required>
           </div>
 
-                    <div class="campo">
+          <div class="campo">
             <label for="tipo-doador-dropdown">Tipo de doador: <span class="obrigatorio">*</span></label>
             <div class="custom-dropdown" id="tipo-doador-dropdown">
               <div class="dropdown-selected">
@@ -80,22 +81,20 @@
             <div class="campo senha-grupo">
               <label for="senha">Senha: <span class="obrigatorio">*</span></label>
               <input type="password" id="senha" name="senha" placeholder="Crie sua senha" required>
-              <span class="mostrar-senha"></span>
             </div>
             <div class="campo senha-grupo">
               <label for="confirma-senha">Confirme a senha: <span class="obrigatorio">*</span></label>
               <input type="password" id="confirma-senha" name="confirma-senha" placeholder="Confirme sua senha" required>
-              <span class="mostrar-senha"></span>
             </div>
           </div>
 
           <div class="requisitos-senha">
             <p class="sub-sub-titulo">Sua senha deve conter:</p>
             <ul>
-              <li id="req-length">Mínimo 8 dígitos</li>
-              <li id="req-number">Pelo menos 2 números</li>
-              <li id="req-special">Pelo menos 1 caracter especial</li>
-              <li id="req-uppercase">Pelo menos 1 letra MAIÚSCULA</li>
+              <li id="req-length"><span class="obrigatorio">*</span> Mínimo 8 dígitos</li>
+              <li id="req-number"><span class="obrigatorio">*</span> Pelo menos 2 números</li>
+              <li id="req-special"><span class="obrigatorio">*</span> Pelo menos 1 caracter especial</li>
+              <li id="req-uppercase"><span class="obrigatorio">*</span> Pelo menos 1 letra MAIÚSCULA</li>
             </ul>
           </div>
           
@@ -107,15 +106,13 @@
         <div class="parte" id="passo2" style="display: none;">
           <div id="form-dinamico-pessoa" class="form-dinamico" style="display: none;">
             <h3 class="subtitulo-secao">Dados de Pessoa Física</h3>
-            <div class="lado-container">
-              <div class="campo">
-                <label for="pessoa-cpf">Cadastro de Pessoa Física (CPF):<span class="obrigatorio">*</span></label>
-                <input type="text" id="pessoa-cpf" name="pessoa-cpf" placeholder="ex: xxx.xxx.xxx-xx">
-              </div>
-              <div class="campo">
-                <label for="pessoa-rg">Registro Geral (RG):<span class="obrigatorio">*</span></label>
-                <input type="text" id="pessoa-rg" name="pessoa-rg" placeholder="ex: xx.xxx.xxx-x">
-              </div>
+            <div class="campo">
+              <label for="pessoa-cpf">Cadastro de Pessoa Física (CPF):<span class="obrigatorio">*</span></label>
+              <input type="text" id="pessoa-cpf" name="pessoa-cpf" placeholder="ex: xxx.xxx.xxx-xx">
+            </div>
+            <div class="campo">
+              <label for="pessoa-rg">Registro Geral (RG):<span class="obrigatorio">*</span></label>
+              <input type="text" id="pessoa-rg" name="pessoa-rg" placeholder="ex: xx.xxx.xxx-x">
             </div>
             <div class="campo">
               <label for="pessoa-telefone">Telefone:<span class="obrigatorio">*</span></label>

@@ -21,33 +21,40 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('passo4')
     ];
 
-    // Listeners para botões de navegação
-    document.getElementById('formEtapa1').addEventListener('submit', validarEtapa1);
-    document.getElementById('formEtapa2').addEventListener('submit', validarEtapa2);
-    document.getElementById('formEtapa3').addEventListener('submit', validarEtapa3);
-    document.getElementById('formEtapa4').addEventListener('submit', validarEtapa4);
+    // Listeners para botões de navegação - CORRIGIDOS
+    document.getElementById('continuar1').addEventListener('click', validarEtapa1);
+    document.getElementById('continuar2').addEventListener('click', validarEtapa2);
+    document.getElementById('continuar3').addEventListener('click', validarEtapa3);
+    document.getElementById('enviar').addEventListener('click', validarEtapa4);
     
     // Adicionar listeners para navegação pelos passos
     adicionarListenersPassos();
     
     // Botões voltar
-    document.getElementById('voltar1').addEventListener('click', function() {
+    document.getElementById('voltar1').addEventListener('click', function(e) {
+        e.preventDefault();
         mudarEtapa(1, 0);
     });
     
-    document.getElementById('voltar2').addEventListener('click', function() {
+    document.getElementById('voltar2').addEventListener('click', function(e) {
+        e.preventDefault();
         mudarEtapa(2, 1);
     });
     
-    // CORREÇÃO: Botão voltar da etapa 4 deve voltar para etapa 3 (índice 2)
-    document.getElementById('voltar3').addEventListener('click', function() {
-        mudarEtapa(3, 2); // Da etapa 4 (índice 3) para etapa 3 (índice 2)
+    document.getElementById('voltar3').addEventListener('click', function(e) {
+        e.preventDefault();
+        mudarEtapa(3, 2);
     });
 
     // Mostrar/ocultar senha
-    const iconesMostrarSenha = document.querySelectorAll('.mostrar-senha');
-    iconesMostrarSenha.forEach(icone => {
-        icone.addEventListener('click', toggleMostrarSenha);
+    document.querySelectorAll('.mostrar-senha').forEach(toggle => {
+        toggle.innerHTML = '<i class="bi bi-eye-slash"></i>';
+        toggle.addEventListener('click', function() {
+            const input = this.closest('.senha-grupo').querySelector('input');
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            this.innerHTML = isPassword ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
     });
 
     // Validação de senha em tempo real
@@ -85,12 +92,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Event listeners para exibir nome do arquivo selecionado
+    const inputFoto = document.getElementById('ffoto');
+    if (inputFoto) {
+        inputFoto.addEventListener('change', function() {
+            atualizarNomeArquivo('filedon', this.files[0]);
+        });
+    }
+
+    const inputVideo = document.getElementById('vvideo');
+    if (inputVideo) {
+        inputVideo.addEventListener('change', function() {
+            atualizarNomeArquivo('videodon', this.files[0]);
+        });
+    }
+
     // Função para adicionar listeners de navegação pelos passos
     function adicionarListenersPassos() {
         passosContainers.forEach((container, etapaIndex) => {
             if (container) {
-                const passos = container.querySelectorAll('.passo');
-                passos.forEach((passo, passoIndex) => {
+                const passosElementos = container.querySelectorAll('.passo');
+                passosElementos.forEach((passo, passoIndex) => {
                     passo.addEventListener('click', function() {
                         const etapaAtual = getEtapaAtual();
                         // Só permite voltar para passos anteriores
@@ -146,9 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (passosContainers[index]) {
                     passosContainers[index].style.display = 'none';
                 }
-                if (passos[index]) {
-                    passos[index].classList.remove('ativo');
-                }
             }
         });
         
@@ -159,11 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Atualizar indicadores de passo
-        if (passos[proximaEtapa]) {
-            passos[proximaEtapa].classList.add('ativo');
-        }
-        
-        // Atualizar visual dos passos (para mostrar quais podem ser clicados)
         atualizarEstadoPassos(proximaEtapa);
         
         // Rolar para o topo
@@ -174,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function atualizarEstadoPassos(etapaAtiva) {
         passosContainers.forEach((container, containerIndex) => {
             if (container) {
-                const passos = container.querySelectorAll('.passo');
-                passos.forEach((passo, passoIndex) => {
+                const passosElementos = container.querySelectorAll('.passo');
+                passosElementos.forEach((passo, passoIndex) => {
                     passo.classList.remove('ativo', 'disponivel', 'indisponivel');
                     if (passoIndex === etapaAtiva) {
                         passo.classList.add('ativo');
@@ -263,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mudarEtapa(1, 2);
     }
 
-    // Validação da etapa 3 - COM VALIDAÇÕES DE FOTO E VÍDEO
+    // Validação da etapa 3
     function validarEtapa3(e) {
         e.preventDefault();
         
@@ -306,19 +320,27 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Validar dimensões da foto (verificação assíncrona)
-        validarDimensoesFoto(arquivoFoto).then(dimensoesValidas => {
+        // Validações assíncronas (dimensões da foto e duração do vídeo)
+        Promise.all([
+            validarDimensoesFoto(arquivoFoto),
+            validarDuracaoVideo(arquivoVideo)
+        ]).then(([dimensoesValidas, validacaoDuracao]) => {
             if (!dimensoesValidas) {
                 mostrarModal('A foto deve ter proporções próximas ao formato 3x4. Por favor, selecione uma foto com essas dimensões.');
                 return;
             }
             
-            console.log('Validação da etapa 3 passou, mudando para etapa 4');
-            // CORREÇÃO: Mudar da etapa 3 (índice 2) para etapa 4 (índice 3)
+            if (!validacaoDuracao.valido) {
+                mostrarModal('Erro na duração do vídeo: ' + validacaoDuracao.mensagem);
+                return;
+            }
+            
+            console.log('Validação da etapa 3 passou completamente, mudando para etapa 4');
             mudarEtapa(2, 3);
+            
         }).catch(error => {
-            console.error('Erro ao validar dimensões da foto:', error);
-            mostrarModal('Erro ao processar a foto. Por favor, tente novamente.');
+            console.error('Erro nas validações:', error);
+            mostrarModal('Erro ao processar os arquivos. Por favor, tente novamente.');
         });
     }
 
@@ -411,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(cep);
     }
 
-    // NOVA FUNÇÃO: Validação completa da foto
+    // Validação completa da foto
     function validarFoto(arquivo) {
         // Verificar se o arquivo existe
         if (!arquivo) {
@@ -439,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return { valido: true, mensagem: 'Foto válida.' };
     }
 
-    // NOVA FUNÇÃO: Validação das dimensões da foto (formato 3x4)
+    // Validação das dimensões da foto (formato 3x4)
     function validarDimensoesFoto(arquivo) {
         return new Promise((resolve, reject) => {
             const img = new Image();
@@ -453,8 +475,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const proporcao = largura / altura;
                 const proporcaoIdeal = 3 / 4; // 0.75
                 
-                // Permitir uma tolerância de ±10% na proporção
-                const tolerancia = 0.1;
+                // Permitir uma tolerância de ±15% na proporção
+                const tolerancia = 0.15;
                 const proporcaoMinima = proporcaoIdeal - tolerancia;
                 const proporcaoMaxima = proporcaoIdeal + tolerancia;
                 
@@ -479,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // NOVA FUNÇÃO: Validação completa do vídeo
+    // Validação completa do vídeo
     function validarVideo(arquivo) {
         // Verificar se o arquivo existe
         if (!arquivo) {
@@ -506,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return { valido: true, mensagem: 'Vídeo válido.' };
     }
 
-    // NOVA FUNÇÃO: Validação da duração do vídeo (máximo 2 minutos)
+    // Validação da duração do vídeo (máximo 2 minutos)
     function validarDuracaoVideo(arquivo) {
         return new Promise((resolve, reject) => {
             const video = document.createElement('video');
@@ -541,76 +563,6 @@ document.addEventListener('DOMContentLoaded', function() {
             video.src = url;
         });
     }
-
-    // ATUALIZAR: Modificar a validação da etapa 3 para incluir duração do vídeo
-    function validarEtapa3Completa(e) {
-        e.preventDefault();
-        
-        const inputFoto = document.getElementById('ffoto');
-        const inputVideo = document.getElementById('vvideo');
-        const observacoes = document.getElementById('campos').value.trim();
-        
-        // Verificar se a foto foi selecionada
-        if (!inputFoto.files.length) {
-            mostrarModal('Por favor, selecione uma foto 3x4.');
-            return;
-        }
-        
-        // Verificar se o vídeo foi selecionado
-        if (!inputVideo.files.length) {
-            mostrarModal('Por favor, selecione um vídeo esclarecedor.');
-            return;
-        }
-        
-        const arquivoFoto = inputFoto.files[0];
-        const arquivoVideo = inputVideo.files[0];
-        
-        // Validar foto
-        const validacaoFoto = validarFoto(arquivoFoto);
-        if (!validacaoFoto.valido) {
-            mostrarModal('Erro na foto: ' + validacaoFoto.mensagem);
-            return;
-        }
-        
-        // Validar vídeo
-        const validacaoVideo = validarVideo(arquivoVideo);
-        if (!validacaoVideo.valido) {
-            mostrarModal('Erro no vídeo: ' + validacaoVideo.mensagem);
-            return;
-        }
-        
-        // Verificar observações
-        if (!observacoes) {
-            mostrarModal('Por favor, preencha o campo de observações.');
-            return;
-        }
-        
-        // Validações assíncronas (dimensões da foto e duração do vídeo)
-        Promise.all([
-            validarDimensoesFoto(arquivoFoto),
-            validarDuracaoVideo(arquivoVideo)
-        ]).then(([dimensoesValidas, validacaoDuracao]) => {
-            if (!dimensoesValidas) {
-                mostrarModal('A foto deve ter proporções próximas ao formato 3x4. Por favor, selecione uma foto com essas dimensões.');
-                return;
-            }
-            
-            if (!validacaoDuracao.valido) {
-                mostrarModal('Erro na duração do vídeo: ' + validacaoDuracao.mensagem);
-                return;
-            }
-            
-            console.log('Validação da etapa 3 passou completamente, mudando para etapa 4');
-            mudarEtapa(2, 3);
-            
-        }).catch(error => {
-            console.error('Erro nas validações:', error);
-            mostrarModal('Erro ao processar os arquivos. Por favor, tente novamente.');
-        });
-    }
-
-    // Sobrescrever a função validarEtapa3 original
-    validarEtapa3 = validarEtapa3Completa;
 
     // Validação dos requisitos de senha em tempo real
     function validarRequisitos() {
@@ -700,7 +652,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalBody = document.getElementById('erroSenhaModalBody');
         if (modalBody) {
             modalBody.textContent = mensagem;
-            
+
             // Usa o Bootstrap para mostrar o modal
             const erroModal = new bootstrap.Modal(document.getElementById('erroSenhaModal'));
             erroModal.show();
@@ -710,28 +662,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Adicionar CSS para indicadores de requisitos
-    const style = document.createElement('style');
-    style.textContent = `
-        .requisitos-senha p {
-            color: #888;
-            transition: color 0.3s ease;
+    // Função para atualizar o nome do arquivo selecionado
+    function atualizarNomeArquivo(labelId, arquivo) {
+        const label = document.getElementById(labelId);
+        if (label && arquivo) {
+            // Truncar nome se for muito longo
+            const nomeArquivo = arquivo.name.length > 30 ?
+                arquivo.name.substring(0, 27) + '...' :
+                arquivo.name;
+
+            // Preservar o input dentro do label e apenas atualizar o texto
+            const input = label.querySelector('input[type="file"]');
+            if (input) {
+                // Criar novo conteúdo preservando o input
+                label.innerHTML = `<i class="fas fa-file"></i> ${nomeArquivo}`;
+                label.appendChild(input);
+            } else {
+                label.innerHTML = `<i class="fas fa-file"></i> ${nomeArquivo}`;
+            }
+        } else if (label) {
+            // Reset para o texto padrão se nenhum arquivo selecionado
+            const input = label.querySelector('input[type="file"]');
+            if (input) {
+                label.innerHTML = 'Upload arquivo';
+                label.appendChild(input);
+            } else {
+                label.innerHTML = 'Upload arquivo';
+            }
         }
-        .requisitos-senha .cumprido {
-            color: green;
-        }
-    `;
-    document.head.appendChild(style);
+    }
+
+
 
     // Inicializar estado dos passos na primeira carga
     atualizarEstadoPassos(0); // Começa no primeiro passo
 
- // Debug: Verificar se todos os elementos necessários existem
+    // Debug: Verificar se todos os elementos necessários existem
     console.log('=== DEBUG ELEMENTOS ===');
     console.log('Etapas encontradas:', etapas.map((e, i) => e ? `etapa${i+1}: OK` : `etapa${i+1}: ERRO`));
     console.log('Passos containers encontrados:', passosContainers.map((p, i) => p ? `container${i+1}: OK` : `container${i+1}: ERRO`));
-    console.log('Passos individuais encontrados:', passos.map((p, i) => p ? `passo${i+1}: OK` : `passo${i+1}: ERRO`));
+    console.log('Botões encontrados:', {
+        continuar1: document.getElementById('continuar1') ? 'OK' : 'ERRO',
+        continuar2: document.getElementById('continuar2') ? 'OK' : 'ERRO',
+        continuar3: document.getElementById('continuar3') ? 'OK' : 'ERRO',
+        enviar: document.getElementById('enviar') ? 'OK' : 'ERRO',
+        voltar1: document.getElementById('voltar1') ? 'OK' : 'ERRO',
+        voltar2: document.getElementById('voltar2') ? 'OK' : 'ERRO',
+        voltar3: document.getElementById('voltar3') ? 'OK' : 'ERRO'
+    });
 });
-
-// Inicializar estado dos passos na primeira carga
-atualizarEstadoPassos(0); // Começa no primeiro passo

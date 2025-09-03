@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         init() {
             this.setupFormatters();
-            this.setupPasswordUtils();
+            this.setupPasswordRequirementsLogic();
             this.setupOngCertificadosLogic();
             this.bindEvents();
             this.navigateToStep(1);
@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.hiddenDoadorValue.value = option.dataset.value;
                     this.selectedDoadorFormType = option.dataset.form;
                     this.dropdown.classList.remove('open');
+                    this.prepareStep2(); // Adicionado para exibir/ocultar a seção dinâmica após a seleção
                 });
             });
             
@@ -161,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.mostrarAviso('Cadastro realizado com sucesso!');
             }
         }
-
 
         setupOngCertificadosLogic() {
             if (!this.ongCertificacaoCheckbox) return;
@@ -336,16 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        setupPasswordUtils() {
-            this.form.querySelectorAll('.mostrar-senha').forEach(toggle => {
-                toggle.innerHTML = '<i class="bi bi-eye-slash"></i>';
-                toggle.addEventListener('click', function() {
-                    const input = this.closest('.senha-grupo').querySelector('input');
-                    const isPassword = input.type === 'password';
-                    input.type = isPassword ? 'text' : 'password';
-                    this.innerHTML = isPassword ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-                });
-            });
+        setupPasswordRequirementsLogic() {
             const senhaInput = document.getElementById('senha');
             const requisitos = {
                 length: document.getElementById('req-length'), number: document.getElementById('req-number'),
@@ -354,7 +345,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (senhaInput) senhaInput.addEventListener('input', () => {
                 const validation = this.validators.senha(senhaInput.value);
                 Object.keys(requisitos).forEach(key => {
-                    if (requisitos[key]) requisitos[key].classList.toggle('valid', validation[key]);
+                    const reqElement = requisitos[key];
+                    if (reqElement) {
+                        if (validation[key]) {
+                            reqElement.classList.add('valid');
+                        } else {
+                            reqElement.classList.remove('valid');
+                        }
+                    }
                 });
             });
         }

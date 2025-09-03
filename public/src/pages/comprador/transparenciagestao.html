@@ -64,7 +64,7 @@
         </button>
       </a>
       <a class="aaa" href="../../pages/comprador/transparenciagestao.html">
-        <button class="nav-tab " data-page="page1">
+        <button class="nav-tab active" data-page="page1">
           <svg class="icon" viewBox="0 0 24 24">
             <path
               d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,18H7V16H17V18M15.5,14H8.5V12H15.5V14M17,10H7V8H17V10Z" />
@@ -73,7 +73,7 @@
         </button>
       </a>
       <a class="aaa" href="../../pages/comprador/transparenciaparcerias.html">
-        <button class="nav-tab  active" data-page="page1">
+        <button class="nav-tab" data-page="page1">
           <svg class="icon" viewBox="0 0 24 24">
             <path
               d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7V11.59L15.71,14.3L14.29,15.71L11,12.41V7H13Z" />
@@ -135,13 +135,19 @@
               </div>
               <div class="form-group">
                 <label for="documentos">Documentos Comprobatórios</label>
-                <input type="file" id="documentos" name="documentos" class="form-control" multiple
-                  accept=".pdf,.doc,.docx,.jpg,.png,.jpeg">
-                <div class="file-upload-info">Formatos aceitos: PDF, DOC, DOCX, JPG, PNG</div>
+                <div class="file-upload" onclick="document.getElementById('documentos').click()">
+                  <svg class="icon" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 10px;">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                  </svg>
+                  <p>Clique para selecionar o arquivo ou arraste aqui</p>
+                  <small>Formatos aceitos: PDF, DOC, DOCX, JPG, PNG</small>
+                  <input type="file" id="documentos" name="documentos" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" multiple>
+                </div>
+                <div class="error-message" id="documentos-error"></div>
               </div>
             </div>
             <div class="bbb">
-              <button type="submit" class=" primeirinho">Adicionar</button>
+              <button type="submit" class="btn btn-primary">Adicionar</button>
             </div>
           </form>
         </div>

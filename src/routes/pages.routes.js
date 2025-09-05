@@ -9,13 +9,13 @@ const __dirname = path.dirname(__filename);
 const pageRouter = express.Router();
 
 pageRouter.get('/', (req, res) => {
-    console.warn(`⬆️   Rota / acessada.`);
-    res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
+    console.log(`⬆️   Rota / acessada.`);
+    res.sendFile(path.join(__dirname, '..', 'views', 'comprador', 'cadastrodoador.html'));
 });
 
 pageRouter.get('/test-db', async (req, res) => {
 
-    console.warn(`🔃   Iniciando o teste de conexão com o Banco de dados   🔃`)
+    console.log(`🔃   Iniciando o teste de conexão com o Banco de dados   🔃`)
 
     try {
         const result = await pool.query('SELECT NOW() as current_time');
@@ -33,6 +33,7 @@ pageRouter.get('/test-db', async (req, res) => {
             details: error.message 
         });
     }
+
 });
 
 export default pageRouter;

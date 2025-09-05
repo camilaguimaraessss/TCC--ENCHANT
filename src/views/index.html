@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENCHANT - Transformando Vidas Através da Conexão</title>
     <meta name="description" content="ENCHANT - Uma plataforma dedicada a conectar pessoas e transformar vidas através de experiências significativas.">
-    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="../../../public/styles/global.css">
     <style>
         :root {
-            --primary-color: #EC9E07;
+            --primary-color: #c09975;
             --secondary-color: #8B7777;
             --tertiary-color: #4E3629;
             --light-bg: #fcf2e8;
@@ -25,21 +22,13 @@
             --text-dark: #333;
             --text-light: #666;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: "Lexend Deca", sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
         }
-
-        /* Hero Section */
         .hero-section {
             min-height: 100vh;
             background: linear-gradient(135deg, var(--light-bg) 0%, #f8f1e4 50%, var(--accent-color) 100%);
@@ -48,12 +37,7 @@
             position: relative;
             padding-top: 80px;
         }
-
-        .hero-content {
-            z-index: 2;
-            position: relative;
-        }
-
+        .hero-content { z-index: 2; position: relative; }
         .hero-title {
             font-family: "Passion One", cursive;
             font-size: 4.5rem;
@@ -63,21 +47,18 @@
             line-height: 1.1;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-
         .hero-subtitle {
             font-size: 1.8rem;
             color: var(--secondary-color);
             margin-bottom: 2rem;
             font-weight: 300;
         }
-
         .hero-description {
             font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 3rem;
             max-width: 600px;
         }
-
         .cta-button {
             background: linear-gradient(45deg, var(--primary-color), #f4b942);
             border: none;
@@ -91,23 +72,16 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(236, 158, 7, 0.4);
             color: white;
         }
-
-        .hero-image {
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-        }
-
+        .hero-image { position: relative; animation: float 6s ease-in-out infinite; }
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
-
         .hero-decorative {
             position: absolute;
             top: 20%;
@@ -119,13 +93,7 @@
             opacity: 0.1;
             z-index: 1;
         }
-
-        /* Features Section */
-        .features-section {
-            padding: 100px 0;
-            background: white;
-        }
-
+        .features-section { padding: 100px 0; background: white; }
         .section-title {
             font-family: "Passion One", cursive;
             font-size: 3rem;
@@ -134,7 +102,6 @@
             margin-bottom: 3rem;
             position: relative;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -146,7 +113,6 @@
             background: var(--primary-color);
             border-radius: 2px;
         }
-
         .feature-card {
             background: white;
             padding: 40px 30px;
@@ -157,12 +123,10 @@
             height: 100%;
             border: 1px solid rgba(236, 158, 7, 0.1);
         }
-
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
-
         .feature-icon {
             width: 80px;
             height: 80px;
@@ -175,90 +139,61 @@
             color: white;
             font-size: 2rem;
         }
-
         .feature-title {
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--tertiary-color);
             margin-bottom: 15px;
         }
-
         .feature-description {
             color: var(--text-light);
             font-size: 1rem;
             line-height: 1.6;
         }
-
-        /* About Section */
-        .about-section {
-            padding: 100px 0;
-            background: var(--light-bg);
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
+        .about-section { padding: 100px 0; background: var(--light-bg); }
+        .about-content { display: flex; align-items: center; gap: 60px; }
         .about-text h2 {
             font-family: "Passion One", cursive;
             font-size: 2.8rem;
             color: var(--tertiary-color);
             margin-bottom: 25px;
         }
-
         .about-text p {
             font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 20px;
             text-align: justify;
         }
-
-        .stats-container {
-            display: flex;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
+        .stats-container { display: flex; gap: 30px; margin-top: 40px; }
+        .stat-item { text-align: center; }
         .stat-number {
             font-family: "Passion One", cursive;
             font-size: 3rem;
             color: var(--primary-color);
             font-weight: 700;
         }
-
         .stat-label {
             font-size: 0.9rem;
             color: var(--secondary-color);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        /* CTA Section */
         .cta-section {
             padding: 100px 0;
             background: linear-gradient(135deg, var(--tertiary-color) 0%, var(--secondary-color) 100%);
             color: white;
             text-align: center;
         }
-
         .cta-section h2 {
             font-family: "Passion One", cursive;
             font-size: 3.5rem;
             margin-bottom: 25px;
         }
-
         .cta-section p {
             font-size: 1.3rem;
             margin-bottom: 40px;
             opacity: 0.9;
         }
-
         .cta-button-white {
             background: white;
             color: var(--tertiary-color);
@@ -272,71 +207,31 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .cta-button-white:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255,255,255,0.4);
             color: var(--tertiary-color);
         }
-
-        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        /* Responsive Design */
+        .animate-on-scroll { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .hero-description {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .stats-container {
-                justify-content: center;
-                gap: 20px;
-            }
-            
-            .cta-section h2 {
-                font-size: 2.8rem;
-            }
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .hero-description { font-size: 1rem; }
+            .section-title { font-size: 2.5rem; }
+            .about-content { flex-direction: column; gap: 40px; }
+            .stats-container { justify-content: center; gap: 20px; }
+            .cta-section h2 { font-size: 2.8rem; }
         }
-
-        /* Floating Elements */
         .floating-shape {
             position: absolute;
             border-radius: 50%;
             opacity: 0.1;
             animation: float 8s ease-in-out infinite;
         }
-
         .floating-shape:nth-child(1) {
             top: 10%;
             left: 5%;
@@ -345,7 +240,6 @@
             background: var(--primary-color);
             animation-delay: -2s;
         }
-
         .floating-shape:nth-child(2) {
             top: 70%;
             right: 5%;
@@ -354,7 +248,6 @@
             background: var(--accent-color);
             animation-delay: -4s;
         }
-
         .floating-shape:nth-child(3) {
             bottom: 20%;
             left: 8%;
@@ -559,526 +452,120 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Header Script -->
     <script>
-        // Header Component (embedded version)
-        class HeaderComponent {
-            constructor() {
-                this.headerHTML = `
-                    <header>
-                        <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
-                            <a class="navbar-brand" href="#home">
-                                <img src="https://i.postimg.cc/g0RvMKxc/2475bcce-285c-4b1b-b92b-8e3b0680fef1.png" width="120" height="auto" alt="Logo" class="img" />
-                            </a>
-                            <button id="icone" class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
-                                aria-label="Alterna navegação">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                                <ul class="navbar-nav menu-lateral">
-                                    <li class="nav-item">
-                                        <a id="quem" class="nav-link" href="#about" title="Quem somos">Quem somos?</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="saiba" class="nav-link" href="#features" title="Saiba mais">Saiba mais</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="suporte-header" class="nav-link" href="#contact" title="Suporte">Suporte</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="entrar" class="nav-link" href="#login" title="Entrar">Entrar</a>
-                                    </li>
-                                </ul>
-                                <a href="#cta">
-                                    <button class="btn btn-brown" type="button" id="doeagora">
-                                        Junte-se a nós
-                                    </button>
-                                </a>
-                            </div>
-                        </nav>
-                    </header>
-                `;
-
-                this.headerCSS = `
-                    #fixado {
-                        position: fixed;
-                        width: 100%;
-                        z-index: 1000;
-                        top: 0;
-                        left: 0;
-                        padding-left: 16px;
-                        padding-right: 16px;
-                        background-color: rgba(255, 255, 255, 0.95) !important;
-                        backdrop-filter: blur(10px);
-                        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-                    }
-
-                    .navbar-nav {
-                        display: flex;
-                        justify-content: flex-start;
-                        align-items: center;
-                        font-size: 14px;
-                        gap: 0.5rem;
-                        margin-left: 20px;
-                    }
-
-                    .img {
-                        margin-top: -0.6rem;
-                        margin-left: 1rem;
-                    }
-
-                    .btn-brown, #doeagora {
-                        background-color: var(--accent-color);
-                        border-color: var(--accent-color);
-                        color: var(--tertiary-color);
-                        font-weight: 700;
-                        font-family: "Lexend Deca";
-                        font-size: 16px;
-                        width: 9rem;
-                        margin-right: 2rem;
-                        border-radius: 25px;
-                        transition: all 0.3s ease;
-                    }
-
-                    #doeagora:hover {
-                        background-color: var(--primary-color);
-                        color: white;
-                        transform: translateY(-2px);
-                        box-shadow: 0 5px 15px rgba(236, 158, 7, 0.3);
-                    }
-                `;
+      // JS customizado da página para animações, counters, efeitos, etc
+      document.addEventListener('DOMContentLoaded', function () {
+        // Animation on scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
             }
-
-            injectCSS() {
-                const existingStyle = document.getElementById('header-styles');
-                if (!existingStyle) {
-                    const style = document.createElement('style');
-                    style.id = 'header-styles';
-                    style.textContent = this.headerCSS;
-                    document.head.appendChild(style);
-                }
-            }
-
-            render(targetElementId) {
-                this.injectCSS();
-                const targetElement = document.getElementById(targetElementId);
-                if (targetElement) {
-                    targetElement.innerHTML = this.headerHTML;
-                }
-            }
-        }
-
-        // Footer initialization (embedded version)
-        const footerCSS = `
-            footer {
-                background-color: #fcf2e8;
-                font-family: "Lexend Deca", sans-serif;
-                width: 100%;
-                padding: 2rem 1rem;
-            }
-
-            .footer-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .footer-left {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .footer-logo {
-                width: 180px;
-                height: auto;
-                margin-bottom: 1rem;
-            }
-
-            .footer-left p {
-                font-size: 12px;
-                line-height: 1.5;
-                color: #333;
-                text-align: justify;
-                margin-bottom: 1rem;
-                max-width: 100%;
-            }
-
-            .copyright {
-                font-size: 10px;
-                color: #666;
-                margin-top: 0.5rem;
-            }
-
-            .footer-right {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .footer-column {
-                text-align: left;
-            }
-
-            .footer-column h3 {
-                font-weight: 400;
-                font-size: 13px;
-                color: #535151;
-                margin-bottom: 0.8rem;
-                text-transform: uppercase;
-            }
-
-            .footer-column a {
-                color: #EC9E07;
-                text-decoration: none;
-                font-size: 12px;
-                display: block;
-                margin-bottom: 0.3rem;
-                transition: color 0.3s ease;
-            }
-
-            .footer-column a:hover {
-                text-decoration: underline;
-                color: #8B7777;
-            }
-
-            @media (min-width: 768px) {
-                .footer-container {
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    gap: 2rem;
-                }
-
-                .footer-left {
-                    flex: 0 0 45%;
-                    max-width: 400px;
-                }
-
-                .footer-right {
-                    flex: 0 0 50%;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    gap: 1rem;
-                    min-width: 0;
-                }
-
-                .footer-column {
-                    flex: 1;
-                    min-width: 120px;
-                }
-            }
-        `;
-
-        const footerHTML = `
-            <footer>
-                <div class="footer-container">
-                    <div class="footer-left">
-                        <img src="https://i.postimg.cc/g0RvMKxc/2475bcce-285c-4b1b-b92b-8e3b0680fef1.png" 
-                             alt="Logo Enchant" 
-                             class="footer-logo" 
-                             title="Logo-Enchant" />
-                        <p>
-                            De forma alguma o ENCHANT foi criado com o intuito de desviar os
-                            termos relacionados à política de privacidade do cadastrante. O site
-                            está disponível para toda e qualquer ajuda em relação aos contatos.
-                            O site que aqui explica não aceita qualquer violência verbal, sendo
-                            contra toda e qualquer atividade agressiva.
-                        </p>
-                        <p class="copyright">© 2025 ENCHANT Brasil</p>
-                    </div>
-                    <div class="footer-right">
-                        <div class="footer-column">
-                            <h3>MAIS INFORMAÇÕES</h3>
-                            <a href="#about" title="Conheça mais sobre o ENCHANT">
-                                Conheça mais sobre o ENCHANT
-                            </a>
-                        </div>
-                        <div class="footer-column">
-                            <h3>PROTEÇÃO DE DADOS</h3>
-                            <a href="#privacy">Política de privacidade</a>
-                        </div>
-                        <div class="footer-column">
-                            <h3>ACOMPANHE NOSSAS REDES</h3>
-                            <a href="https://www.instagram.com/enchant_pa?igsh=MXE5MTZqendmdDJheQ%3D%3D&utm_source=qr" 
-                               target="_blank">
-                                Instagram - enchant_pa
-                            </a>
-                            <a href="https://www.linkedin.com/in/enchant-pa-4a5079358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-                               target="_blank">
-                                LinkedIn - enchant_pa
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        `;
-
-        // Initialize components
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Header
-            const header = new HeaderComponent();
-            header.render('header-container');
-
-            // Initialize Footer
-            const footerStyle = document.createElement('style');
-            footerStyle.textContent = footerCSS;
-            document.head.appendChild(footerStyle);
-            
-            document.getElementById('enchant-footer').innerHTML = footerHTML;
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Animation on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all elements with animate class
-            document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
-                observer.observe(el);
-            });
-
-            // Counter animation for stats
-            function animateCounter(element, target, duration = 2000) {
-                let start = 0;
-                const increment = target / (duration / 16);
-                
-                const timer = setInterval(() => {
-                    start += increment;
-                    if (start >= target) {
-                        element.textContent = target.toLocaleString() + (element.textContent.includes('+') ? '+' : element.textContent.includes('%') ? '%' : '');
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = Math.floor(start).toLocaleString() + (element.textContent.includes('+') ? '+' : element.textContent.includes('%') ? '%' : '');
-                    }
-                }, 16);
-            }
-
-            // Animate stats when they come into view
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const statNumbers = entry.target.querySelectorAll('.stat-number');
-                        statNumbers.forEach(stat => {
-                            const text = stat.textContent;
-                            let target = parseInt(text.replace(/[^\d]/g, ''));
-                            
-                            if (text.includes('K')) target *= 1000;
-                            if (text.includes('%')) target = parseInt(text);
-                            
-                            animateCounter(stat, target);
-                        });
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            });
-
-            const statsContainer = document.querySelector('.stats-container');
-            if (statsContainer) {
-                statsObserver.observe(statsContainer);
-            }
-
-            // Add parallax effect to hero section
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const heroSection = document.querySelector('.hero-section');
-                const heroContent = document.querySelector('.hero-content');
-                
-                if (heroSection && heroContent) {
-                    heroContent.style.transform = `translateY(${scrolled * 0.1}px)`;
-                }
-
-                // Add navbar background on scroll
-                const navbar = document.getElementById('fixado');
-                if (navbar) {
-                    if (scrolled > 50) {
-                        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-                        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-                    } else {
-                        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-                    }
-                }
-            });
-
-            // Mobile menu toggle
-            const toggler = document.getElementById('icone');
-            const navbarCollapse = document.getElementById('conteudoNavbarSuportado');
-            
-            if (toggler && navbarCollapse) {
-                toggler.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    navbarCollapse.classList.toggle('show');
-                    toggler.classList.toggle('active');
-                });
-
-                // Close menu when clicking on links
-                navbarCollapse.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navbarCollapse.classList.remove('show');
-                        toggler.classList.remove('active');
-                    });
-                });
-            }
-
-            // Add hover effects to feature cards
-            document.querySelectorAll('.feature-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Add click effects to CTA buttons
-            document.querySelectorAll('.cta-button, .cta-button-white').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    // Create ripple effect
-                    const ripple = document.createElement('span');
-                    const rect = button.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.cssText = `
-                        position: absolute;
-                        width: ${size}px;
-                        height: ${size}px;
-                        left: ${x}px;
-                        top: ${y}px;
-                        background: rgba(255,255,255,0.3);
-                        border-radius: 50%;
-                        transform: scale(0);
-                        animation: ripple 0.6s linear;
-                        pointer-events: none;
-                    `;
-                    
-                    button.style.position = 'relative';
-                    button.style.overflow = 'hidden';
-                    button.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-
-            // Add CSS for ripple animation
-            const rippleStyle = document.createElement('style');
-            rippleStyle.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(2);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(rippleStyle);
-
-            console.log('ENCHANT Landing Page initialized successfully!');
+          });
+        }, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(30px)';
+          el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+          observer.observe(el);
         });
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+          let start = 0;
+          const increment = target / (duration / 16);
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+              element.textContent = target.toLocaleString() + (element.textContent.includes('+') ? '+' : element.textContent.includes('%') ? '%' : '');
+              clearInterval(timer);
+            } else {
+              element.textContent = Math.floor(start).toLocaleString() + (element.textContent.includes('+') ? '+' : element.textContent.includes('%') ? '%' : '');
+            }
+          }, 16);
+        }
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const statNumbers = entry.target.querySelectorAll('.stat-number');
+              statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                let target = parseInt(text.replace(/[^\d]/g, ''));
+                if (text.includes('K')) target *= 1000;
+                if (text.includes('%')) target = parseInt(text);
+                animateCounter(stat, target);
+              });
+              statsObserver.unobserve(entry.target);
+            }
+          });
+        });
+        const statsContainer = document.querySelector('.stats-container');
+        if (statsContainer) {
+          statsObserver.observe(statsContainer);
+        }
+        // Parallax effect hero section
+        window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          const heroSection = document.querySelector('.hero-section');
+          const heroContent = document.querySelector('.hero-content');
+          if (heroSection && heroContent) {
+            heroContent.style.transform = `translateY(${scrolled * 0.1}px)`;
+          }
+        });
+        // Hover effects feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+          card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+          });
+        });
+        // Ripple effect CTA buttons
+        document.querySelectorAll('.cta-button, .cta-button-white').forEach(button => {
+          button.addEventListener('click', (e) => {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            ripple.style.cssText = `
+              position: absolute;
+              width: ${size}px;
+              height: ${size}px;
+              left: ${x}px;
+              top: ${y}px;
+              background: rgba(255,255,255,0.3);
+              border-radius: 50%;
+              transform: scale(0);
+              animation: ripple 0.6s linear;
+              pointer-events: none;
+            `;
+            button.style.position = 'relative';
+            button.style.overflow = 'hidden';
+            button.appendChild(ripple);
+            setTimeout(() => { ripple.remove(); }, 600);
+          });
+        });
+        // CSS for ripple animation
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `@keyframes ripple { to { transform: scale(2); opacity: 0; } }`;
+        document.head.appendChild(rippleStyle);
+      });
     </script>
-
-    <!-- Additional CSS for navbar toggler animation -->
-    <style>
-        .navbar-toggler {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        .navbar-toggler:focus {
-            box-shadow: none !important;
-        }
-
-        .navbar-toggler-icon {
-            background-image: none !important;
-            position: relative;
-            width: 20px;
-            height: 2px;
-            background-color: var(--tertiary-color);
-            transition: all 0.3s ease;
-        }
-
-        .navbar-toggler-icon::before,
-        .navbar-toggler-icon::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 20px;
-            height: 2px;
-            background-color: var(--tertiary-color);
-            transition: all 0.3s ease;
-        }
-
-        .navbar-toggler-icon::before {
-            top: -6px;
-        }
-
-        .navbar-toggler-icon::after {
-            bottom: -6px;
-        }
-
-        .navbar-toggler.active .navbar-toggler-icon {
-            background-color: transparent;
-        }
-
-        .navbar-toggler.active .navbar-toggler-icon::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
-
-        .navbar-toggler.active .navbar-toggler-icon::after {
-            bottom: 0;
-            transform: rotate(-45deg);
-        }
-
-        /* Mobile menu animation */
-        @media (max-width: 991px) {
-            .navbar-collapse {
-                transition: all 0.3s ease;
-                max-height: 0;
-                overflow: hidden;
-            }
-
-            .navbar-collapse.show {
-                max-height: 300px;
-                padding-top: 10px;
-            }
-        }
-    </style>
+    <script src="../../../public/scripts/layouts/enchant/headerenchant.js"></script>
+    <script src="../../../public/scripts/layouts/enchant/footerenchant.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        HeaderComponent.loadDependencies();
+        // Renderizar o header no container
+        initializeHeader('header-container');
+      });
+    </script>
 </body>
 </html>

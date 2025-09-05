@@ -172,11 +172,11 @@ body {
 
 
 .h1 {
-  font-family: "Passion One", serif;
+  font-family: "Passion One", serif!important;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 32px;
 
-  color: rgba(97, 53, 12, 1);
+  color: rgba(97, 53, 12, 1)!important;
 
   /* Ajusta o espaçamento */
 

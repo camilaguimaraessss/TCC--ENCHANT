@@ -14,22 +14,83 @@
     <link rel="stylesheet" href="../../../public/styles/enchant/paginapagamentoinicial.css">
     <link rel="stylesheet" href="../../../public/scripts/enchant/paginapagamentoinicial.js">
 
+<<<<<<< HEAD
 
   <script src="../../../public/scripts/layouts/enchant/headerenchant.js"></script>
   <script src="../../../public/scripts/layouts/enchant/footerenchant.js"></script>
   <link rel="stylesheet" href="../../../public/styles/global.css">
 
 
+=======
+  <link rel="stylesheet" href="/styles/comprador/cadastrodoador.css">
+  <link rel="stylesheet" href="/styles/global.css">
+
+  <script src="/scripts/comprador/cadastrodoador.js" defer></script>
+  <script src="/scripts/layouts/comprador/headercomprador.js" defer></script>
+  <script src="/scripts/layouts/comprador/sidebar.js" defer></script>
+  <script src="/scripts/layouts/comprador/footercomprador.js" defer></script>
+
+>>>>>>> bcd1f699adf196ca3f9b1deb0a17ccb64e55bf55
 </head>
 <body>
     <section>
        <div id="header-container"></div>
     </section>
 
+<<<<<<< HEAD
     <main>
         <div class="primeira-parte" id="primeira-parte">
             <div>
                 <h2 class="pagamento">Insira os seus dados</h2>
+=======
+  <div class="container-amplo">
+    <br><br><br>
+    <h1 class="titulo">Cadastro de Doador</h1>
+
+    <div class="formulario form-container ativo">
+      <div class="passos-container">
+        <div class="passo ativo" data-step="1">1° passo</div>
+        <div class="passo" data-step="2">2° passo</div>
+      </div>
+
+      <form action="javascript:void(0);" id="cadastro-form-multistep">
+
+        <div class="parte" id="passo1">
+          <p class="aviso">Recomendamos atenção total ao preencher os dados. É fundamental que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.</p>
+
+          <div class="campo">
+            <label for="nome-completo">Nome completo ou da Instituição: <span class="obrigatorio">*</span></label>
+            <input type="text" id="nomeCompleto" name="nome-completo" placeholder="ex: Nome completo ou nome da sua organização" required>
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail: <span class="obrigatorio">*</span></label>
+            <input type="email" id="email" name="email" placeholder="ex: seunome@email.com" required>
+          </div>
+
+          <div class="campo">
+            <label for="tipo-doador-dropdown">Tipo de doador: <span class="obrigatorio">*</span></label>
+            <div class="custom-dropdown" id="tipo-doador-dropdown">
+              <div class="dropdown-selected">
+                <span id="dropdown-text">Selecione uma opção</span>
+                <i class="bi bi-chevron-down dropdown-arrow"></i>
+              </div>
+              <ul class="dropdown-options">
+                <li data-value="pessoa_fisica" data-form="pessoa">Pessoa Física</li>
+                <li data-value="ong" data-form="ong">Organização Não Governamental (ONG)</li>
+                <li data-value="escola" data-form="instituicao">Escola</li>
+                <li data-value="igreja" data-form="instituicao">Igreja</li>
+                <li data-value="universidade" data-form="instituicao">Universidade</li>
+                <li data-value="empresa_privada" data-form="instituicao">Empresa Privada</li>
+                <li data-value="hospital" data-form="instituicao">Hospitais</li>
+                <li data-value="prefeitura" data-form="instituicao">Prefeitura e Órgãos Públicos</li>
+                <li data-value="centro_comunitario" data-form="instituicao">Centros Comunitários</li>
+                <li data-value="biblioteca" data-form="instituicao">Bibliotecas Públicas</li>
+                <li data-value="condominio" data-form="instituicao">Condomínio e Associação de Moradores</li>
+                <li data-value="supermercado" data-form="instituicao">Supermercados e Comércios Locais</li>
+              </ul>
+              <input type="hidden" id="tipo_doador_value" name="tipo_doador">
+>>>>>>> bcd1f699adf196ca3f9b1deb0a17ccb64e55bf55
             </div>
             <section class="container">
                 <div class="recomendações">

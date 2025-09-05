@@ -601,13 +601,13 @@
                 <div class="footer-right">
                     <div class="footer-column">
                         <h3>MAIS INFORMAÇÕES</h3>
-                        <a href="/public/src/pages/enchant/saibamais1.html" title="Conheça mais sobre o ENCHANT - clique">
+                        <a href="/src/views/enchant/saibamais1.html" title="Conheça mais sobre o ENCHANT - clique">
                             Conheça mais sobre o ENCHANT
                         </a>
                     </div>
                     <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
                         <h3>PROTEÇÃO DE DADOS</h3>
-                        <a href="/public/src/pages/enchant/privacidade1.htmll">Política de privacidade</a>
+                        <a href="/src/views/enchant/privacidade1.html">Política de privacidade</a>
                     </div>
                     <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
                         <h3>ACOMPANHE NOSSAS REDES</h3>

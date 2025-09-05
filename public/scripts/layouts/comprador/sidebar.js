@@ -199,40 +199,40 @@
                 const sidebarHTML = `
                     <aside class="sidebar" id="sidebar">
                         <nav class="sidebar-nav">
-                            <a href="/public/src/pages/comprador/mapa.html">
+                            <a href="/src/views/comprador/mapa.html">
                                 <i class="bi bi-map"></i>
                                 <span>Mapa</span>
                             </a>
-                            <a href="/public/src/pages/comprador/pontosdeabrigo.html">
+                            <a href="/src/views/comprador/pontosdeabrigo.html">
                                 <i class="bi bi-geo"></i>
                                 <span>Pontos de abrigo</span>
                             </a>
-                            <a href="/public/src/pages/comprador/ajudamedica.html">
+                            <a href="/src/views/comprador/ajudamedica.html">
                                 <i class="bi bi-truck"></i>
                                 <span>Ajuda médica</span>
                             </a>
-                            <a href="/public/src/pages/comprador/doacao.html">
+                            <a href="/src/views/comprador/doacao.html">
                                 <i class="bi bi-box"></i>
                                 <span>Doação</span>
                             </a>
-                            <a href="/public/src/pages/comprador/pontosdecoleta.html">
+                            <a href="/src/views/comprador/pontosdecoleta.html">
                                 <i class="bi bi-geo-alt-fill"></i>
                                 <span>Pontos de coleta</span>
                             </a>
-                            <a href="/public/src/pages/comprador/historicodoacoes.html">
+                            <a href="/src/views/comprador/historicodoacoes.html">
                                 <i class="bi bi-journal"></i>
                                 <span>Histórico de doação</span>
                             </a>
                          
-                            <a href="/public/src/pages/comprador/transparencia1.html">
+                            <a href="/src/views/comprador/transparencia1.html">
                                 <i class="bi bi-search"></i>
                                 <span>Transparência</span>
                             </a>
-                            <a href="/public/src/pages/comprador/verificao.html">
+                            <a href="/src/views/comprador/verificao.html">
                                 <i class="bi bi-check-circle-fill"></i>
                                 <span>Verificação de doações</span>
                             </a>
-                            <a href="/public/src/pages/comprador/ajuda.html">
+                            <a href="/src/views/comprador/ajuda.html">
                                 <i class="bi bi-info-circle"></i>
                                 <span>Ajuda</span>
                             </a>

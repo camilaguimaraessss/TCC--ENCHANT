@@ -1,48 +1,130 @@
-# Projeto Enchant: Otimizando a Resposta a Enchentes na Bahia 🌊
+<div align="center">
 
-## Visão Geral
+# 🌊 Enchant
+### *Sistema Inteligente de Gestão para ONGs em Emergências*
 
-O **Projeto Enchant** é uma proposta avaliativa com o objetivo primordial de **aprimorar a gestão de Organizações Não Governamentais (ONGs)** que atuam no auxílio às vítimas das enchentes na Bahia. Em momentos de crise, a eficiência na coordenação e na distribuição de recursos é crucial para minimizar o sofrimento e otimizar a resposta humanitária. Nossa plataforma digital visa ser um hub central para otimizar as ações das ONGs, tornando a ajuda mais rápida e direcionada.
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=true&repeat=false&width=600&height=100&lines=Salvando+vidas+com+tecnologia;Conectando+ONGs+e+comunidades" alt="Typing SVG" />
 
-## Funcionalidades Chave da Plataforma
+![Status](https://img.shields.io/badge/Status-🚀%20Em%20Desenvolvimento-brightgreen?style=for-the-badge&logo=rocket)
+![TCC](https://img.shields.io/badge/TCC-SESI%2FSENAI-blue?style=for-the-badge&logo=graduation-cap)
+![Team](https://img.shields.io/badge/Team-3%20Devs-purple?style=for-the-badge&logo=users)
 
-Nossa plataforma será desenvolvida com funcionalidades essenciais para otimizar a operacionalização das ações:
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-* **Seção de Doações:** 💰 Um módulo seguro e transparente para facilitar a arrecadação de doações. Doadores poderão contribuir de forma clara, e as ONGs terão acesso facilitado aos recursos.
-* **Emissão de Relatórios:** 📊 Ferramenta crucial para a prestação de contas e a transparência. As ONGs poderão gerar relatórios detalhados sobre as doações recebidas, recursos utilizados e ações realizadas, demonstrando o impacto de seu trabalho.
-* **Mapa de Áreas de Risco:** 📍 Uma funcionalidade inovadora com um mapa interativo que descreverá as principais áreas de risco na Bahia. Com informações atualizadas sobre os locais mais afetados ou vulneráveis a enchentes, permitirá que as ONGs planejem ações de forma mais estratégica, direcionando equipes e recursos para onde são mais necessários.
-
-## Impacto Esperado
-
-O Projeto Enchant busca **melhorar significativamente a capacidade de resposta das ONGs** diante das enchentes na Bahia. Ao otimizar a gestão de doações, facilitar a prestação de contas e fornecer informações geográficas cruciais, o projeto contribuirá para:
-
-* Maior agilidade na distribuição de ajuda. 💨
-* Melhor alocação de recursos. 📦
-* Aumento da transparência e da confiança pública. 🤝
-* Redução do impacto das enchentes na população. 🙏
-
----
-
-## Integrantes do Projeto
-
-Este projeto avaliativo conta com a dedicação e o trabalho dos seguintes integrantes:
-
-* **Andressa Cruz** 👩‍💻
-* **Camila Guimarães** 📝
-* **Guilherme Oliver** 💡
-* **Manuella Souza** ✍️
-* **Marcelle Abreu** 📊
-* **Marcos Henry** 📍
-
-## Nossos contatos 
-
----
-
-<div> 
- 	<a href="#" target="_blank"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white" target="_blank"></a>
- <a href="#" target="_blank"><img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" target="_blank"></a> 
-  <a href = "#"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-  <a href="#" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-  
 </div>
 
+## 🎯 Sobre o Projeto
+
+O **Enchant** é uma plataforma web revolucionária desenvolvida como TCC que transforma a gestão de ONGs durante emergências climáticas. Nossa missão é salvar vidas através da tecnologia!
+
+<div align="center">
+
+### 🌟 *"Transformando a gestão humanitária com inovação e tecnologia"*
+
+</div>
+
+## 🛠️ Stack Tecnológica
+
+<div align="center">
+
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+### Backend & Database
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+
+### Ferramentas
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+
+</div>
+
+## 📊 Estatísticas do Repositório
+
+![GitHub last commit](https://img.shields.io/github/last-commit/camilaguimaraessss/enchant?style=for-the-badge&color=blue)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/camilaguimaraessss/enchant?style=for-the-badge&color=brightgreen)
+![GitHub contributors](https://img.shields.io/github/contributors/camilaguimaraessss/enchant?style=for-the-badge&color=orange)
+
+</div>
+
+## 🔥 Nossa Equipe de Desenvolvedoras
+
+<table align="center">
+<tr>
+<td align="center">
+<img src="https://github.com/camilaguimaraessss.png" width="150px" style="border-radius: 50%"><br>
+<b>Camila Guimarães</b><br>
+<sub>Full Stack Developer</sub><br>
+<sub>Frontend Specialist</sub><br>
+<a href="https://github.com/camilaguimaraessss">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/Manuella2504.png" width="150px" style="border-radius: 50%"><br>
+<b>Manuella Souza</b><br>
+<sub>Frontend Specialist</sub><br>
+<a href="https://github.com/Manuella2504">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/salada096.png" width="150px" style="border-radius: 50%"><br>
+<b>Marcelle Abreu</b><br>
+<sub>Backend & Database</sub><br>
+<sub>Frontend Specialist</sub><br>
+<a href="https://github.com/salada096">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/GUIOLI08.png" width="150px" style="border-radius: 50%"><br>
+<b>Guilherme Oliver</b><br>
+<sub>Full Stack Developer</sub><br>
+<sub>Backend & Databaser</sub><br>
+<a href="https://github.com/GUIOLI08">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/Marcdotcomb1ne.png" width="150px" style="border-radius: 50%"><br>
+<b>Marcos Henry</b><br>
+<sub>Full Stack Developer</sub><br>
+<sub>Backend & Databaser</sub><br>
+<a href="https://github.com/Marcdotcomb1ne">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/Andressa-gith.png" width="150px" style="border-radius: 50%"><br>
+<b>Andressa Cruz</b><br>
+<sub>Full Stack Developer</sub><br>
+<sub>Backend & Databaser</sub><br>
+<a href="https://github.com/Andressa-gith">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+</td>
+</tr>
+</table>
+
+### 🏆 GitHub Stats das Desenvolvedoras
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=camilaguimaraessss&theme=tokyonight&hide_border=true&fire=00D4FF&ring=00D4FF&currStreakLabel=00D4FF" width="300">
+</td>
+<td align="center">
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=Manuella2504&theme=tokyonight&hide_border=true&fire=00D4FF&ring=00D4FF&currStreakLabel=00D4FF" width="300">
+</td>
+<td align="center">
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=salada096&theme=tokyonight&hide_border=true&fire=00D4FF&ring=00D4FF&currStreakLabel=00D4FF" width="300">
+</td>
+</tr>
+</table>
+</div>

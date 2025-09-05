@@ -333,14 +333,14 @@
                 const headerHTML = `
                     <header class="main-header">
                         <div class="header-content">
-                            <a href="/public/src/pages/comprador/dashboard.html"><div class="logo-upload" id="logoUpload"></a>
+                            <a href="/src/views/comprador/dashboard.html"><div class="logo-upload" id="logoUpload"></a>
                                 <div class="logo-preview" id="logoPreview">
                                 </div>
                             </div>
                             <div class="right-section">
                                 <nav class="desktop-nav">
-                                    <a href="/public/src/pages/comprador/quemsomos2.html">Quem somos?</a>
-                                    <a href="/public/src/pages/comprador/saibamais2.html">Saiba mais</a>
+                                    <a href="/src/views/comprador/quemsomos2.html">Quem somos?</a>
+                                    <a href="/src/views/comprador/saibamais2.html">Saiba mais</a>
                                 </nav>
                                 <div class="profile-section">
                                     <button class="profile-button" id="profileButton">
@@ -349,16 +349,16 @@
                                         <span>Nome do Usuário</span>
                                     </button>
                                     <div class="profile-dropdown" id="profileDropdown">
-                                        <a class="dropdown-item" href="/public/src/pages/comprador/perfilcomprador.html"><i class="bi bi-person"></i> Perfil</a>
-                                        <a class="dropdown-item" href="/public/src/pages/comprador/telainicialparaocomprador.html"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                                        <a class="dropdown-item" href="/src/views/comprador/perfilcomprador.html"><i class="bi bi-person"></i> Perfil</a>
+                                        <a class="dropdown-item" href="/src/views/comprador/telainicialparaocomprador.html"><i class="bi bi-box-arrow-right"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
                             <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="bi bi-three-dots"></i></button>
                             <nav class="mobile-navbar" id="mobileNavbar">
                                 <ul class="mobile-nav-list">
-                                    <li class="mobile-nav-item"><a href="/public/src/pages/comprador/quemsomos2.html">Quem somos?</a></li>
-                                    <li class="mobile-nav-item"><a href="/public/src/pages/comprador/saibamais2.html.html">Saiba mais</a></li>
+                                    <li class="mobile-nav-item"><a href="/src/views/comprador/quemsomos2.html">Quem somos?</a></li>
+                                    <li class="mobile-nav-item"><a href="/src/views/comprador/saibamais2.html.html">Saiba mais</a></li>
                                     <li class="mobile-nav-item">
                                         <div class="profile-section">
                                             <button class="profile-button" id="profileButtonMobile">

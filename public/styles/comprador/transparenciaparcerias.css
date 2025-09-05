@@ -69,19 +69,23 @@
 
 
         .container {
-            max-width: 1700px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-          
-            
+        
+        margin: 0 auto;
+        padding-left: 100px;
+        padding-right: 100px;
+        max-width: 1500px;
+
         }
 
 
-        .title {
-            color: #693B11;
-            margin-bottom: 10px;
-            font-size: 32px;
+        .tite {
+           font-family: 'Passion One', cursive;
+        font-size: 32px;
+        color: #693B11;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 400;
+        margin-top: 65px;
         }
 
 
@@ -559,6 +563,21 @@
 
 
         .cancel:hover {
+
             background-color: #caae8d;
-    color: #3d2106;
+            color: #3d2106;
+
         }
+
+        @media(max-width: 1200px) {
+             .container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+        @media (max-width: 768px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

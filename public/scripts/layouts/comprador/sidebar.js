@@ -66,8 +66,10 @@
                         overflow: hidden;
                         z-index: 800;
                         border-radius: 0 6px 6px 0;
+                        display: flex;
+                        flex-direction: column;
                     }
-                    
+
                     @media (min-width: 1025px) {
                         .sidebar {
                             display: block;
@@ -82,8 +84,10 @@
                         }
                     }
 
+                    /* ===== NAVEGAÇÃO ===== */
                     .sidebar-nav {
                         padding-top: var(--header-height);
+                        flex: 1;
                     }
 
                     .sidebar-nav a {
@@ -115,6 +119,93 @@
                         transition: opacity 0.2s, visibility 0.2s;
                     }
 
+                    /* ===== PERFIL NA SIDEBAR ===== */
+                    .sidebar-profile {
+                        padding: 15px;
+                        border-top: none;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-top: auto;
+                        margin-bottom: 10px;
+                    }
+
+                    .sidebar-profile-content {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        margin-bottom: 15px;
+                    }
+
+                    .sidebar-profile-photo {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 2px solid #CCC;
+                        display: none;
+                    }
+
+                    .sidebar-profile-icon {
+                        font-size: 35px;
+                        color: #CCC;
+                        margin-right: 15px;
+                    }
+
+                    /* === Ajuste: nome, sair e ícone controlados por viewport === */
+
+                    /* Esconde nome e sair no desktop */
+                    .sidebar-profile-name,
+                    .sidebar-logout {
+                        display: none;
+                    }
+
+                    /* Esconde o ícone no desktop */
+                    @media (min-width: 1025px) {
+                        .sidebar-profile-icon {
+                            display: none;
+                        }
+                    }
+
+                    /* Mostra tudo no mobile */
+                    @media (max-width: 1024px) {
+                        .sidebar-profile-name,
+                        .sidebar-logout {
+                            display: flex;
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                            .sidebar-profile {
+                                border-top: 1px solid rgba(0, 0, 0, 0.1); /* mostra linha só no mobile */
+                            }
+                        .sidebar-profile-icon {
+                            display: block; /* ícone só no mobile */
+                        }
+                    }
+
+                    /* Botão sair */
+                    .sidebar-logout {
+                        align-items: center;
+                        justify-content: center;
+                        color: var(--text-color);
+                        text-decoration: none;
+                        padding: 10px;
+                        background-color: rgba(0, 0, 0, 0.05);
+                        border-radius: 5px;
+                        width: 100%;
+                        transition: var(--transition);
+                        margin-bottom: 25px;
+                    }
+                    .sidebar-logout:hover {
+                        background-color: rgba(0, 0, 0, 0.1);
+                    }
+                    .sidebar-logout i {
+                        margin-right: 10px;
+                    }
+                    .sidebar-logout span {
+                        font-size: 14px;
+                    }
+
                     /* ===== OVERLAY PARA MOBILE ===== */
                     .sidebar-overlay {
                         position: fixed;
@@ -122,13 +213,12 @@
                         left: 0;
                         right: 0;
                         bottom: 0;
-                        background-color: rgba(0, 0, 0, 0.5);
+                        background-color: rgba(0, 0, 0, 0.7);
                         z-index: 799;
                         display: none;
                         opacity: 0;
                         transition: opacity 0.3s ease;
                     }
-                    
                     .sidebar-overlay.show {
                         display: block;
                         opacity: 1;
@@ -149,30 +239,17 @@
                             width: var(--sidebar-width);
                             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
                         }
-                        
-                        .sidebar.open { 
-                            left: 0; 
-                        }
-                        
-                        .sidebar-nav span { 
-                            opacity: 1; 
-                            visibility: visible; 
-                        }
-                        
-                        .main-content { 
-                            margin-left: 0; 
-                        }
-                        
-                        .sidebar-nav { 
-                            padding-top: 50px; 
-                        }
+                        .sidebar.open { left: 0; }
+                        .sidebar-nav span { opacity: 1; visibility: visible; }
+
+                        .main-content { margin-left: 0; }
+                        .sidebar-nav { padding-top: 50px; }
                     }
 
                     @media (max-width: 768px) {
-                        .sidebar-nav { 
-                            padding-top: 50px; 
-                        }
+                        .sidebar-nav { padding-top: 50px; }
                     }
+
                 `;
                 
                 const styleElement = document.createElement('style');
@@ -237,6 +314,18 @@
                                 <span>Ajuda</span>
                             </a>
                         </nav>
+                        
+                        <div class="sidebar-profile">
+                            <div class="sidebar-profile-content">
+                                <img id="sidebarProfilePhoto" class="sidebar-profile-photo" src="" alt="Foto do Usuário">
+                                <i id="sidebarProfileIcon" class="bi bi-person-circle sidebar-profile-icon"></i>
+                                <span class="sidebar-profile-name">Nome do Usuário</span>
+                            </div>
+                            <a href="/src/views/comprador/telainicialparaocomprador.html" class="sidebar-logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sair</span>
+                            </a>
+                        </div>
                     </aside>
                     
                     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -275,6 +364,8 @@
                     constructor() {
                         this.sidebar = document.getElementById('sidebar');
                         this.sidebarOverlay = document.getElementById('sidebarOverlay');
+                        this.sidebarProfilePhoto = document.getElementById('sidebarProfilePhoto');
+                        this.sidebarProfileIcon = document.getElementById('sidebarProfileIcon');
                         
                         this.init();
                     }
@@ -282,6 +373,7 @@
                     init() {
                         this.bindEvents();
                         this.setupSidebarToggle();
+                        this.syncProfilePhoto();
                     }
 
                     bindEvents() {
@@ -324,6 +416,23 @@
                     handleResize() {
                         if (window.innerWidth > 1024) {
                             this.closeSidebar();
+                        }
+                    }
+
+                    syncProfilePhoto() {
+                        // Tenta sincronizar a foto de perfil com a do header, se disponível
+                        const headerProfilePhoto = document.getElementById('profilePhoto');
+                        if (headerProfilePhoto && headerProfilePhoto.src) {
+                            this.sidebarProfilePhoto.src = headerProfilePhoto.src;
+                            this.sidebarProfilePhoto.style.display = 'inline-block';
+                            this.sidebarProfileIcon.style.display = 'none';
+                        }
+                        
+                        // Tenta sincronizar o nome do usuário
+                        const headerProfileName = document.querySelector('.profile-button span');
+                        if (headerProfileName) {
+                            const sidebarProfileName = document.querySelector('.sidebar-profile-name');
+                            sidebarProfileName.textContent = headerProfileName.textContent;
                         }
                     }
                 }

@@ -1,8 +1,8 @@
 /**
  * Trapp Full-Stack Solutions
- * Arquivo: header-component.js
+ * Arquivo: headercomprador.js
  * Descrição: Componente isolado do Header com funcionalidades completas
- * Instruções: Adicione <script src="header-component.js" defer></script> ao seu arquivo HTML.
+ * Instruções: Adicione <script src="headercomprador.js" defer></script> ao seu arquivo HTML.
  */
 
 (function() {
@@ -76,7 +76,7 @@
                     .sidebar-toggle {
                         background: none;
                         border: none;
-                        font-size: 1.2rem;
+                        font-size: 1.5rem;
                         cursor: pointer;
                         padding: 0.5rem;
                         color: var(--text-color);
@@ -160,52 +160,6 @@
                         margin-left: auto;
                     }
 
-                    .mobile-menu-toggle {
-                        background: none;
-                        border: none;
-                        font-size: 1.2rem;
-                        cursor: pointer;
-                        padding: 0.5rem;
-                        color: var(--text-color);
-                        display: none;
-                    }
-
-                    /* ===== NAVBAR MÓVEL ===== */
-                    .mobile-navbar {
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                        background-color: var(--white);
-                        box-shadow: 0 3px 10px var(--shadow);
-                        border-radius: 15px;
-                        margin: 0.5rem 1rem;
-                        padding: 1rem;
-                        display: none;
-                        z-index: 999;
-                    }
-
-                    .mobile-navbar.show {
-                        display: block;
-                    }
-
-                    .mobile-nav-list {
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 0.5rem;
-                    }
-
-                    .mobile-nav-item a {
-                        color: var(--text-color);
-                        text-decoration: none;
-                        padding: 0.5rem 0;
-                        display: block;
-                        font-size: 14px;
-                    }
-
                     /* ===== PERFIL DROPDOWN ===== */
                     .profile-section {
                         position: relative;
@@ -278,9 +232,9 @@
                     /* ===== RESPONSIVIDADE ===== */
                     @media (max-width: 1024px) {
                         .desktop-nav, .right-section { display: none; }
-                        .mobile-menu-toggle, .sidebar-toggle { display: block; }
+                        .sidebar-toggle { display: block; }
                         
-                        .logo-upload { width: 180px; margin-right: 0; }
+                        .logo-upload { width: 180px; margin-right: 0; transform: translateX(-150px); }
                         
                         .header-content {
                             padding: 0 0.5rem;
@@ -294,7 +248,6 @@
                         .logo-upload { width: 130px; }
 
                         .profile-dropdown { right: -50px; margin-top: 10px; }
-                        .mobile-navbar { margin: 0.5rem; }
                     }
 
                     /* ===== ESPAÇAMENTO PARA CONTEÚDO ===== */
@@ -333,6 +286,9 @@
                 const headerHTML = `
                     <header class="main-header">
                         <div class="header-content">
+                            <button class="sidebar-toggle" id="sidebarToggle">
+                                <i class="bi bi-list"></i>
+                            </button>
                             <a href="/src/views/comprador/dashboard.html"><div class="logo-upload" id="logoUpload"></a>
                                 <div class="logo-preview" id="logoPreview">
                                 </div>
@@ -354,26 +310,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="bi bi-three-dots"></i></button>
-                            <nav class="mobile-navbar" id="mobileNavbar">
-                                <ul class="mobile-nav-list">
-                                    <li class="mobile-nav-item"><a href="/src/views/comprador/quemsomos2.html">Quem somos?</a></li>
-                                    <li class="mobile-nav-item"><a href="/src/views/comprador/saibamais2.html.html">Saiba mais</a></li>
-                                    <li class="mobile-nav-item">
-                                        <div class="profile-section">
-                                            <button class="profile-button" id="profileButtonMobile">
-                                                <img id="profilePhotoMobile" class="profile-photo" src="" alt="Foto do Usuário">
-                                                <i id="profileIconMobile" class="bi bi-person-circle profile-icon"></i>
-                                                <span>Nome do Usuário</span>
-                                            </button>
-                                            <div class="profile-dropdown" id="profileDropdownMobile">
-                                                <a class="dropdown-item" href="#perfil"><i class="bi bi-person"></i> Perfil</a>
-                                                <a class="dropdown-item" href="#sair"><i class="bi bi-box-arrow-right"></i> Sair</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </header>
                 `;
@@ -393,12 +329,9 @@
             initializeHeaderScripts() {
                 class HeaderNavigation {
                     constructor() {
-                        this.mobileMenuToggle = document.getElementById('mobileMenuToggle');
-                        this.mobileNavbar = document.getElementById('mobileNavbar');
+                        this.sidebarToggle = document.getElementById('sidebarToggle');
                         this.profileButton = document.getElementById('profileButton');
                         this.profileDropdown = document.getElementById('profileDropdown');
-                        this.profileButtonMobile = document.getElementById('profileButtonMobile');
-                        this.profileDropdownMobile = document.getElementById('profileDropdownMobile');
                         
                         this.init();
                     }
@@ -410,10 +343,11 @@
                     }
 
                     bindEvents() {
-                        // Toggle do menu móvel
-                        this.mobileMenuToggle.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            this.toggleMobileMenu();
+                        // Toggle da sidebar (mobile)
+                        this.sidebarToggle.addEventListener('click', () => {
+                            if (typeof toggleSidebar === 'function') {
+                                toggleSidebar();
+                            }
                         });
                         
                         // Dropdown do perfil (desktop)
@@ -421,45 +355,17 @@
                             e.stopPropagation();
                             this.toggleProfileDropdown();
                         });
-
-                        // Dropdown do perfil (mobile)
-                        if (this.profileButtonMobile) {
-                            this.profileButtonMobile.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                this.profileDropdownMobile.classList.toggle('show');
-                            });
-                        }
                         
-                        // Fecha dropdowns ao clicar fora
+                        // Fecha dropdown ao clicar fora
                         document.addEventListener('click', (e) => {
                             if (!this.profileButton.contains(e.target) && !this.profileDropdown.contains(e.target)) {
                                 this.profileDropdown.classList.remove('show');
                             }
-                            if (this.profileDropdownMobile && !this.profileButtonMobile.contains(e.target) && !this.profileDropdownMobile.contains(e.target)) {
-                                this.profileDropdownMobile.classList.remove('show');
-                            }
-                            if (!this.mobileMenuToggle.contains(e.target) && !this.mobileNavbar.contains(e.target)) {
-                                this.mobileNavbar.classList.remove('show');
-                            }
                         });
-
-                        // Responsividade
-                        window.addEventListener('resize', () => this.handleResize());
-                    }
-
-                    toggleMobileMenu() {
-                        this.mobileNavbar.classList.toggle('show');
                     }
 
                     toggleProfileDropdown() {
                         this.profileDropdown.classList.toggle('show');
-                    }
-
-                    handleResize() {
-                        if (window.innerWidth > 1024) {
-                            this.mobileNavbar.classList.remove('show');
-                            this.profileDropdownMobile.classList.remove('show');
-                        }
                     }
 
                     setupImageUploads() {
@@ -467,11 +373,13 @@
                         const logoPreview = document.getElementById('logoPreview');
                         const removeLogo = document.getElementById('removeLogo');
 
-                        logoInput.addEventListener('change', (e) => this.handleImageUpload(e.target, logoPreview));
-                        removeLogo.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            this.removeImage(logoInput, logoPreview);
-                        });
+                        if (logoInput && logoPreview && removeLogo) {
+                            logoInput.addEventListener('change', (e) => this.handleImageUpload(e.target, logoPreview));
+                            removeLogo.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                this.removeImage(logoInput, logoPreview);
+                            });
+                        }
                     }
 
                     handleImageUpload(input, preview) {
@@ -496,8 +404,6 @@
                     setupProfilePhoto() {
                         const profileIcon = document.getElementById('profileIcon');
                         const profilePhoto = document.getElementById('profilePhoto');
-                        const profileIconMobile = document.getElementById('profileIconMobile');
-                        const profilePhotoMobile = document.getElementById('profilePhotoMobile');
 
                         // Cria input oculto para upload da foto de perfil
                         const profilePhotoInput = document.createElement('input');
@@ -506,16 +412,13 @@
                         profilePhotoInput.style.display = 'none';
                         document.body.appendChild(profilePhotoInput);
 
-                        // Setup dos cliques nos ícones de perfil
-                        const setupProfileIconClick = (icon, input) => {
-                            if(icon) icon.addEventListener('click', (e) => {
+                        // Setup do clique no ícone de perfil
+                        if (profileIcon) {
+                            profileIcon.addEventListener('click', (e) => {
                                 e.stopPropagation();
-                                input.click();
+                                profilePhotoInput.click();
                             });
                         }
-                        
-                        setupProfileIconClick(profileIcon, profilePhotoInput);
-                        setupProfileIconClick(profileIconMobile, profilePhotoInput);
 
                         // Handler para mudança da foto de perfil
                         profilePhotoInput.addEventListener('change', function() {
@@ -527,12 +430,18 @@
                                         profilePhoto.src = imageUrl;
                                         profilePhoto.style.display = 'inline-block';
                                     }
-                                    if (profilePhotoMobile) {
-                                        profilePhotoMobile.src = imageUrl;
-                                        profilePhotoMobile.style.display = 'inline-block';
-                                    }
                                     if (profileIcon) profileIcon.style.display = 'none';
-                                    if (profileIconMobile) profileIconMobile.style.display = 'none';
+                                    
+                                    // Atualiza também na sidebar se existir
+                                    const sidebarProfilePhoto = document.getElementById('sidebarProfilePhoto');
+                                    const sidebarProfileIcon = document.getElementById('sidebarProfileIcon');
+                                    if (sidebarProfilePhoto) {
+                                        sidebarProfilePhoto.src = imageUrl;
+                                        sidebarProfilePhoto.style.display = 'inline-block';
+                                    }
+                                    if (sidebarProfileIcon) {
+                                        sidebarProfileIcon.style.display = 'none';
+                                    }
                                 };
                                 reader.readAsDataURL(this.files[0]);
                             }

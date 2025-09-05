@@ -18,7 +18,7 @@
 
         html, body {
             height: 100%;
-            background-color: #F5F5F5;
+            background-color: #ffffff;
         }
 
         body {
@@ -823,6 +823,9 @@
 
         let timelineYears = [];
 
+        // Array para armazenar os relatórios sociais
+        let relatoriosSociais = [];
+
         // Inicializar a página
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
@@ -969,120 +972,113 @@
         function addRelatorioItem() {
             const container = document.getElementById('relatorios-container');
             const index = itemCounters.relatorio++;
-            
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('relatorio-item');
-            itemDiv.setAttribute('data-index', index);
-            itemDiv.innerHTML = `
-                <div class="relatorio-grid">
-                    <div class="relatorio-image-placeholder" id="relatorio-image-${index}" onclick="document.getElementById('relatorio-file-${index}').click()">
-                        <div class="add-icon" style="margin-bottom: 10px;">+</div>
-                        <div style="font-size: 14px;">Relatório<br>Social</div>
-                        <input type="file" id="relatorio-file-${index}" style="display: none;" accept="image/*">
-                    </div>
-                    <div class="relatorio-content">
-                        <input type="text" class="input-field" placeholder="Adicione o título | Relatório Social 2025" id="relatorio-title-${index}" style="font-size: 18px; font-weight: 600; color: #693B11; margin-bottom: 15px;">
-                        <textarea class="input-field" placeholder="Aqui você pode inserir marcos históricos, referências e informações sobre este ano..." id="relatorio-desc-${index}" style="min-height: 80px; color: #666;"></textarea>
-                        <div class="image-size-hint">Tamanho recomendado: 200x150px</div>
-                        <div style="margin-top: 15px;">
-                            <button class="btn-save" onclick="saveRelatorioContent(${index})">Salvar</button>
+            relatoriosSociais.push({
+                index,
+                title: '',
+                desc: '',
+                fileData: null,
+                fileType: null,
+                fileName: null,
+                saved: false
+            });
+            renderRelatoriosSociais();
+        }
+
+        function renderRelatoriosSociais() {
+            const container = document.getElementById('relatorios-container');
+            container.innerHTML = '';
+            relatoriosSociais.forEach(rel => {
+                if (!rel.saved) {
+                    // Formulário de edição
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('relatorio-item');
+                    itemDiv.setAttribute('data-index', rel.index);
+                    itemDiv.innerHTML = `
+                        <div class="relatorio-grid">
+                            <div class="relatorio-image-placeholder" id="relatorio-image-${rel.index}" onclick="document.getElementById('relatorio-file-${rel.index}').click()">
+                                ${rel.fileData ? (rel.fileType === 'image' ? `<img src="${rel.fileData}" class="small-standard-image">` : `<div style='color:#693B11;text-align:center;'><i class='bi bi-file-earmark-pdf' style='font-size:24px;'></i><div style='font-size:12px;'>${rel.fileName}</div></div>`) : '<div class="add-icon" style="margin-bottom: 10px;">+</div><div style="font-size: 14px;">Relatório<br>Social</div>'}
+                                <input type="file" id="relatorio-file-${rel.index}" style="display: none;" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                            </div>
+                            <div class="relatorio-content">
+                                <input type="text" class="input-field" placeholder="Adicione o título | Relatório Social 2025" id="relatorio-title-${rel.index}" style="font-size: 18px; font-weight: 600; color: #693B11; margin-bottom: 15px;" value="${rel.title || ''}">
+                                <textarea class="input-field" placeholder="Aqui você pode inserir marcos históricos, referências e informações sobre este ano..." id="relatorio-desc-${rel.index}" style="min-height: 80px; color: #666;">${rel.desc || ''}</textarea>
+                                <div class="image-size-hint">Tamanho recomendado: 200x150px</div>
+                                <div style="margin-top: 15px;">
+                                    <button class="btn-save" onclick="saveRelatorioContent(${rel.index})">Salvar</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            `;
-            
-            container.appendChild(itemDiv);
-            
-            // Event listener para arquivo do relatório
-            document.getElementById(`relatorio-file-${index}`).addEventListener('change', function() {
-                if (this.files[0]) {
-                    const imageContainer = document.getElementById(`relatorio-image-${index}`);
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imageContainer.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
-                    };
-                    reader.readAsDataURL(this.files[0]);
+                    `;
+                    container.appendChild(itemDiv);
+                    document.getElementById(`relatorio-file-${rel.index}`).addEventListener('change', function() {
+                        if (this.files[0]) {
+                            const file = this.files[0];
+                            const relObj = relatoriosSociais.find(r => r.index === rel.index);
+                            relObj.fileType = file.type.startsWith('image/') ? 'image' : 'other';
+                            relObj.fileName = file.name;
+                            if (file.type.startsWith('image/')) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    relObj.fileData = e.target.result;
+                                    renderRelatoriosSociais();
+                                };
+                                reader.readAsDataURL(file);
+                            } else {
+                                relObj.fileData = null;
+                                renderRelatoriosSociais();
+                            }
+                        }
+                    });
+                } else {
+                    // Visualização salva
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('relatorio-item');
+                    itemDiv.setAttribute('data-index', rel.index);
+                    itemDiv.innerHTML = `
+                        <div class="edit-controls">
+                            <button class="action-btn btn-edit" onclick="editRelatorio(${rel.index})" title="Editar">Editar</button>
+                            <button class="action-btn btn-delete" onclick="deleteRelatorio(${rel.index})" title="Deletar">Deletar</button>
+                        </div>
+                        <div class="relatorio-grid">
+                            <div class="relatorio-image-placeholder" id="relatorio-image-${rel.index}">
+                                ${rel.fileData ? (rel.fileType === 'image' ? `<img src="${rel.fileData}" class="small-standard-image">` : `<div style='color:#693B11;text-align:center;'><i class='bi bi-file-earmark-pdf' style='font-size:24px;'></i><div style='font-size:12px;'>${rel.fileName}</div></div>`) : '<div class="add-icon" style="margin-bottom: 10px;">+</div><div style="font-size: 14px;">Relatório<br>Social</div>'}
+                            </div>
+                            <div class="relatorio-content">
+                                <h4 style="color: #693B11; margin-bottom: 15px; font-size: 18px;">${rel.title}</h4>
+                                <p style="color: #666; font-size: 14px; line-height: 1.6;">${rel.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(itemDiv);
                 }
             });
         }
 
         function saveRelatorioContent(index) {
-            const titleElement = document.getElementById(`relatorio-title-${index}`);
-            const descElement = document.getElementById(`relatorio-desc-${index}`);
-            
-            const title = titleElement.value.trim();
-            const desc = descElement.value.trim();
-            
+            const relObj = relatoriosSociais.find(r => r.index === index);
+            if (!relObj) return;
+            const title = document.getElementById(`relatorio-title-${index}`).value.trim();
+            const desc = document.getElementById(`relatorio-desc-${index}`).value.trim();
             if (!title) {
                 alert('Por favor, adicione um título.');
                 return;
             }
-            
-            // Converter para visualização salva
-            const container = document.querySelector(`[data-index="${index}"]`);
-            const imageHtml = container.querySelector('.relatorio-image-placeholder').innerHTML;
-            
-            container.innerHTML = `
-                <div class="edit-controls">
-                    <button class="action-btn btn-edit" onclick="editRelatorio(${index})" title="Editar">Editar</button>
-                    <button class="action-btn btn-delete" onclick="deleteRelatorio(${index})" title="Deletar">Deletar</button>
-                </div>
-                <div class="relatorio-grid">
-                    <div class="relatorio-image-placeholder" id="relatorio-image-${index}">
-                        ${imageHtml}
-                    </div>
-                    <div class="relatorio-content">
-                        <h4 style="color: #693B11; margin-bottom: 15px; font-size: 18px;">${title}</h4>
-                        <p style="color: #666; font-size: 14px; line-height: 1.6;">${desc}</p>
-                    </div>
-                </div>
-            `;
+            relObj.title = title;
+            relObj.desc = desc;
+            relObj.saved = true;
+            renderRelatoriosSociais();
         }
 
         function editRelatorio(index) {
-            const container = document.querySelector(`[data-index="${index}"]`);
-            const currentTitle = container.querySelector('h4').textContent;
-            const currentDesc = container.querySelector('p').textContent;
-            const imageHtml = container.querySelector('.relatorio-image-placeholder').innerHTML;
-            
-            container.innerHTML = `
-                <div class="relatorio-grid">
-                    <div class="relatorio-image-placeholder" id="relatorio-image-${index}" onclick="document.getElementById('relatorio-file-${index}').click()">
-                        ${imageHtml}
-                        <input type="file" id="relatorio-file-${index}" style="display: none;" accept="image/*">
-                    </div>
-                    <div class="relatorio-content">
-                        <input type="text" class="input-field" value="${currentTitle}" id="relatorio-title-${index}" style="font-size: 18px; font-weight: 600; color: #693B11; margin-bottom: 15px;">
-                        <textarea class="input-field" id="relatorio-desc-${index}" style="min-height: 80px; color: #666;">${currentDesc}</textarea>
-                        <div class="image-size-hint">Tamanho recomendado: 200x150px</div>
-                        <div style="margin-top: 15px;">
-                            <button class="btn-save" onclick="saveRelatorioContent(${index})">Salvar</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Re-adicionar event listener
-            document.getElementById(`relatorio-file-${index}`).addEventListener('change', function() {
-                if (this.files[0]) {
-                    const imageContainer = document.getElementById(`relatorio-image-${index}`);
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imageContainer.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
-                    };
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
+            const relObj = relatoriosSociais.find(r => r.index === index);
+            if (!relObj) return;
+            relObj.saved = false;
+            renderRelatoriosSociais();
         }
 
         function deleteRelatorio(index) {
-            if (confirm('Tem certeza que deseja deletar este relatório?')) {
-                const container = document.getElementById('relatorios-container');
-                const item = container.querySelector(`[data-index="${index}"]`);
-                if (item) {
-                    container.removeChild(item);
-                }
-            }
+            relatoriosSociais = relatoriosSociais.filter(r => r.index !== index);
+            renderRelatoriosSociais();
         }
 
         // Funções para Certificados
@@ -1096,7 +1092,7 @@
             itemDiv.innerHTML = `
                 <div class="card-placeholder" id="certificado-image-${index}" onclick="document.getElementById('certificado-file-${index}').click()">
                     <div class="add-icon">+</div>
-                    <input type="file" id="certificado-file-${index}" style="display: none;" accept="image/*">
+                    <input type="file" id="certificado-file-${index}" style="display: none;" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                 </div>
                 <div class="card-description">
                     <input type="text" class="input-field" placeholder="Adicione o nome do certificado ou premiação" id="certificado-title-${index}" style="font-size: 14px; font-weight: 600; color: #693B11; margin-bottom: 8px; border: none; background: transparent;">
@@ -1114,13 +1110,20 @@
             document.getElementById(`certificado-file-${index}`).addEventListener('change', function() {
                 if (this.files[0]) {
                     const imageContainer = document.getElementById(`certificado-image-${index}`);
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imageContainer.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
+                    const file = this.files[0];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imageContainer.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
+                            imageContainer.classList.remove('card-placeholder');
+                            imageContainer.classList.add('card-filled');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imageContainer.innerHTML = `<div style='color:#693B11;text-align:center;'><i class='bi bi-file-earmark-pdf' style='font-size:24px;'></i><div style='font-size:12px;'>${file.name}</div></div>`;
                         imageContainer.classList.remove('card-placeholder');
                         imageContainer.classList.add('card-filled');
-                    };
-                    reader.readAsDataURL(this.files[0]);
+                    }
                 }
             });
         }
@@ -1165,7 +1168,7 @@
             container.innerHTML = `
                 <div class="card-placeholder" id="certificado-image-${index}" onclick="document.getElementById('certificado-file-${index}').click()">
                     ${imageHtml}
-                    <input type="file" id="certificado-file-${index}" style="display: none;" accept="image/*">
+                    <input type="file" id="certificado-file-${index}" style="display: none;" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                 </div>
                 <div class="card-description">
                     <input type="text" class="input-field" value="${currentTitle}" id="certificado-title-${index}" style="font-size: 14px; font-weight: 600; color: #693B11; margin-bottom: 8px; border: none; background: transparent;">
@@ -1181,55 +1184,56 @@
             document.getElementById(`certificado-file-${index}`).addEventListener('change', function() {
                 if (this.files[0]) {
                     const imageContainer = document.getElementById(`certificado-image-${index}`);
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imageContainer.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
+                    const file = this.files[0];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imageContainer.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
+                            imageContainer.classList.remove('card-placeholder');
+                            imageContainer.classList.add('card-filled');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imageContainer.innerHTML = `<div style='color:#693B11;text-align:center;'><i class='bi bi-file-earmark-pdf' style='font-size:24px;'></i><div style='font-size:12px;'>${file.name}</div></div>`;
                         imageContainer.classList.remove('card-placeholder');
                         imageContainer.classList.add('card-filled');
-                    };
-                    reader.readAsDataURL(this.files[0]);
+                    }
                 }
             });
         }
 
-        function deleteCertificado(index) {
-            if (confirm('Tem certeza que deseja deletar este certificado?')) {
-                const container = document.getElementById('certificados-container');
-                const item = container.querySelector(`[data-index="${index}"]`);
-                if (item) {
-                    container.removeChild(item);
-                }
-            }
-        }
-
-        // Funções da Timeline
+        // --- TIMELINE ---
         function initializeTimeline() {
             timelineYears = [];
             updateTimelineDisplay();
         }
 
         function addTimelineYear() {
+            if (timelineYears.length >= 5) {
+                alert('Você só pode adicionar até 5 anos na linha do tempo.');
+                return;
+            }
             const year = prompt('Digite o ano (ex: 2024):');
             if (!year || isNaN(year) || year.length !== 4) {
                 alert('Por favor, digite um ano válido (formato: AAAA).');
                 return;
             }
-
             if (timelineYears.some(y => y.year === year)) {
                 alert('Este ano já foi adicionado à timeline.');
                 return;
             }
-
             const newYear = {
                 year: year,
                 marco: '',
                 projeto: '',
                 premio: '',
                 image: null,
+                file: null,
+                fileType: null,
+                fileName: null,
                 id: Date.now(),
                 saved: false
             };
-
             timelineYears.push(newYear);
             timelineYears.sort((a, b) => a.year - b.year);
             updateTimelineDisplay();
@@ -1238,61 +1242,49 @@
         function updateTimelineDisplay() {
             const markersContainer = document.getElementById('timeline-markers');
             const contentContainer = document.getElementById('timeline-content-container');
-            
             markersContainer.innerHTML = '';
             contentContainer.innerHTML = '';
-
             if (timelineYears.length === 0) {
-                contentContainer.innerHTML = `
-                    <div style="text-align: center; padding: 40px; color: #888;">
-                        <p>Nenhum ano adicionado ainda. Clique no botão abaixo para começar!</p>
-                    </div>
-                `;
+                contentContainer.innerHTML = `<div style="text-align: center; padding: 40px; color: #888;"><p>Nenhum ano adicionado ainda. Clique no botão abaixo para começar!</p></div>`;
                 return;
             }
-
-            const containerWidth = 1000;
+            const containerWidth = markersContainer.offsetWidth || 1000;
             const marginSide = 50;
             const availableWidth = containerWidth - (marginSide * 2);
-
+            const editingYear = timelineYears.find(y => !y.saved);
             timelineYears.forEach((yearData, index) => {
-                const position = timelineYears.length === 1 ? 
-                    containerWidth / 2 : 
-                    marginSide + (index * (availableWidth / Math.max(timelineYears.length - 1, 1)));
-                
-                // Criar marcador
-                const marker = document.createElement('div');
-                marker.className = yearData.saved ? 'timeline-marker active' : 'timeline-marker inactive';
-                marker.style.left = `${position}px`;
-                marker.style.top = '50%';
-                
-                if (!yearData.saved) {
-                    marker.innerHTML = '<div style="width: 20px; height: 20px; background: #D4AF88; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #693B11; font-weight: bold; font-size: 16px;">+</div>';
-                    marker.style.width = '20px';
-                    marker.style.height = '20px';
+                const position = timelineYears.length === 1 ? containerWidth / 2 : marginSide + (index * (availableWidth / Math.max(timelineYears.length - 1, 1)));
+                if (editingYear ? yearData.id !== editingYear.id : true) {
+                    const marker = document.createElement('div');
+                    marker.className = yearData.saved ? 'timeline-marker active' : 'timeline-marker inactive';
+                    marker.style.left = `${position}px`;
+                    marker.style.top = '50%';
+                    if (!yearData.saved) {
+                        marker.innerHTML = '<div style="width: 20px; height: 20px; background: #D4AF88; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #693B11; font-weight: bold; font-size: 16px;">+</div>';
+                        marker.style.width = '20px';
+                        marker.style.height = '20px';
+                    }
+                    marker.onclick = function(e) {
+                        e.stopPropagation();
+                        showTimelineContent(yearData.id);
+                    };
+                    markersContainer.appendChild(marker);
                 }
-                
-                marker.onclick = () => showTimelineContent(yearData.id);
-                
-                // Criar ano
                 const yearLabel = document.createElement('div');
                 yearLabel.className = 'timeline-year';
                 yearLabel.textContent = yearData.year;
                 yearLabel.style.left = `${position}px`;
-                yearLabel.onclick = () => showTimelineContent(yearData.id);
-                
-                markersContainer.appendChild(marker);
+                yearLabel.onclick = function(e) {
+                    e.stopPropagation();
+                    showTimelineContent(yearData.id);
+                };
                 markersContainer.appendChild(yearLabel);
-
-                // Criar card de conteúdo
                 if (!yearData.saved) {
                     createTimelineContentCard(yearData);
                 } else {
                     createSavedTimelineCard(yearData);
                 }
             });
-
-            // Mostrar apenas o primeiro card não salvo, ou o primeiro salvo se todos estão salvos
             const firstUnsaved = timelineYears.find(y => !y.saved);
             const targetId = firstUnsaved ? firstUnsaved.id : timelineYears[0].id;
             showTimelineContent(targetId);
@@ -1300,19 +1292,17 @@
 
         function createTimelineContentCard(yearData) {
             const contentContainer = document.getElementById('timeline-content-container');
-            
             const cardDiv = document.createElement('div');
             cardDiv.classList.add('timeline-content-grid');
             cardDiv.setAttribute('data-year-id', yearData.id);
             cardDiv.innerHTML = `
                 <div class="timeline-content-card">
                     <div class="timeline-image" id="timeline-image-${yearData.id}" onclick="document.getElementById('timeline-file-${yearData.id}').click()">
-                        ${yearData.image ? `<img src="${yearData.image}" class="small-standard-image">` : '<div class="add-icon">+</div>'}
-                        <input type="file" id="timeline-file-${yearData.id}" style="display: none;" accept="image/*">
+                        ${yearData.image ? `<img src="${yearData.image}" class="small-standard-image">` : yearData.fileType && yearData.fileType !== 'image' ? `<div style='color:#693B11;text-align:center;'><i class='bi bi-file-earmark-pdf' style='font-size:24px;'></i><div style='font-size:12px;'>${yearData.fileName}</div></div>` : '<div class="add-icon">+</div>'}
+                        <input type="file" id="timeline-file-${yearData.id}" style="display: none;" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                     </div>
                     <div class="image-size-hint" style="margin-top: 10px; text-align: center;">Tamanho: 200x150px</div>
                 </div>
-                
                 <div class="timeline-details">
                     <div class="timeline-detail-item">
                         <i class="bi bi-award"></i>
@@ -1334,22 +1324,36 @@
             
             contentContainer.appendChild(cardDiv);
             
-            // Event listener para arquivo da timeline
             document.getElementById(`timeline-file-${yearData.id}`).addEventListener('change', function() {
                 if (this.files[0]) {
                     const timelineImage = document.getElementById(`timeline-image-${yearData.id}`);
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        timelineImage.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
-                        // Atualizar dados
-                        const yearDataObj = timelineYears.find(y => y.id === yearData.id);
-                        if (yearDataObj) {
+                    const file = this.files[0];
+                    const yearDataObj = timelineYears.find(y => y.id === yearData.id);
+                    yearDataObj.fileType = file.type.startsWith('image/') ? 'image' : 'other';
+                    yearDataObj.fileName = file.name;
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            timelineImage.innerHTML = `<img src="${e.target.result}" class="small-standard-image">`;
                             yearDataObj.image = e.target.result;
-                        }
-                    };
-                    reader.readAsDataURL(this.files[0]);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        timelineImage.innerHTML = `<div style='color:#693B11;text-align:center;'><i class='bi bi-file-earmark-pdf' style='font-size:24px;'></i><div style='font-size:12px;'>${file.name}</div></div>`;
+                        yearDataObj.image = null;
+                    }
                 }
             });
+            // Adicionar listeners para atualizar yearData em tempo real
+            document.getElementById(`timeline-marco-${yearData.id}`).addEventListener('input', function(e) {
+        yearData.marco = e.target.value;
+    });
+    document.getElementById(`timeline-projeto-${yearData.id}`).addEventListener('input', function(e) {
+        yearData.projeto = e.target.value;
+    });
+    document.getElementById(`timeline-premio-${yearData.id}`).addEventListener('input', function(e) {
+        yearData.premio = e.target.value;
+    });
         }
 
         function createSavedTimelineCard(yearData) {

@@ -8,11 +8,14 @@ const __dirname = path.dirname(__filename);
 
 const pageRouter = express.Router();
 
+// ROTA PRINCIPAL ALTERADA
 pageRouter.get('/', (req, res) => {
     console.log(`⬆️   Rota / acessada.`);
-    res.sendFile(path.join(__dirname, '..', 'views', 'comprador', 'cadastrodoador.html'));
+    // A linha abaixo foi modificada para carregar a index.html
+    res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
 });
 
+// ROTA DE TESTE DO BANCO DE DADOS (mantida como estava)
 pageRouter.get('/test-db', async (req, res) => {
 
     console.log(`🔃   Iniciando o teste de conexão com o Banco de dados   🔃`)

@@ -44,6 +44,7 @@
                         left: 0;
                         top: 0;
                         bottom: 0;
+                        height: 100vh;
                         width: var(--sidebar-collapsed);
                         background-color: var(--light-bg);
                         transition: var(--transition);

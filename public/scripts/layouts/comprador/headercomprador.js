@@ -1,12 +1,4 @@
-/**
- * Trapp Full-Stack Solutions
- * Arquivo: headercomprador.js
- * Descrição: Componente isolado do Header com funcionalidades completas
- * Instruções: Adicione <script src="headercomprador.js" defer></script> ao seu arquivo HTML.
- */
-
 (function() {
-    // Garante que o script só rode após o carregamento completo do DOM.
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeHeader);
     } else {
@@ -14,9 +6,6 @@
     }
 
     function initializeHeader() {
-        /**
-         * Classe responsável pela injeção e gerenciamento do Header
-         */
         class HeaderManager {
             constructor() {
                 this.injectHeaderStyles();
@@ -24,12 +13,8 @@
                 this.initializeHeaderScripts();
             }
 
-            /**
-             * Injeta apenas os estilos CSS relacionados ao Header
-             */
             injectHeaderStyles() {
                 const css = `
-                    /* ===== VARIÁVEIS GLOBAIS ===== */
                     :root {
                         --primary-color: #693B11;
                         --accent-color: #EC9E07;
@@ -52,7 +37,6 @@
                         background-color: var(--white);
                     }
 
-                    /* ===== HEADER ===== */
                     .main-header {
                         position: fixed;
                         top: 0;
@@ -81,7 +65,7 @@
                         padding: 0.5rem;
                         color: var(--text-color);
                         margin-right: 15px;
-                        display: none; /* Escondido no desktop */
+                        display: none;
                     }
 
                     .logo-upload {
@@ -138,7 +122,6 @@
                         line-height: 1;
                     }
 
-                    /* ===== NAVEGAÇÃO DESKTOP ===== */
                     .desktop-nav {
                         display: flex;
                         align-items: center;
@@ -160,7 +143,6 @@
                         margin-left: auto;
                     }
 
-                    /* ===== PERFIL DROPDOWN ===== */
                     .profile-section {
                         position: relative;
                     }
@@ -229,16 +211,23 @@
                         font-size: 16px;
                     }
 
-                    /* ===== RESPONSIVIDADE ===== */
                     @media (max-width: 1024px) {
                         .desktop-nav, .right-section { display: none; }
                         .sidebar-toggle { display: block; }
                         
-                        .logo-upload { width: 180px; margin-right: 0; transform: translateX(-150px); }
-                        
                         .header-content {
+                            position: relative;
                             padding: 0 0.5rem;
-                            justify-content: space-between;
+                            justify-content: flex-start;
+                        }
+                        
+                        .logo-upload {
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 180px;
+                            margin-right: 0;
                         }
                         
                         .main-header { height: 50px; }
@@ -246,11 +235,9 @@
 
                     @media (max-width: 768px) {
                         .logo-upload { width: 130px; }
-
                         .profile-dropdown { right: -50px; margin-top: 10px; }
                     }
 
-                    /* ===== ESPAÇAMENTO PARA CONTEÚDO ===== */
                     body {
                         padding-top: var(--header-height);
                     }
@@ -265,7 +252,6 @@
                 const styleElement = document.createElement('style');
                 styleElement.innerHTML = css;
 
-                // Adiciona as fontes necessárias
                 const bootstrapIcons = document.createElement('link');
                 bootstrapIcons.rel = 'stylesheet';
                 bootstrapIcons.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css';
@@ -279,9 +265,6 @@
                 document.head.appendChild(styleElement);
             }
 
-            /**
-             * Injeta apenas a estrutura HTML do Header
-             */
             injectHeaderHTML() {
                 const headerHTML = `
                     <header class="main-header">
@@ -314,18 +297,13 @@
                     </header>
                 `;
 
-                // Cria um container para o header e injeta o HTML
                 const headerContainer = document.createElement('div');
                 headerContainer.id = 'trapp-header-container';
                 headerContainer.innerHTML = headerHTML;
                 
-                // Adiciona o header no início do body
                 document.body.insertBefore(headerContainer, document.body.firstChild);
             }
 
-            /**
-             * Inicializa apenas os scripts relacionados ao Header
-             */
             initializeHeaderScripts() {
                 class HeaderNavigation {
                     constructor() {
@@ -343,20 +321,17 @@
                     }
 
                     bindEvents() {
-                        // Toggle da sidebar (mobile)
                         this.sidebarToggle.addEventListener('click', () => {
                             if (typeof toggleSidebar === 'function') {
                                 toggleSidebar();
                             }
                         });
                         
-                        // Dropdown do perfil (desktop)
                         this.profileButton.addEventListener('click', (e) => {
                             e.stopPropagation();
                             this.toggleProfileDropdown();
                         });
                         
-                        // Fecha dropdown ao clicar fora
                         document.addEventListener('click', (e) => {
                             if (!this.profileButton.contains(e.target) && !this.profileDropdown.contains(e.target)) {
                                 this.profileDropdown.classList.remove('show');
@@ -405,14 +380,12 @@
                         const profileIcon = document.getElementById('profileIcon');
                         const profilePhoto = document.getElementById('profilePhoto');
 
-                        // Cria input oculto para upload da foto de perfil
                         const profilePhotoInput = document.createElement('input');
                         profilePhotoInput.type = 'file';
                         profilePhotoInput.accept = 'image/*';
                         profilePhotoInput.style.display = 'none';
                         document.body.appendChild(profilePhotoInput);
 
-                        // Setup do clique no ícone de perfil
                         if (profileIcon) {
                             profileIcon.addEventListener('click', (e) => {
                                 e.stopPropagation();
@@ -420,7 +393,6 @@
                             });
                         }
 
-                        // Handler para mudança da foto de perfil
                         profilePhotoInput.addEventListener('change', function() {
                             if (this.files && this.files[0]) {
                                 const reader = new FileReader();
@@ -432,7 +404,6 @@
                                     }
                                     if (profileIcon) profileIcon.style.display = 'none';
                                     
-                                    // Atualiza também na sidebar se existir
                                     const sidebarProfilePhoto = document.getElementById('sidebarProfilePhoto');
                                     const sidebarProfileIcon = document.getElementById('sidebarProfileIcon');
                                     if (sidebarProfilePhoto) {
@@ -449,12 +420,10 @@
                     }
                 }
                 
-                // Inicializa o header
                 new HeaderNavigation();
             }
         }
         
-        // Inicia o processo de criação do header
         new HeaderManager();
     }
 })();

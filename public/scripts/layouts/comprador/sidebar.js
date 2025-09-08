@@ -1,12 +1,4 @@
-/**
- * Trapp Full-Stack Solutions
- * Arquivo: sidebar-component.js
- * Descrição: Componente isolado da Sidebar com navegação responsiva
- * Instruções: Adicione <script src="sidebar-component.js" defer></script> ao seu arquivo HTML.
- */
-
 (function() {
-    // Garante que o script só rode após o carregamento completo do DOM.
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeSidebar);
     } else {
@@ -14,9 +6,6 @@
     }
 
     function initializeSidebar() {
-        /**
-         * Classe responsável pela injeção e gerenciamento da Sidebar
-         */
         class SidebarManager {
             constructor() {
                 this.injectSidebarStyles();
@@ -24,12 +13,8 @@
                 this.initializeSidebarScripts();
             }
 
-            /**
-             * Injeta apenas os estilos CSS relacionados à Sidebar
-             */
             injectSidebarStyles() {
                 const css = `
-                    /* ===== VARIÁVEIS GLOBAIS ===== */
                     :root {
                         --primary-color: #693B11;
                         --accent-color: #EC9E07;
@@ -54,7 +39,6 @@
                         background-color: var(--white);
                     }
 
-                    /* ===== SIDEBAR ===== */
                     .sidebar {
                         position: fixed;
                         left: 0;
@@ -84,7 +68,6 @@
                         }
                     }
 
-                    /* ===== NAVEGAÇÃO ===== */
                     .sidebar-nav {
                         padding-top: var(--header-height);
                         flex: 1;
@@ -119,11 +102,9 @@
                         transition: opacity 0.2s, visibility 0.2s;
                     }
 
-                    /* ===== PERFIL NA SIDEBAR ===== */
                     .sidebar-profile {
+                        display: none;
                         padding: 15px;
-                        border-top: none;
-                        display: flex;
                         flex-direction: column;
                         align-items: center;
                         margin-top: auto;
@@ -152,39 +133,8 @@
                         margin-right: 15px;
                     }
 
-                    /* === Ajuste: nome, sair e ícone controlados por viewport === */
-
-                    /* Esconde nome e sair no desktop */
-                    .sidebar-profile-name,
                     .sidebar-logout {
-                        display: none;
-                    }
-
-                    /* Esconde o ícone no desktop */
-                    @media (min-width: 1025px) {
-                        .sidebar-profile-icon {
-                            display: none;
-                        }
-                    }
-
-                    /* Mostra tudo no mobile */
-                    @media (max-width: 1024px) {
-                        .sidebar-profile-name,
-                        .sidebar-logout {
-                            display: flex;
-                            opacity: 1;
-                            visibility: visible;
-                        }
-                            .sidebar-profile {
-                                border-top: 1px solid rgba(0, 0, 0, 0.1); /* mostra linha só no mobile */
-                            }
-                        .sidebar-profile-icon {
-                            display: block; /* ícone só no mobile */
-                        }
-                    }
-
-                    /* Botão sair */
-                    .sidebar-logout {
+                        display: flex;
                         align-items: center;
                         justify-content: center;
                         color: var(--text-color);
@@ -206,7 +156,6 @@
                         font-size: 14px;
                     }
 
-                    /* ===== OVERLAY PARA MOBILE ===== */
                     .sidebar-overlay {
                         position: fixed;
                         top: 0;
@@ -224,7 +173,6 @@
                         opacity: 1;
                     }
 
-                    /* ===== ESPAÇAMENTO PARA CONTEÚDO ===== */
                     .main-content {
                         margin-left: var(--sidebar-collapsed);
                         transition: var(--transition);
@@ -232,7 +180,6 @@
                         padding: 20px;
                     }
 
-                    /* ===== RESPONSIVIDADE ===== */
                     @media (max-width: 1024px) {
                         .sidebar {
                             left: -100%;
@@ -244,18 +191,21 @@
 
                         .main-content { margin-left: 0; }
                         .sidebar-nav { padding-top: 50px; }
+
+                        .sidebar-profile {
+                            display: flex;
+                            border-top: 1px solid rgba(0, 0, 0, 0.1);
+                        }
                     }
 
                     @media (max-width: 768px) {
                         .sidebar-nav { padding-top: 50px; }
                     }
-
                 `;
                 
                 const styleElement = document.createElement('style');
                 styleElement.innerHTML = css;
 
-                // Adiciona as fontes necessárias
                 const bootstrapIcons = document.createElement('link');
                 bootstrapIcons.rel = 'stylesheet';
                 bootstrapIcons.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css';
@@ -269,9 +219,6 @@
                 document.head.appendChild(styleElement);
             }
 
-            /**
-             * Injeta apenas a estrutura HTML da Sidebar
-             */
             injectSidebarHTML() {
                 const sidebarHTML = `
                     <aside class="sidebar" id="sidebar">
@@ -332,33 +279,25 @@
                     
                     <main class="main-content">
                         <div class="content-area" id="contentArea">
-                            <!-- Conteúdo da página será preservado aqui -->
                         </div>
                     </main>
                 `;
 
-                // Guarda o conteúdo original do body
                 const originalContent = document.body.innerHTML;
 
-                // Cria um container para a sidebar e injeta o HTML
                 const sidebarContainer = document.createElement('div');
                 sidebarContainer.id = 'trapp-sidebar-container';
                 sidebarContainer.innerHTML = sidebarHTML;
                 
-                // Limpa o body e adiciona o container da sidebar
                 document.body.innerHTML = '';
                 document.body.appendChild(sidebarContainer);
                 
-                // Encontra a área de conteúdo e restaura o conteúdo original
                 const contentArea = document.getElementById('contentArea');
                 if (contentArea) {
                     contentArea.innerHTML = originalContent;
                 }
             }
 
-            /**
-             * Inicializa apenas os scripts relacionados à Sidebar
-             */
             initializeSidebarScripts() {
                 class SidebarController {
                     constructor() {
@@ -377,15 +316,12 @@
                     }
 
                     bindEvents() {
-                        // Overlay para fechar sidebar no mobile
                         this.sidebarOverlay.addEventListener('click', () => this.closeSidebar());
                         
-                        // Responsividade
                         window.addEventListener('resize', () => this.handleResize());
                     }
 
                     setupSidebarToggle() {
-                        // Função global para permitir que outros componentes controlem a sidebar
                         window.toggleSidebar = () => this.toggleSidebar();
                         window.openSidebar = () => this.openSidebar();
                         window.closeSidebar = () => this.closeSidebar();
@@ -420,7 +356,6 @@
                     }
 
                     syncProfilePhoto() {
-                        // Tenta sincronizar a foto de perfil com a do header, se disponível
                         const headerProfilePhoto = document.getElementById('profilePhoto');
                         if (headerProfilePhoto && headerProfilePhoto.src) {
                             this.sidebarProfilePhoto.src = headerProfilePhoto.src;
@@ -428,7 +363,6 @@
                             this.sidebarProfileIcon.style.display = 'none';
                         }
                         
-                        // Tenta sincronizar o nome do usuário
                         const headerProfileName = document.querySelector('.profile-button span');
                         if (headerProfileName) {
                             const sidebarProfileName = document.querySelector('.sidebar-profile-name');
@@ -437,12 +371,10 @@
                     }
                 }
                 
-                // Inicializa a sidebar
                 new SidebarController();
             }
         }
         
-        // Inicia o processo de criação da sidebar
         new SidebarManager();
     }
 })();

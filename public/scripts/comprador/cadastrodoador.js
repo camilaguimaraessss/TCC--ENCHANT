@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         validateStep1() {
             let errors = [];
-            if (!this.form.querySelector('#nomeCompleto').value.trim()) errors.push('O campo <strong>Nome</strong> é obrigatório.');
+            if (!this.form.querySelector('#nome-completo').value.trim()) errors.push('O campo <strong>Nome</strong> é obrigatório.');
             if (!this.validators.email(this.form.querySelector('#email').value)) errors.push('Por favor, insira um <strong>E-mail</strong> válido.');
             const senha = this.form.querySelector('#senha').value;
             if (!this.validators.senha(senha).valido) errors.push('A <strong>Senha</strong> não atende a todos os requisitos.');
@@ -409,29 +409,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     new FormManager();
-
-    const form = document.getElementById('cadastro-form-multistep');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-
-        try {
-
-            const response = await fetch('/cadastrar/doador', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (!response.ok) throw new Error('Erro na requisição');
-
-            const data = await response.json();
-            console.log('📦 Dados recebidos:', data);
-            form.reset();
-
-        } catch (error) {
-            console.error('❌ Erro na requisição:', error);
-        }
-    });
-
 });
